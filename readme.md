@@ -1,77 +1,60 @@
-# AI Recruitment Platform: Technical Assignments
+# AI Recruitment Tool: Technical Challenges
 
 ## Overview
 
-Welcome to our technical assessment process! We've created multiple assignment options that showcase different aspects of our AI recruitment platform. This approach allows you to choose a challenge that best aligns with your skills and interests.
+Welcome to our technical assessment repository! This collection of challenges is designed to evaluate your ability to build AI-powered recruitment tools that solve real-world problems.
 
 ## Instructions
 
-1. Review the assignment options below
-2. Choose ONE assignment that best matches your skills and interests
-3. Complete the assignment according to its requirements
-4. Submit your solution following the submission guidelines at the bottom of this document
+1. Review the challenges below
+2. Choose ONE that best matches your skills and interests
+3. Fork this repository and implement your solution
+4. Submit a pull request with your completed challenge
 
 ## About Our Platform
 
-We're building an AI-powered recruitment platform with specialized agents that automate various aspects of the recruitment process. Our agents handle:
+We're building an AI-enhanced recruitment platform with specialized agents that automate key aspects of the hiring process. Our technology stack includes React, Node.js, TypeScript, and modern AI/LLM integrations.
 
-- Candidate sourcing and matching
-- Resume analysis and processing
-- Candidate and client engagement
-- Recruitment analytics and insights
-- Relationship mapping and network intelligence
-- Compliance and data maintenance
+## Challenge Options
 
-## Assignment Options
+Choose ONE of the following challenges:
 
-Choose ONE of the following assignments:
+### [Advanced Candidate Matching System](./candidate-matcher.md)
+Design an intelligent system that matches candidates to jobs by understanding skill equivalence, experience depth, and potential fit.
 
-### [Candidate Matcher Agent](./candidate-matcher.md)
-Build a web application that uses AI to match candidate resumes against job descriptions.
+### [Intelligent Resume Parser](./resume-analyzer.md)
+Build a system that extracts structured, validated data from unstructured resume content.
 
-### [Resume Analyzer Agent](./resume-analyzer.md)
-Create a tool that extracts, analyzes, and standardizes information from candidate resumes.
+### [Candidate Engagement Chatbot](./candidate-engagement-bot.md)
+Create a conversational agent that provides job information while qualifying candidates through natural dialogue.
 
-### [Interview Q&A Generator](./interview-generator.md)
-Develop an application that generates tailored technical interview questions based on job requirements.
-
-### [Candidate Engagement Bot](./engagement-bot.md)
-Build a conversational agent that can engage with candidates to answer questions about job opportunities.
-
-### [Recruitment Analytics Dashboard](./analytics-dashboard.md)
-Create a dashboard that provides insights into recruitment pipeline metrics.
-
-### [Social Media Candidate Sourcer](./candidate-sourcer.md)
-Develop a tool that identifies potential candidates from public professional profiles.
+### [Technical Interview Question Generator](./interview-generator.md)
+Develop a tool that generates tailored technical interview questions with appropriate difficulty calibration.
 
 ## Evaluation Criteria
 
-Regardless of which assignment you choose, we'll evaluate your submission on:
+Regardless of which challenge you choose, we'll evaluate your submission on:
 
-1. **Functionality:** Does the application work as specified?
-2. **Code Quality:** Is the code well-structured, documented, and maintainable?
-3. **AI Implementation:** How effectively do you leverage LLM capabilities?
-4. **User Experience:** Is the interface intuitive and useful?
-5. **Technical Design:** Have you made appropriate architecture decisions?
+1. **Problem Solving**: How you approach and decompose a complex problem
+2. **AI Integration**: Strategic use of LLMs beyond simple prompt engineering
+3. **Code Quality**: Structure, readability, and maintainability
+4. **System Design**: Architecture decisions and technical tradeoffs
+5. **Functionality**: Effectiveness of your solution for the intended use case
 
 ## Time Expectation
 
-Each assignment is designed to take approximately 3-5 hours. We value your time and don't expect a polished product. Focus on demonstrating your approach and technical skills rather than perfecting every detail.
+Each challenge is designed to take approximately 4-8 hours. We value your time and don't expect a production-ready system. Focus on demonstrating your approach and technical thinking rather than perfecting every detail.
 
-## Submission Guidelines
-
-We encourage a collaborative approach to this assessment:
+## Submission Process
 
 1. Fork this repository
-2. Create a new branch with a descriptive name such as `[your-name]-[assignment-name]`
-3. Implement your solution in a directory named `[your-name]-solution` 
-4. Include a comprehensive README in your solution directory with:
-   - Setup instructions
-   - An explanation of your approach
-   - Any limitations or future improvements
-5. Ensure your application runs locally with minimal setup
-6. Submit a pull request to this repository with a clear description of your implementation
-7. Be prepared to discuss your solution during the review process
+2. Create a new branch with a descriptive name (`your-name-solution`)
+3. Implement your solution
+4. Submit a pull request with a summary of your approach
+5. Include setup instructions in your README
 
+We're excited to see your creative solutions to these challenges!
 
-Good luck!
+## Questions?
+
+If you have questions about the assignment, please open an issue in this repository.

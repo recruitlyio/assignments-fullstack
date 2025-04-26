@@ -1,7 +1,3 @@
-# AI Recruitment Tool: Technical Challenges
-
-## Overview
-
 Welcome to our technical assessment repository! This collection of challenges is designed to evaluate your ability to build AI-powered recruitment tools that solve real-world problems.
 
 ## Instructions
@@ -13,7 +9,7 @@ Welcome to our technical assessment repository! This collection of challenges is
 
 ## About Our Platform
 
-We're building an AI-enhanced recruitment platform with specialized agents that automate key aspects of the hiring process. Our technology stack includes React, Node.js, TypeScript, and modern AI/LLM integrations.
+We are building an Agentic recruitment platform with specialized agents that automate key aspects of the hiring process. Our technology stack includes React, Node.js, TypeScript, and modern AI/LLM integrations.
 
 ## Challenge Options
 

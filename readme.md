@@ -26,22 +26,22 @@ We're building an AI-powered recruitment platform with specialized agents that a
 
 Choose ONE of the following assignments:
 
-### [Candidate Matcher Agent](./assignments/candidate-matcher/README.md)
+### [Candidate Matcher Agent](./candidate-matcher.md)
 Build a web application that uses AI to match candidate resumes against job descriptions.
 
-### [Resume Analyzer Agent](./assignments/resume-analyzer/README.md)
+### [Resume Analyzer Agent](./resume-analyzer.md)
 Create a tool that extracts, analyzes, and standardizes information from candidate resumes.
 
-### [Interview Q&A Generator](./assignments/interview-generator/README.md)
+### [Interview Q&A Generator](./interview-generator.md)
 Develop an application that generates tailored technical interview questions based on job requirements.
 
-### [Candidate Engagement Bot](./assignments/engagement-bot/README.md)
+### [Candidate Engagement Bot](./engagement-bot.md)
 Build a conversational agent that can engage with candidates to answer questions about job opportunities.
 
-### [Recruitment Analytics Dashboard](./assignments/analytics-dashboard/README.md)
+### [Recruitment Analytics Dashboard](./analytics-dashboard.md)
 Create a dashboard that provides insights into recruitment pipeline metrics.
 
-### [Social Media Candidate Sourcer](./assignments/candidate-sourcer/README.md)
+### [Social Media Candidate Sourcer](./candidate-sourcer.md)
 Develop a tool that identifies potential candidates from public professional profiles.
 
 ## Evaluation Criteria
@@ -64,8 +64,8 @@ We encourage a collaborative approach to this assessment:
 
 1. Fork this repository
 2. Create a new branch with a descriptive name such as `[your-name]-[assignment-name]`
-3. Implement your solution in a subfolder within the appropriate assignment directory
-4. Include a comprehensive README in your solution folder with:
+3. Implement your solution in a directory named `[your-name]-solution` 
+4. Include a comprehensive README in your solution directory with:
    - Setup instructions
    - An explanation of your approach
    - Any limitations or future improvements

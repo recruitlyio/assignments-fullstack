@@ -68,8 +68,7 @@ This project is a web-based application designed to generate technical interview
 ---
 ## Demo Video
 
-https://github.com/user-attachments/assets/d565eef0-8e13-4b6c-973e-3f29315d0b98
-
+https://github.com/user-attachments/assets/36557123-fe6d-493e-b5aa-3b46ea24fa8f
 
 ## Setup Instructions
 

@@ -57,11 +57,11 @@ function generateQuestions(skills, experienceLevel) {
     - Given these core skill areas: [${skills.join(", ")}]
     - Experience level: "${experienceLevel}"
 
-    Generate 2-3 **practical, real-world** technical interview questions for **each skill area**.
+    Generate 5-7 **practical, real-world** technical interview questions for **each skill area**.
     - Questions should **test practical application** (how candidates would use skills in real projects).
     - Difficulty and depth must match the candidate's **experience level**.
-    - For each question, provide a **clear evaluation criteria** explaining what a good answer must cover.
-
+    - Progressively increase difficulty while maintaining alignment with the candidate’s experience level.
+    - For each question, provide clear evaluation criteria that explain what constitutes a strong response. The criteria should outline the key points or skills the candidate should demonstrate in their answer.
     OUTPUT FORMAT (strict JSON):
     {
       "Skill Area 1": [

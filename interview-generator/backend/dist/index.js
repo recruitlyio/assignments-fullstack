@@ -91,10 +91,16 @@ function generateQuestions(skills, experienceLevel) {
     });
 }
 app.post("/generate", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { jobReq, experience } = req.body;
-    const skills = yield parseJobRequirement(jobReq);
-    const questions = yield generateQuestions(skills, experience);
-    res.json({ questions });
+    try {
+        const { jobReq, experience } = req.body;
+        const skills = yield parseJobRequirement(jobReq);
+        const questions = yield generateQuestions(skills, experience);
+        res.json({ questions });
+    }
+    catch (e) {
+        console.error(e);
+        res.status(500).json({ error: e });
+    }
 }));
 app.listen(3000, () => {
     console.log("Running server on port 3000");

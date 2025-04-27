@@ -19,21 +19,26 @@ function App() {
     if (!jobReq || !experienceLevel) {
       return
     }
-    setLoading(true)
-    const response = await fetch("http://localhost:3000/generate", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        jobReq: jobReq,
-        experienceLevel: experienceLevel,
+    try {
+
+      setLoading(true)
+      const response = await fetch("http://localhost:3000/generate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          jobReq: jobReq,
+          experienceLevel: experienceLevel,
+        })
       })
-    })
-    const json = await response.json()
-    console.log(json)
-    setResults(json.questions)
-    setLoading(false)
+      const json = await response.json()
+      setResults(json.questions)
+      setLoading(false)
+    }
+    catch (e) {
+      console.error(e)
+    }
   }
 
   return (
@@ -55,7 +60,11 @@ function App() {
         </select>
         <button onClick={handleGenerate}>Generate Questions</button>
       </div>
-      {loading && "Loading your results"}
+      {loading && (
+        <div className="loading-overlay">
+          <div className="loading-message">Loading your results...</div>
+        </div>
+      )}
       {results && (
         <div id="results">
           {Object.keys(results).map((category) => (

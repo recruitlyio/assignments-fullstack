@@ -85,10 +85,17 @@ async function generateQuestions(skills: string[], experienceLevel: string) {
 }
 
 app.post("/generate", async (req, res) => {
-  const { jobReq, experience } = req.body;
-  const skills = await parseJobRequirement(jobReq);
-  const questions = await generateQuestions(skills, experience)
-  res.json({ questions })
+  try {
+
+    const { jobReq, experience } = req.body;
+    const skills = await parseJobRequirement(jobReq);
+    const questions = await generateQuestions(skills, experience)
+    res.json({ questions })
+  }
+  catch (e) {
+    console.error(e)
+    res.status(500).json({ error: e })
+  }
 })
 
 app.listen(3000, () => {

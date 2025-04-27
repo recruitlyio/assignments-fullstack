@@ -62,29 +62,6 @@ A modern web application that uses AI to extract structured data from unstructur
    - Tradeoff: Larger initial bundle
    - Alternative: Could use lighter framework but less developer experience
 
-## Future Enhancements
-
-Given more time, the following features could be added:
-1. **File Upload Support**:
-   - PDF and DOCX parsing
-   - Image-based resume processing
-   - Multiple file format support
-
-2. **Advanced Features**:
-   - Resume scoring and ranking
-   - Skill matching with job descriptions
-   - Custom validation rules for specific industries
-   - Batch processing of multiple resumes
-
-3. **Integration Options**:
-   - ATS system integration
-   - HR system integration
-   - Export to various formats (JSON, CSV, PDF)
-
-4. **Enhanced AI Features**:
-   - Custom training for specific industries
-   - Multi-language support
-   - Improved context understanding
 
 ## Getting Started
 
@@ -105,7 +82,7 @@ cd resume-analyzer
 npm install
 ```
 
-3. Create a `.env.local` file in the root directory and add your Gemini API key:
+3. Create a `.env` file in the root directory and add your Gemini API key:
 ```
 GEMINI_API_KEY=your_api_key_here
 ```
@@ -126,15 +103,3 @@ npm run dev
    - Skills with proficiency levels
    - Work experience with company details
    - Education history with standardized degree names
-
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.

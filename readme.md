@@ -52,8 +52,8 @@ Project/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/technical-interview-question-generator.git
-cd technical-interview-question-generator
+git clone https://github.com/sachin3825/assignments-fullstack.git
+cd assignments-fullstack
 ```
 
 ### 2. Set Up Backend
@@ -77,7 +77,7 @@ Create a `.env` file in the `server` folder and add the following:
 ```bash
 PORT=3000
 ENV=development
-GITHUB_TOKEN=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
+GITHUB_TOKEN=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
 ```
 
 **Disclaimer**: The **GITHUB_TOKEN** is a dummy account used for testing purposes and will expire in a few days. Please replace it with your own token if necessary.

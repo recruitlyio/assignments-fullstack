@@ -1,5 +1,3 @@
-Here’s a comprehensive README for your GitHub repository based on your codebase:
-
 ---
 
 # Candidate Engagement Chatbot

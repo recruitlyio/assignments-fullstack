@@ -1,56 +1,132 @@
-Welcome to our technical assessment repository! This collection of challenges is designed to evaluate your ability to build AI-powered recruitment tools that solve real-world problems.
+# Technical Interview Question Generator
 
-## Instructions
+## Overview
 
-1. Review the challenges below
-2. Choose ONE that best matches your skills and interests
-3. Fork this repository and implement your solution
-4. Submit a pull request with your completed challenge
+The **Technical Interview Question Generator** is a web-based tool designed to assist recruiters by generating role-specific technical interview questions based on job requirements and candidate experience levels. The application leverages OpenAI's GPT API to create meaningful questions and provides evaluation criteria for each question. It also allows for easy customization and adjustments to the generated questions based on the specific needs of the recruiter.
 
-## About Our Platform
+## Features
 
-We are building an Agentic recruitment platform with specialized agents that automate key aspects of the hiring process. Our technology stack includes React, Node.js, TypeScript, and modern AI/LLM integrations.
+- **Customizable Question Generation**: Generate technical questions based on the job title, primary skills, and experience level.
+- **Experience Level Calibration**: Adjusts question difficulty based on candidate experience (e.g., Junior, Mid-Level, Senior).
+- **Skill Area Categorization**: Categorize questions into specific skill areas (e.g., Frontend, Backend).
+- **Evaluation Criteria**: Provides guidelines for evaluating candidates' answers to each generated question.
 
-## Challenge Options
+## Tech Stack
 
-Choose ONE of the following challenges:
+- **Frontend**: React, TypeScript, Vite, Tailwind CSS, Radix UI
+- **Backend**: Node.js, TypeScript, Express (for API communication with OpenAI)
+- **AI Integration**: OpenAI API for question generation
+- **Environment**: `.env` configuration for API keys and secret settings
 
-### [Advanced Candidate Matching System](./candidate-matcher.md)
-Design an intelligent system that matches candidates to jobs by understanding skill equivalence, experience depth, and potential fit.
+## Project Structure
 
-### [Intelligent Resume Parser](./resume-analyzer.md)
-Build a system that extracts structured, validated data from unstructured resume content.
+The project is split into two separate parts: **Client (Frontend)** and **Server (Backend)**.
 
-### [Candidate Engagement Chatbot](./candidate-engagement-bot.md)
-Create a conversational agent that provides job information while qualifying candidates through natural dialogue.
+```
+Project/
+├── client/          # Frontend (React + Vite)
+└── server/          # Backend (Node.js + Express)
+```
 
-### [Technical Interview Question Generator](./interview-generator.md)
-Develop a tool that generates tailored technical interview questions with appropriate difficulty calibration.
+### Frontend (Client)
 
-## Evaluation Criteria
+- **React** with **Vite** for fast development and HMR (Hot Module Replacement).
+- **Tailwind CSS** for styling.
+- **Radix UI** for accessible UI components.
 
-Regardless of which challenge you choose, we'll evaluate your submission on:
+### Backend (Server)
 
-1. **Problem Solving**: How you approach and decompose a complex problem
-2. **AI Integration**: Strategic use of LLMs beyond simple prompt engineering
-3. **Code Quality**: Structure, readability, and maintainability
-4. **System Design**: Architecture decisions and technical tradeoffs
-5. **Functionality**: Effectiveness of your solution for the intended use case
+- **Node.js** with **Express** for REST API handling.
+- **OpenAI API** integration for generating technical interview questions.
 
-## Time Expectation
+## Setup Instructions
 
-Each challenge is designed to take approximately 4-8 hours. We value your time and don't expect a production-ready system. Focus on demonstrating your approach and technical thinking rather than perfecting every detail.
+### 1. Clone the Repository
 
-## Submission Process
+```bash
+git clone https://github.com/sachin3825/assignments-fullstack.git
+cd assignments-fullstack
+```
 
-1. Fork this repository
-2. Create a new branch with a descriptive name (`your-name-solution`)
-3. Implement your solution
-4. Submit a pull request with a summary of your approach
-5. Include setup instructions in your README
+### 2. Set Up Backend
 
-We're excited to see your creative solutions to these challenges!
+#### a. Navigate to the `server` folder:
 
-## Questions?
+```bash
+cd server
+```
 
-If you have questions about the assignment, please open an issue in this repository.
+#### b. Install Backend Dependencies
+
+```bash
+npm install
+```
+
+#### c. Set Up Environment Variables
+
+Create a `.env` file in the `server` folder and add the following:
+
+```bash
+PORT=3000
+ENV=development
+GITHUB_TOKEN=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
+```
+
+**Disclaimer**: The **GITHUB_TOKEN** is a dummy account used for testing purposes and will expire in a few days. Please replace it with your own token if necessary.
+
+#### d. Run the Backend Server
+
+To start the backend server:
+
+```bash
+npm start
+```
+
+This will run the backend server on `http://localhost:3000`.
+
+### 3. Set Up Frontend
+
+#### a. Navigate to the `client` folder:
+
+```bash
+cd client
+```
+
+#### b. Install Frontend Dependencies
+
+```bash
+npm install
+```
+
+#### c. Run the Frontend Server
+
+To start the frontend server:
+
+```bash
+npm run dev
+```
+
+This will run the frontend development server on `http://localhost:8080`.
+
+### 4. Testing the Application
+
+Once both the backend and frontend are running, you can visit `http://localhost:8080` in your browser to see the Technical Interview Question Generator in action.
+
+## Working Demo
+
+[**Loom Demo Link**](https://www.loom.com/share/467db78894b14523942ec4da90f14af5?sid=9718dc7d-beb1-4513-b87d-b931d7d14f6f)
+
+This demo showcases the functionality of the Technical Interview Question Generator, including question generation, experience calibration, and categorization.
+
+## Reference Video for API Key Setup
+
+For a reference on how to generate a GitHub token and use free APIs, check out this helpful YouTube video:
+
+[**Generate GitHub Token**](https://www.youtube.com/watch?v=YP8mV_2RDLc&ab_channel=AIUnleashed)
+
+## Future Enhancements
+
+- **Voice Interaction**: Integrate voice recording for candidates to answer interview questions via speech.
+- **Multiple AI Models**: Add support for additional LLMs (e.g., Claude, DeepSeek) to offer diversity in question generation.
+- **Question Bank**: Implement a system to store and reuse previously generated questions.
+- **Database Integration**: Store candidate data, job roles, and generated questions for quicker reuse.

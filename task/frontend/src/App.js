@@ -53,11 +53,11 @@ function App() {
       <span className="text-center text-2xl font-bold text-gray-800 bg-gray-100 p-4 rounded-lg shadow-sm w-full">
         Full-stack AI Developer (ReactJS/NodeJS)
       </span>
-      <div className="chat-container p-4 flex-1 overflow-y-auto space-y-4 bg-white rounded-lg shadow-md m-4">
+      <div className="chat-container p-4 flex-1 overflow-y-auto space-y-4 bg-white rounded-lg shadow-md m-4 ">
         {/* Display the welcome message at the top */}
         {messages.length === 0 && (
           <div className="message p-6 font-semibold rounded-xl justify-center m-auto text-center bg-gradient-to-r from-blue-500 to-indigo-600 text-white flex flex-col gap-2 w-fit animate-fadeIn">
-            <span>Hi there! 👋 Welcome to the AAJ chatbot.</span>
+            <span>Hi there! 👋 Welcome to the AAJ (Ask me Anything about JD) chatbot.</span>
             <span>
               I'm here to help you with the job description for the Full-stack
               AI Developer role. Ask away!
@@ -89,7 +89,7 @@ function App() {
         )}
       </div>
 
-      <div className="input-container p-4 bg-white shadow-lg rounded-lg m-4 flex items-center space-x-2">
+      <div className="input-container p-4 bg-white shadow-lg rounded-lg m-4 flex items-center space-x-2 sticky bottom-0 bg-white">
         <input
           type="text"
           value={userInput}

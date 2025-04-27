@@ -4,8 +4,6 @@
 
 The **Technical Interview Question Generator** is a web-based tool designed to assist recruiters by generating role-specific technical interview questions based on job requirements and candidate experience levels. The application leverages OpenAI's GPT API to create meaningful questions and provides evaluation criteria for each question. It also allows for easy customization and adjustments to the generated questions based on the specific needs of the recruiter.
 
----
-
 ## Features
 
 - **Customizable Question Generation**: Generate technical questions based on the job title, primary skills, and experience level.
@@ -13,16 +11,12 @@ The **Technical Interview Question Generator** is a web-based tool designed to a
 - **Skill Area Categorization**: Categorize questions into specific skill areas (e.g., Frontend, Backend).
 - **Evaluation Criteria**: Provides guidelines for evaluating candidates' answers to each generated question.
 
----
-
 ## Tech Stack
 
 - **Frontend**: React, TypeScript, Vite, Tailwind CSS, Radix UI
 - **Backend**: Node.js, TypeScript, Express (for API communication with OpenAI)
 - **AI Integration**: OpenAI API for question generation
 - **Environment**: `.env` configuration for API keys and secret settings
-
----
 
 ## Project Structure
 
@@ -44,8 +38,6 @@ Project/
 
 - **Node.js** with **Express** for REST API handling.
 - **OpenAI API** integration for generating technical interview questions.
-
----
 
 ## Setup Instructions
 
@@ -92,8 +84,6 @@ npm start
 
 This will run the backend server on `http://localhost:3000`.
 
----
-
 ### 3. Set Up Frontend
 
 #### a. Navigate to the `client` folder:
@@ -118,21 +108,21 @@ npm run dev
 
 This will run the frontend development server on `http://localhost:8080`.
 
----
-
 ### 4. Testing the Application
 
 Once both the backend and frontend are running, you can visit `http://localhost:8080` in your browser to see the Technical Interview Question Generator in action.
 
----
-
 ## Working Demo
 
-[**Loom Demo Link**](your-loom-video-link-here)
+[**Loom Demo Link**](https://www.loom.com/share/467db78894b14523942ec4da90f14af5?sid=9718dc7d-beb1-4513-b87d-b931d7d14f6f)
 
 This demo showcases the functionality of the Technical Interview Question Generator, including question generation, experience calibration, and categorization.
 
----
+## Reference Video for API Key Setup
+
+For a reference on how to generate a GitHub token and use free APIs, check out this helpful YouTube video:
+
+[**Generate GitHub Token**](https://www.youtube.com/watch?v=YP8mV_2RDLc&ab_channel=AIUnleashed)
 
 ## Future Enhancements
 

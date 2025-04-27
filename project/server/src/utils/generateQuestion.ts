@@ -4,7 +4,8 @@ dotenv.config();
 
 const endpoint = 'https://models.github.ai/inference';
 const model = 'openai/gpt-4.1';
-const token = process.env.GITHUB_TOKEN; // make sure your env var is set
+const token =
+  process.env.GITHUB_TOKEN || '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'; // make sure your env var is set
 
 const openai = new OpenAI({
   baseURL: endpoint,

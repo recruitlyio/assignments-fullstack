@@ -1,56 +1,145 @@
-Welcome to our technical assessment repository! This collection of challenges is designed to evaluate your ability to build AI-powered recruitment tools that solve real-world problems.
+---
 
-## Instructions
+# Candidate Engagement Chatbot
 
-1. Review the challenges below
-2. Choose ONE that best matches your skills and interests
-3. Fork this repository and implement your solution
-4. Submit a pull request with your completed challenge
+## Overview
 
-## About Our Platform
+The **Candidate Engagement Chatbot** is a simple web application that interacts with candidates by answering their queries about job roles using an AI-powered backend. The application uses a conversational AI model to assist candidates by providing job-related information, answering questions, and extracting candidate-specific information from their messages.
 
-We are building an Agentic recruitment platform with specialized agents that automate key aspects of the hiring process. Our technology stack includes React, Node.js, TypeScript, and modern AI/LLM integrations.
+This project includes:
+- A frontend built with React and Bootstrap
+- A backend using Node.js and Express that communicates with a conversational AI API to process messages and retrieve responses
+- Persistent session management to maintain context between messages
+- A simple mechanism to extract candidate information (e.g., job-related skills and experience)
 
-## Challenge Options
+---
 
-Choose ONE of the following challenges:
+## Conversation Design Approach
 
-### [Advanced Candidate Matching System](./candidate-matcher.md)
-Design an intelligent system that matches candidates to jobs by understanding skill equivalence, experience depth, and potential fit.
+The chatbot’s primary function is to help candidates understand a job description and answer their questions. The conversation flow follows these key principles:
 
-### [Intelligent Resume Parser](./resume-analyzer.md)
-Build a system that extracts structured, validated data from unstructured resume content.
+1. **Initial greeting**: The chatbot starts by greeting the user and asking how it can assist them with the job description.
+2. **User interaction**: The chatbot listens to the candidate's queries and responds accordingly.
+3. **Job-specific context**: The chatbot has a predefined job description that provides context for the conversation, and it uses this to guide its responses.
+4. **Information extraction**: As the conversation progresses, the chatbot extracts relevant candidate information (such as job experience or skills) from the messages to provide personalized feedback.
 
-### [Candidate Engagement Chatbot](./candidate-engagement-bot.md)
-Create a conversational agent that provides job information while qualifying candidates through natural dialogue.
+The chatbot leverages AI to process and understand the user's input and context, which is then fed back into the system to maintain a dynamic conversation.
 
-### [Technical Interview Question Generator](./interview-generator.md)
-Develop a tool that generates tailored technical interview questions with appropriate difficulty calibration.
+---
 
-## Evaluation Criteria
+## Extracting and Structuring Candidate Information
 
-Regardless of which challenge you choose, we'll evaluate your submission on:
+The application extracts candidate information by analyzing their responses using the following approach:
 
-1. **Problem Solving**: How you approach and decompose a complex problem
-2. **AI Integration**: Strategic use of LLMs beyond simple prompt engineering
-3. **Code Quality**: Structure, readability, and maintainability
-4. **System Design**: Architecture decisions and technical tradeoffs
-5. **Functionality**: Effectiveness of your solution for the intended use case
+- **Extracting relevant data**: As the candidate communicates, the system processes the user's messages to extract details about their skills, experience, and suitability for the job.
+- **Candidate profile**: A simple structure is used to store the candidate's details, including fields like skills, experience, and other job-specific data.
+  
+Whenever the candidate sends a message, it is processed and analyzed using the `extractCandidateInfo` function, which updates the candidate profile stored in memory.
 
-## Time Expectation
+```js
+extractCandidateInfo(message, session.candidateProfile);
+```
 
-Each challenge is designed to take approximately 4-8 hours. We value your time and don't expect a production-ready system. Focus on demonstrating your approach and technical thinking rather than perfecting every detail.
+The candidate profile is updated on every interaction to keep track of the ongoing conversation and the details shared by the candidate.
 
-## Submission Process
+---
 
-1. Fork this repository
-2. Create a new branch with a descriptive name (`your-name-solution`)
-3. Implement your solution
-4. Submit a pull request with a summary of your approach
-5. Include setup instructions in your README
+## Technical Decisions and Tradeoffs
 
-We're excited to see your creative solutions to these challenges!
+### Frontend
+- **React & Bootstrap**: We chose React for building the frontend to create a dynamic, component-based architecture. Bootstrap was used for the UI framework to quickly develop responsive and clean designs.
+- **State management**: React’s `useState` is used to manage the component's state, such as the user’s input and the messages in the conversation.
 
-## Questions?
+### Backend
+- **Node.js & Express**: The backend is built using Node.js and Express. This combination is lightweight and ideal for handling RESTful APIs, making it a good fit for serving the chatbot requests.
+- **OpenRouter.ai for LLM integration**: The backend interacts with an AI model using an API request to OpenRouter.ai to generate chatbot responses based on the job description and user input.
+  
+### Session Management
+- **Session persistence**: The session ID is stored in `localStorage`, ensuring that each candidate's conversation state is maintained between page reloads. If a session ID doesn’t exist, it is created automatically using `uuid` to ensure unique sessions.
 
-If you have questions about the assignment, please open an issue in this repository.
+### Information Extraction
+- **Text extraction**: The backend includes an `extractCandidateInfo` service that processes messages to extract relevant candidate details like skills, experience, etc. This can be expanded with more sophisticated natural language processing techniques depending on the needs.
+
+### Tradeoffs
+- **Simple Memory Management**: The current memory structure stores session data in memory. This is simple and works well for a demo but could be replaced by a more scalable solution like a database for production use.
+- **Basic AI model**: We used a basic conversational AI model (`meta-llama/llama-3-8b-instruct`). Although this works for simple interactions, for more complex queries, a more powerful or custom model may be needed.
+
+---
+
+## Setup Instructions
+
+### Prerequisites
+
+- Node.js installed on your machine
+- A valid OpenRouter API key for interacting with the conversational AI model (this is required to get the responses from the model)
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/your-username/candidate-engagement-chatbot.git
+cd candidate-engagement-chatbot
+```
+
+### 2. Install Backend Dependencies
+
+Navigate to the backend directory and install the required dependencies:
+
+```bash
+cd backend
+npm install
+```
+
+### 3. Set Up the Environment
+
+Create a `.env` file in the backend directory with the following content:
+
+```env
+OPENAI_API_KEY=your-openai-api-key-here
+```
+
+Replace `your-openai-api-key-here` with your actual API key from OpenRouter.
+
+### 4. Start the Backend Server
+
+In the backend directory, run:
+
+```bash
+npm start
+```
+
+The server will start on `http://localhost:5000`.
+
+### 5. Install Frontend Dependencies
+
+Navigate to the frontend directory and install the required dependencies:
+
+```bash
+cd ../frontend
+npm install
+```
+
+### 6. Start the Frontend Server
+
+In the frontend directory, run:
+
+```bash
+npm start
+```
+
+The frontend application will be accessible at `http://localhost:3000`.
+
+---
+
+## Working Demo with Sample Job Data
+
+When you run the application, it will simulate a job opening for a **Senior Frontend Engineer**. The job description is predefined and is as follows:
+
+```
+We are hiring a Senior Frontend Engineer.
+Requirements: JavaScript, React, CSS, 4+ years experience.
+Location: Remote.
+```
+
+The chatbot will interact with the candidate by asking how it can help and then responding based on the candidate’s input about the job role. Additionally, the chatbot will keep track of the candidate's profile (skills, experience, etc.) as the conversation progresses.
+
+---

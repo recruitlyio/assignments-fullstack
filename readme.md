@@ -55,8 +55,8 @@ Difficulty calibration is controlled through the **prompt phrasing** sent to the
 | **Backend handles prompt construction** | Separation of concerns — frontend stays clean |
 | **No database for MVP** | Focus on functionality over persistence |
 
-**Trade-off**: If scaled for production, question caching and database storage would be necessary.
-png
+**Trade-off**: If scaled for production, question caching and database storage would be necessary.(2 sample Images Attached )
+
 
 ---
 

@@ -1,0 +1,47 @@
+{
+  "name": "as1-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "dev": "pnpm build && pnpm start",
+    "lint": "eslint 'src/**/*.ts'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.6.5",
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.15.2",
+    "@types/pdf-parse": "^1.1.5",
+    "dotenv": "^16.5.0",
+    "eslint": "^9.25.1",
+    "express": "^5.1.0",
+    "install": "^0.13.0",
+    "nodemon": "^3.1.10",
+    "pnpm": "^10.9.0",
+    "prettier": "^3.5.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.0",
+    "@langchain/community": "^0.3.41",
+    "@langchain/core": "^0.3.49",
+    "@langchain/google-genai": "^0.2.5",
+    "@langchain/langgraph": "^0.2.67",
+    "@langchain/openai": "^0.5.7",
+    "cors": "^2.8.5",
+    "express-async-handler": "^1.2.0",
+    "fast-glob": "^3.3.3",
+    "langchain": "^0.3.24",
+    "neo4j-driver": "^5.28.1",
+    "pdf-parse": "^1.1.1",
+    "zod": "^3.24.3"
+  }
+}

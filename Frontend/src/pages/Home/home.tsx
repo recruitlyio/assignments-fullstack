@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Candidate, Job } from "../types";
+import { Candidate, Job } from "../../types";
 import "./home.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -46,6 +46,9 @@ function Home() {
 
   return (
     <div className="home-container">
+      <div className="header">
+        <h1>Candidate-Job Matching System</h1>
+      </div>
       <div className="selection-container">
         <div className="candidates-list">
           <h2>Candidates</h2>
@@ -78,7 +81,15 @@ function Home() {
           </ul>
         </div>
       </div>
-
+      <div className="match-btn">
+        <button
+          onClick={handleMatch}
+          disabled={!selectedCandidate || !selectedJob}
+          className={!selectedCandidate || !selectedJob ? "disabled" : ""}
+        >
+          Match
+        </button>
+      </div>
       <div className="details-container">
         <div className="details-panel">
           <h2>Candidate Details</h2>
@@ -126,16 +137,6 @@ function Home() {
             <p>Select a job to view details</p>
           )}
         </div>
-      </div>
-
-      <div className="match-btn">
-        <button
-          onClick={handleMatch}
-          disabled={!selectedCandidate || !selectedJob}
-          className={!selectedCandidate || !selectedJob ? "disabled" : ""}
-        >
-          Match
-        </button>
       </div>
     </div>
   );

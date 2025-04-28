@@ -1,21 +1,62 @@
-import { Candidate, Job, MatchResult, TransferableSkill, CandidateSkill } from '../types';
-import { SkillExtractor } from './skillExtractor';
+import { Candidate, Job, MatchResult, TransferableSkill, CandidateSkill } from '../types/index';
 import { generateContent } from './ai.service';
+import { KnowledgeModel } from './knowledgeModel';
 
 export class MatchingEngine {
   private readonly FALLBACK_SCORE = 0.5; // Default score when LLM fails
-  private skillExtractor: SkillExtractor;
+  private knowledgeModel: KnowledgeModel;
 
   constructor() {
-    this.skillExtractor = new SkillExtractor();
+    this.knowledgeModel = KnowledgeModel.getInstance();
+  }
+
+  private normalizeSkills(skills: CandidateSkill[]): CandidateSkill[] {
+    return skills.map(skill => ({
+      ...skill,
+      name: this.knowledgeModel.normalizeSkill(skill.name)
+    }));
+  }
+
+  private normalizeJobRequirements(job: Job): Job {
+    return {
+      ...job,
+      requirements: job.requirements.map(req => ({
+        ...req,
+        skill: this.knowledgeModel.normalizeSkill(req.skill)
+      }))
+    };
+  }
+
+  private calculateBasicScore(candidate: Candidate, job: Job): number {
+    const requiredSkills = job.requirements.filter(req => req.required);
+    const matchingSkills = candidate.skills.filter(skill => 
+      requiredSkills.some(req => req.skill === skill.name && skill.years >= req.minYears)
+    );
+    
+    return matchingSkills.length / requiredSkills.length;
   }
 
   private async calculateSkillMatchScore(candidate: Candidate, job: Job): Promise<number> {
     try {
+      // Normalize skills before matching
+      const normalizedCandidate = {
+        ...candidate,
+        skills: this.normalizeSkills(candidate.skills)
+      };
+      const normalizedJob = this.normalizeJobRequirements(job);
+
+      // Calculate basic score first
+      const basicScore = this.calculateBasicScore(normalizedCandidate, normalizedJob);
+      
+      // If basic score is 0, no need to call LLM
+      if (basicScore === 0) {
+        return 0;
+      }
+
       const prompt = `
         Analyze the match between this candidate and job:
-        Candidate Skills: ${JSON.stringify(candidate.skills)}
-        Job Requirements: ${JSON.stringify(job.requirements)}
+        Candidate Skills: ${JSON.stringify(normalizedCandidate.skills)}
+        Job Requirements: ${JSON.stringify(normalizedJob.requirements)}
         
         Consider:
         1. Skill overlap
@@ -25,25 +66,61 @@ export class MatchingEngine {
         Return a score between 0 and 1.
       `;
 
+      console.log('Calculating match score for:', {
+        candidate: normalizedCandidate.name,
+        job: normalizedJob.title,
+        basicScore
+      });
+
       const response = await generateContent(prompt);
-      const score = parseFloat(response);
+      console.log('LLM Score Response:', response);
       
-      return isNaN(score) ? this.FALLBACK_SCORE : Math.min(Math.max(score, 0), 1);
+      const llmScore = parseFloat(response);
+      
+      if (isNaN(llmScore)) {
+        console.error('Invalid score from LLM:', response);
+        return basicScore; // Return basic score if LLM fails
+      }
+
+      // Combine basic score and LLM score with weights
+      const finalScore = (basicScore * 0.6) + (llmScore * 0.4);
+      
+      // Update skill usage in knowledge model
+      normalizedCandidate.skills.forEach(skill => {
+        this.knowledgeModel.updateSkillUsage(skill.name, finalScore > 0.5);
+      });
+      
+      return Math.min(Math.max(finalScore, 0), 1);
     } catch (error) {
       console.error('Error calculating skill match score:', error);
-      return this.FALLBACK_SCORE;
+      // Return basic score if LLM fails
+      return this.calculateBasicScore(candidate, job);
     }
   }
 
   private async analyzeTransferableSkills(candidate: Candidate, job: Job): Promise<TransferableSkill[]> {
     try {
+      // Normalize skills before analysis
+      const normalizedCandidate = {
+        ...candidate,
+        skills: this.normalizeSkills(candidate.skills)
+      };
+      const normalizedJob = this.normalizeJobRequirements(job);
+
+      // Get related skills from knowledge model
+      const relatedSkills = normalizedCandidate.skills
+        .filter(skill => !normalizedJob.requirements.some(req => req.skill === skill.name))
+        .flatMap(skill => this.knowledgeModel.getRelatedSkills(skill.name))
+        .filter((skill, index, array) => array.indexOf(skill) === index); // Remove duplicates
+
       const prompt = `
         Analyze how these candidate skills could transfer to the job requirements.
         For each candidate skill that doesn't exactly match a job requirement,
         explain how it could be valuable for the role.
         
-        Candidate Skills: ${JSON.stringify(candidate.skills)}
-        Job Requirements: ${JSON.stringify(job.requirements)}
+        Candidate Skills: ${JSON.stringify(normalizedCandidate.skills)}
+        Job Requirements: ${JSON.stringify(normalizedJob.requirements)}
+        Related Skills: ${JSON.stringify(relatedSkills)}
         
         Return a list of skills with their transfer potential and explanation.
         Format each skill as: "SKILL_NAME | POTENTIAL_SCORE | EXPLANATION"
@@ -127,19 +204,36 @@ export class MatchingEngine {
 
   public async matchCandidateToJob(candidate: Candidate, job: Job): Promise<MatchResult> {
     try {
-      const score = await this.calculateSkillMatchScore(candidate, job);
-      const transferableSkills = await this.analyzeTransferableSkills(candidate, job);
-      const explanation = await this.generateMatchExplanation(candidate, job, score);
+      // Normalize skills before matching
+      const normalizedCandidate = {
+        ...candidate,
+        skills: this.normalizeSkills(candidate.skills)
+      };
+      const normalizedJob = this.normalizeJobRequirements(job);
 
-      const matches = candidate.skills.filter(skill => 
-        job.requirements.some(req => req.skill === skill.name)
+      console.log('Starting match process for:', {
+        candidate: normalizedCandidate.name,
+        job: normalizedJob.title
+      });
+
+      const score = await this.calculateSkillMatchScore(normalizedCandidate, normalizedJob);
+      const transferableSkills = await this.analyzeTransferableSkills(normalizedCandidate, normalizedJob);
+      const explanation = await this.generateMatchExplanation(normalizedCandidate, normalizedJob, score);
+
+      const matches = normalizedCandidate.skills.filter(skill => 
+        normalizedJob.requirements.some(req => req.skill === skill.name)
       );
 
-      const missingSkills = job.requirements
-        .filter(req => !candidate.skills.some(skill => skill.name === req.skill))
+      const missingSkills = normalizedJob.requirements
+        .filter(req => !normalizedCandidate.skills.some(skill => skill.name === req.skill))
         .map(req => req.skill);
 
-      return {
+      // Evolve knowledge model periodically
+      if (Math.random() < 0.1) { // 10% chance to evolve on each match
+        this.knowledgeModel.evolveKnowledgeGraph();
+      }
+
+      const result = {
         candidateId: candidate.id,
         jobId: job.id,
         score,
@@ -148,12 +242,15 @@ export class MatchingEngine {
         transferableSkills,
         explanation
       };
+
+      console.log('Match result:', result);
+      return result;
     } catch (error) {
       console.error('Error in matchCandidateToJob:', error);
       return {
         candidateId: candidate.id,
         jobId: job.id,
-        score: this.FALLBACK_SCORE,
+        score: this.calculateBasicScore(candidate, job), // Use basic score on error
         matches: [],
         missingSkills: job.requirements.map(req => req.skill),
         transferableSkills: this.getBasicTransferableSkills(candidate, job),

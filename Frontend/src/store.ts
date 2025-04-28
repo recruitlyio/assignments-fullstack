@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { MatchResult } from "./types";
+import axios from "axios";
 
 interface CachedMatchResult {
   data: MatchResult;
@@ -14,7 +15,7 @@ interface MatchStore {
   isExpired: (timestamp: number) => boolean;
 }
 
-const CACHE_DURATION = 10 * 60 * 1000; // 10 minutes in milliseconds
+const CACHE_DURATION = 10 * 60 * 1000; 
 
 export const useMatchStore = create<MatchStore>()(
   persist(
@@ -30,15 +31,11 @@ export const useMatchStore = create<MatchStore>()(
         }
 
         try {
-          const response = await fetch(
+          const response = await axios.get(
             `http://localhost:3000/api/match/${candidateId}/${jobId}`
           );
-          if (!response.ok) {
-            throw new Error("Failed to fetch match result");
-          }
-          const data = await response.json();
-          get().setMatch(candidateId, jobId, data);
-          return data;
+          get().setMatch(candidateId, jobId, response.data);
+          return response.data;
         } catch (error) {
           console.error("Error fetching match result:", error);
           return null;
@@ -63,7 +60,7 @@ export const useMatchStore = create<MatchStore>()(
       },
     }),
     {
-      name: "match-store", // unique name for localStorage
+      name: "match-store", 
       partialize: (state) => ({ cache: state.cache }), // only persist the cache
     }
   )

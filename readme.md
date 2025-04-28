@@ -1,56 +1,155 @@
-Welcome to our technical assessment repository! This collection of challenges is designed to evaluate your ability to build AI-powered recruitment tools that solve real-world problems.
+# Advanced Candidate Matching System
 
-## Instructions
+A sophisticated candidate matching system that uses AI-augmented matching to solve real-world recruitment challenges.
 
-1. Review the challenges below
-2. Choose ONE that best matches your skills and interests
-3. Fork this repository and implement your solution
-4. Submit a pull request with your completed challenge
+## System Architecture
 
-## About Our Platform
+The system consists of two main components:
 
-We are building an Agentic recruitment platform with specialized agents that automate key aspects of the hiring process. Our technology stack includes React, Node.js, TypeScript, and modern AI/LLM integrations.
+### Backend (Node.js/TypeScript)
 
-## Challenge Options
+- **Knowledge Model**: Maintains a graph of related skills and their relationships
+- **Matching Engine**: Implements intelligent scoring and matching algorithms
+- **AI Service**: Integrates with LLM for specific subtasks like explanation generation
+- **Evolution Mechanism**: Tracks usage patterns and improves matching quality over time
+- **Skill Extractor**: (Future Implementation) Will handle extraction and normalization of skills from raw resumes and job descriptions
 
-Choose ONE of the following challenges:
+### Frontend (React/TypeScript)
 
-### [Advanced Candidate Matching System](./candidate-matcher.md)
-Design an intelligent system that matches candidates to jobs by understanding skill equivalence, experience depth, and potential fit.
+- **Home Page**: Displays available candidates and jobs
+- **Match Page**: Shows detailed match analysis with explanations
+- **State Management**: Uses Zustand for efficient state handling
+- **Styling**: Custom CSS for clean, responsive UI
 
-### [Intelligent Resume Parser](./resume-analyzer.md)
-Build a system that extracts structured, validated data from unstructured resume content.
+## Design Decisions
 
-### [Candidate Engagement Chatbot](./candidate-engagement-bot.md)
-Create a conversational agent that provides job information while qualifying candidates through natural dialogue.
+### Knowledge Graph
 
-### [Technical Interview Question Generator](./interview-generator.md)
-Develop a tool that generates tailored technical interview questions with appropriate difficulty calibration.
+- Used a JSON-based structure for simplicity and ease of maintenance
+- Implemented skill normalization to handle variations (e.g., "React" vs "ReactJS")
+- Added confidence scores to track skill relationships
 
-## Evaluation Criteria
+### Matching Algorithm
 
-Regardless of which challenge you choose, we'll evaluate your submission on:
+- Implemented a multi-factor scoring system:
+  - Direct skill matches
+  - Transferable skills with potential scores
+  - Missing skills impact
+- Used LLM strategically for:
+  - Generating human-readable explanations
+  - Identifying transferable skills
+  - Normalizing skill variations
 
-1. **Problem Solving**: How you approach and decompose a complex problem
-2. **AI Integration**: Strategic use of LLMs beyond simple prompt engineering
-3. **Code Quality**: Structure, readability, and maintainability
-4. **System Design**: Architecture decisions and technical tradeoffs
-5. **Functionality**: Effectiveness of your solution for the intended use case
+### Evolution Mechanism
 
-## Time Expectation
+- Tracks skill usage patterns
+- Updates relationship strengths based on successful matches
+- Maintains version history for auditability
 
-Each challenge is designed to take approximately 4-8 hours. We value your time and don't expect a production-ready system. Focus on demonstrating your approach and technical thinking rather than perfecting every detail.
+### Note on Skill Extraction
 
-## Submission Process
+For the scope of this assignment, we're using mock data with pre-extracted skills. The `SkillExtractor` component is implemented but not integrated, as it's designed for future use with real resumes and job descriptions. In a production environment, this component would:
 
-1. Fork this repository
-2. Create a new branch with a descriptive name (`your-name-solution`)
-3. Implement your solution
-4. Submit a pull request with a summary of your approach
-5. Include setup instructions in your README
+- Extract skills and experience levels from raw resumes
+- Parse job requirements from job descriptions
+- Normalize extracted skills using the knowledge graph
+- Handle various formats and structures of input documents
 
-We're excited to see your creative solutions to these challenges!
+## Core Challenges Addressed
 
-## Questions?
+1. **Skill Equivalence**
 
-If you have questions about the assignment, please open an issue in this repository.
+   - Implemented skill normalization in `knowledgeModel.ts`
+   - Used LLM to identify equivalent skills
+   - Maintained a growing knowledge base of skill relationships
+
+2. **Experience Depth**
+
+   - Scored matches based on multiple factors
+   - Considered transferable skills and learning potential
+   - Generated detailed explanations for match scores
+
+3. **Potential Fit**
+   - Identified transferable skills with potential scores
+   - Provided growth recommendations
+   - Tracked successful matches to improve future recommendations
+
+## Scaling and Improvement
+
+The system is designed to improve over time through:
+
+1. **Data Collection**
+
+   - Tracks successful matches
+   - Records skill usage patterns
+   - Maintains relationship strengths
+
+2. **Feedback Integration**
+
+   - Can be extended to collect user feedback
+   - Uses feedback to adjust scoring algorithms
+   - Updates knowledge graph based on real-world data
+
+3. **Performance Monitoring**
+   - Tracks match quality metrics
+   - Identifies areas for improvement
+   - Provides insights for system enhancement
+
+## Setup Instructions
+
+### Prerequisites
+
+- Node.js (v16 or higher)
+- npm or yarn
+- GOOGLE_GEMINI API key
+
+### Backend Setup
+
+1. Navigate to the Backend directory:
+   ```bash
+   cd Backend
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Create a `.env` file with your GOOGLE_GEMINI API key:
+   ```
+   GOOGLE_GEMINI_KEY=your_api_key_here
+   ```
+4. Start the server:
+   ```bash
+   npm run dev
+   ```
+
+### Frontend Setup
+
+1. Navigate to the Frontend directory:
+   ```bash
+   cd Frontend
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+### Running the Application
+
+1. Access the frontend at `http://localhost:5173`
+2. The backend API will be available at `http://localhost:3000`
+3. Use the interface to view candidates, jobs, and match results
+
+## Future Enhancements
+
+Given more time, we would:
+
+1. Implement user authentication and authorization
+2. Add a feedback collection system
+3. Enhance the knowledge graph with more sophisticated relationships
+4. Implement automated testing
+5. Add performance monitoring and analytics
+6. Create an admin interface for managing the knowledge graph

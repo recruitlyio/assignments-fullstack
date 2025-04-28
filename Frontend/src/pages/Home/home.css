@@ -2,6 +2,7 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+
 }
 
 .selection-container {
@@ -13,7 +14,7 @@
 
 .candidates-list,
 .jobs-list {
-  background-color: #f14747;
+  background-color: #6f98f0;
   border: 1px solid #ddd;
   border-radius: 4px;
   padding: 20px;
@@ -33,7 +34,6 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  height: 300px;
   overflow-y: auto;
 }
 
@@ -47,7 +47,7 @@
 
 .candidates-list li:hover,
 .jobs-list li:hover {
-  background-color: #f5f5f5;
+  background-color: #093f7c;
 }
 
 .candidates-list li.selected,
@@ -64,7 +64,7 @@
 }
 
 .details-panel {
-  background-color: #fff;
+  background-color: #22cfdb;
   border: 1px solid #ddd;
   border-radius: 4px;
   padding: 20px;
@@ -84,7 +84,7 @@
 
 .details-content h3 {
   margin-top: 0;
-  color: #2196f3;
+  color: #171718;
 }
 
 .details-content h4 {
@@ -171,4 +171,8 @@
   padding: 20px;
   color: #666;
   font-size: 16px;
+}
+.header{
+  text-align: center;
+  margin-bottom: 20px;
 }

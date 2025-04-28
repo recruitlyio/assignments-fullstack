@@ -1,3 +1,39 @@
+export interface Skill {
+  name: string;
+  aliases: string[];
+  related: string[];
+  category: string;
+}
+
+export interface SkillUsage {
+  count: number;
+  lastUsed: Date;
+  successfulMatches: number;
+  failedMatches: number;
+  confidence: number;  // 0-1 confidence in this skill's relationships
+}
+
+export interface EvolvingSkill extends Skill {
+  usage: SkillUsage;
+  lastUpdated: Date;
+  version: number;
+}
+
+export interface NormalizationPattern {
+  original: string;
+  normalized: string;
+  count: number;
+  lastUsed: Date;
+  successRate: number;
+}
+
+export interface KnowledgeGraphEvolution {
+  skills: Record<string, EvolvingSkill>;
+  normalizationPatterns: NormalizationPattern[];
+  lastEvolution: Date;
+  version: number;
+}
+
 export interface CandidateSkill {
   name: string;
   years: number;

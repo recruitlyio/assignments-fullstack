@@ -1,4 +1,4 @@
-import { Skill } from '../types';
+import { Skill } from '../types/index';
 
 export const knowledgeGraph: Record<string, Skill> = {
   'React': {

@@ -1,6 +1,11 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
-const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GEMINI_KEY || '');
+// Validate API key
+if (!process.env.GOOGLE_GEMINI_KEY) {
+  throw new Error('GOOGLE_GEMINI_KEY is not set in environment variables');
+}
+
+const genAI = new GoogleGenerativeAI(process.env.GOOGLE_GEMINI_KEY);
 const model = genAI.getGenerativeModel({
   model: "gemini-2.0-flash",
   systemInstruction: `
@@ -12,10 +17,16 @@ const model = genAI.getGenerativeModel({
 
 export async function generateContent(prompt: string): Promise<string> {
   try {
+    console.log('Sending prompt to LLM:', prompt);
     const result = await model.generateContent(prompt);
-    return result.response.text();
+    const response = result.response.text();
+    console.log('Received response from LLM:', response);
+    return response;
   } catch (error) {
     console.error('Error generating content:', error);
-    throw error;
+    if (error instanceof Error) {
+      throw new Error(`LLM Error: ${error.message}`);
+    }
+    throw new Error('Unknown error occurred while generating content');
   }
 } 

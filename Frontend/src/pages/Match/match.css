@@ -1,0 +1,168 @@
+.error-message {
+    background-color: #ffebee;
+    color: #c62828;
+    padding: 15px;
+    border-radius: 4px;
+    border: 1px solid #ef9a9a;
+    margin: 20px 0;
+    text-align: center;
+  }
+  
+  .loading {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+    font-size: 16px;
+  }
+  
+.match-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.match-header {
+  margin-bottom: 30px;
+}
+
+.match-content {
+  background: white;
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Markdown Styling */
+.match-content h1 {
+  color: #1976d2;
+  font-size: 24px;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.match-content h2 {
+  color: #1976d2;
+  font-size: 20px;
+  margin: 30px 0 15px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.match-content h3 {
+  color: #1976d2;
+  font-size: 18px;
+  margin: 25px 0 10px;
+}
+
+.match-content p {
+  line-height: 1.6;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.match-content ul {
+  margin: 15px 0;
+  padding-left: 20px;
+}
+
+.match-content li {
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.match-content strong {
+  color: #1976d2;
+  font-weight: 600;
+}
+
+/* Score Display */
+.score-display {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 15px;
+  background: #f5f5f5;
+  border-radius: 8px;
+}
+
+.score-value {
+  font-size: 24px;
+  font-weight: bold;
+  color: #1976d2;
+  margin-right: 15px;
+}
+
+.score-label {
+  font-size: 16px;
+  color: #666;
+}
+
+/* Skills Section */
+.skills-section {
+  margin: 20px 0;
+  padding: 15px;
+  background: #f9f9f9;
+  border-radius: 8px;
+}
+
+.skills-section h3 {
+  margin-top: 0;
+}
+
+.skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.skill-chip {
+  background: #e3f2fd;
+  color: #1976d2;
+  padding: 5px 10px;
+  border-radius: 16px;
+  font-size: 14px;
+}
+
+/* Summary Section */
+.summary-section {
+  margin-top: 30px;
+  padding: 20px;
+  background: #e3f2fd;
+  border-radius: 8px;
+}
+
+.summary-section h2 {
+  color: #1976d2;
+  margin-top: 0;
+}
+
+li{
+  color: black;
+}
+.match-analysis{
+  color: black;
+}
+/* Responsive Design */
+@media (max-width: 768px) {
+  .match-container {
+    padding: 10px;
+  }
+  
+  .match-content {
+    padding: 20px;
+  }
+  
+  .match-content h1 {
+    font-size: 20px;
+  }
+  
+  .match-content h2 {
+    font-size: 18px;
+  }
+  
+  .match-content h3 {
+    font-size: 16px;
+  }
+}

@@ -1,0 +1,178 @@
+.home-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+
+}
+
+.selection-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.candidates-list,
+.jobs-list {
+  background-color: #6f98f0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.candidates-list h2,
+.jobs-list h2 {
+  margin-top: 0;
+  color: #333;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.candidates-list ul,
+.jobs-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow-y: auto;
+}
+
+.candidates-list li,
+.jobs-list li {
+  padding: 12px;
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+  transition: background-color 0.2s;
+}
+
+.candidates-list li:hover,
+.jobs-list li:hover {
+  background-color: #093f7c;
+}
+
+.candidates-list li.selected,
+.jobs-list li.selected {
+  background-color: #e3f2fd;
+  font-weight: bold;
+}
+
+.details-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.details-panel {
+  background-color: #22cfdb;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.details-panel h2 {
+  margin-top: 0;
+  color: #333;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.details-content {
+  margin-top: 15px;
+}
+
+.details-content h3 {
+  margin-top: 0;
+  color: #171718;
+}
+
+.details-content h4 {
+  margin: 15px 0 5px;
+  color: #666;
+}
+
+.details-content ul {
+  padding-left: 20px;
+  margin: 0;
+}
+
+.details-content li {
+  margin-bottom: 5px;
+}
+
+.details-content p {
+  line-height: 1.5;
+  color: #444;
+}
+
+.match-btn {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.match-btn button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.match-btn button:hover {
+  background-color: #1976d2;
+}
+
+.match-btn button.disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.match-result {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+
+.match-result h3 {
+  margin-top: 0;
+  color: #333;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.match-result pre {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 4px;
+  overflow-x: auto;
+  font-family: monospace;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.error-message {
+  background-color: #ffebee;
+  color: #c62828;
+  padding: 15px;
+  border-radius: 4px;
+  border: 1px solid #ef9a9a;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.loading {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+  font-size: 16px;
+}
+.header{
+  text-align: center;
+  margin-bottom: 20px;
+}

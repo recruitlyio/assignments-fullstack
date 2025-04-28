@@ -1,56 +1,30 @@
-Welcome to our technical assessment repository! This collection of challenges is designed to evaluate your ability to build AI-powered recruitment tools that solve real-world problems.
+#Approach to Question Generation
 
-## Instructions
+- Cohere AI is used to generate technical interview questions by making API calls with a dynamic prompt based on the job title and experience level. The prompt requests a list of relevant interview questions with evaluation criteria for each.
+- I am using "command" model of cohere ai which takes up to 10-20 seconds as it is more thoughtful.
+- The API response is parsed to extract the questions and evaluation criteria, which are then displayed on the frontend.
 
-1. Review the challenges below
-2. Choose ONE that best matches your skills and interests
-3. Fork this repository and implement your solution
-4. Submit a pull request with your completed challenge
+#Calibartion of Difficulty Level
 
-## About Our Platform
+- The experience level (Junior, Medium, Senior, etc.) provided by the user is used to adjust the complexity of the generated questions. The prompt to Cohere AI specifies the experience level to fine-tune the relevance and difficulty of the questions.
+- Different experience levels lead to varying question difficulty; for example, questions for senior roles might involve more complex scenarios and deeper technical insights.
 
-We are building an Agentic recruitment platform with specialized agents that automate key aspects of the hiring process. Our technology stack includes React, Node.js, TypeScript, and modern AI/LLM integrations.
+#Technical Decisions and Trade-offs
 
-## Challenge Options
+- API Integration: Using the Cohere API for generating questions allows quick and scalable question generation, minimizing manual input.
+- Frontend/Backend Separation: The frontend handles user input and displays results, while the backend manages API calls, which improves modularity and maintainability.
+- Error Handling: Included basic error handling (e.g., missing API key or empty responses) to ensure the application gracefully handles failures without crashing.
+- No Authentication: The app was kept simple without authentication, as the goal was focused on question generation.
 
-Choose ONE of the following challenges:
+#Setup instructions for local
 
-### [Advanced Candidate Matching System](./candidate-matcher.md)
-Design an intelligent system that matches candidates to jobs by understanding skill equivalence, experience depth, and potential fit.
+- For frontend --> React app
+- For backend --> Express server
+- Setup environment variables in ".env" file
+- Install dependencies:
+  - dotenv
+  - expresss
+  - cors
+  - cohere-ai
 
-### [Intelligent Resume Parser](./resume-analyzer.md)
-Build a system that extracts structured, validated data from unstructured resume content.
-
-### [Candidate Engagement Chatbot](./candidate-engagement-bot.md)
-Create a conversational agent that provides job information while qualifying candidates through natural dialogue.
-
-### [Technical Interview Question Generator](./interview-generator.md)
-Develop a tool that generates tailored technical interview questions with appropriate difficulty calibration.
-
-## Evaluation Criteria
-
-Regardless of which challenge you choose, we'll evaluate your submission on:
-
-1. **Problem Solving**: How you approach and decompose a complex problem
-2. **AI Integration**: Strategic use of LLMs beyond simple prompt engineering
-3. **Code Quality**: Structure, readability, and maintainability
-4. **System Design**: Architecture decisions and technical tradeoffs
-5. **Functionality**: Effectiveness of your solution for the intended use case
-
-## Time Expectation
-
-Each challenge is designed to take approximately 4-8 hours. We value your time and don't expect a production-ready system. Focus on demonstrating your approach and technical thinking rather than perfecting every detail.
-
-## Submission Process
-
-1. Fork this repository
-2. Create a new branch with a descriptive name (`your-name-solution`)
-3. Implement your solution
-4. Submit a pull request with a summary of your approach
-5. Include setup instructions in your README
-
-We're excited to see your creative solutions to these challenges!
-
-## Questions?
-
-If you have questions about the assignment, please open an issue in this repository.
+Link to Demo with Outputs: https://drive.google.com/file/d/1UTcdvhfmkb2rbi5qydZGeqxVRFV6u6qx/view?usp=sharing

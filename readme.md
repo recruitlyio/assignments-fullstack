@@ -1,56 +1,72 @@
-Welcome to our technical assessment repository! This collection of challenges is designed to evaluate your ability to build AI-powered recruitment tools that solve real-world problems.
+# Technical Interview Question Generator
 
-## Instructions
+A professional tool for generating tailored technical interview questions based on job requirements and candidate experience levels.
 
-1. Review the challenges below
-2. Choose ONE that best matches your skills and interests
-3. Fork this repository and implement your solution
-4. Submit a pull request with your completed challenge
+## Features
 
-## About Our Platform
+- 🎯 Job-specific question generation
+- 📊 Experience-based difficulty calibration
+- 🔍 Detailed evaluation criteria
+- 🌓 Dark/Light theme support
+- 🎨 Professional, responsive UI
+- ⚡ Real-time filtering and sorting
+- 🤖 AI-powered question generation
 
-We are building an Agentic recruitment platform with specialized agents that automate key aspects of the hiring process. Our technology stack includes React, Node.js, TypeScript, and modern AI/LLM integrations.
+## Setup
 
-## Challenge Options
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Create a `.env` file in the root directory and add your OpenAI API key:
+   ```
+   VITE_OPENAI_API_KEY=your_openai_api_key_here
+   ```
+   > Get your API key from [OpenAI's platform](https://platform.openai.com/api-keys)
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
 
-Choose ONE of the following challenges:
+## Technical Stack
 
-### [Advanced Candidate Matching System](./candidate-matcher.md)
-Design an intelligent system that matches candidates to jobs by understanding skill equivalence, experience depth, and potential fit.
+- React 18
+- TypeScript
+- Tailwind CSS
+- Vite
+- Lucide Icons
+- OpenAI API
 
-### [Intelligent Resume Parser](./resume-analyzer.md)
-Build a system that extracts structured, validated data from unstructured resume content.
+## Technical Approach
 
-### [Candidate Engagement Chatbot](./candidate-engagement-bot.md)
-Create a conversational agent that provides job information while qualifying candidates through natural dialogue.
+### Question Generation
+- AI-powered question generation using OpenAI's GPT models
+- Fallback to pre-defined templates when needed
+- Questions are generated based on skill areas and experience levels
+- Each question includes detailed evaluation criteria
+- Difficulty is calibrated using a sophisticated algorithm that considers:
+  - Candidate experience level
+  - Skill area complexity
+  - Question position in the sequence
 
-### [Technical Interview Question Generator](./interview-generator.md)
-Develop a tool that generates tailored technical interview questions with appropriate difficulty calibration.
+### Difficulty Calibration
+- Four difficulty levels: Easy, Medium, Hard, Expert
+- Dynamic adjustment based on:
+  - Years of experience
+  - Role requirements
+  - Skill area complexity
 
-## Evaluation Criteria
+### Evaluation Guidelines
+Each question includes:
+- Clear passing criteria
+- Excellence markers
+- Time estimates
+- Specific evaluation points
 
-Regardless of which challenge you choose, we'll evaluate your submission on:
+## Future Enhancements
 
-1. **Problem Solving**: How you approach and decompose a complex problem
-2. **AI Integration**: Strategic use of LLMs beyond simple prompt engineering
-3. **Code Quality**: Structure, readability, and maintainability
-4. **System Design**: Architecture decisions and technical tradeoffs
-5. **Functionality**: Effectiveness of your solution for the intended use case
-
-## Time Expectation
-
-Each challenge is designed to take approximately 4-8 hours. We value your time and don't expect a production-ready system. Focus on demonstrating your approach and technical thinking rather than perfecting every detail.
-
-## Submission Process
-
-1. Fork this repository
-2. Create a new branch with a descriptive name (`your-name-solution`)
-3. Implement your solution
-4. Submit a pull request with a summary of your approach
-5. Include setup instructions in your README
-
-We're excited to see your creative solutions to these challenges!
-
-## Questions?
-
-If you have questions about the assignment, please open an issue in this repository.
+- Question history and favorites
+- Export functionality
+- Team collaboration features
+- Question analytics and insights

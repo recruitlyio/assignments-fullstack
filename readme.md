@@ -1,56 +1,72 @@
-Welcome to our technical assessment repository! This collection of challenges is designed to evaluate your ability to build AI-powered recruitment tools that solve real-world problems.
+#  Technical Interview Question Generator
 
-## Instructions
+An AI-powered web app that generates tailored technical interview questions based on job role and candidate experience level.
 
-1. Review the challenges below
-2. Choose ONE that best matches your skills and interests
-3. Fork this repository and implement your solution
-4. Submit a pull request with your completed challenge
+---
 
-## About Our Platform
+##  Core Features
 
-We are building an Agentic recruitment platform with specialized agents that automate key aspects of the hiring process. Our technology stack includes React, Node.js, TypeScript, and modern AI/LLM integrations.
+- Input job role and experience level
+- Dynamically generates relevant technical questions
+- Difficulty calibrated based on candidate level (Junior, Mid-level, Senior)
+- Clear evaluation criteria for each question
+- Responsive React frontend + Node.js/TypeScript backend
 
-## Challenge Options
+---
 
-Choose ONE of the following challenges:
+##  Tech Stack
 
-### [Advanced Candidate Matching System](./candidate-matcher.md)
-Design an intelligent system that matches candidates to jobs by understanding skill equivalence, experience depth, and potential fit.
+- **Frontend**: React + TypeScript + Material UI
+- **Backend**: Node.js + Express + TypeScript
+- **AI API**: Groq (LLama 3 - 8B model)
+- **HTTP Client**: Axios
 
-### [Intelligent Resume Parser](./resume-analyzer.md)
-Build a system that extracts structured, validated data from unstructured resume content.
+---
 
-### [Candidate Engagement Chatbot](./candidate-engagement-bot.md)
-Create a conversational agent that provides job information while qualifying candidates through natural dialogue.
+##  Approach to Question Generation
 
-### [Technical Interview Question Generator](./interview-generator.md)
-Develop a tool that generates tailored technical interview questions with appropriate difficulty calibration.
+- When a user provides the job role and experience level,  
+- A structured prompt is dynamically created.
+- The backend sends this prompt to Groq's LLM API.
+- The model is instructed to generate **role-specific**, **difficulty-appropriate** questions and **evaluation criteria**.
 
-## Evaluation Criteria
+Sample Prompt Example:
+> "Generate a technical interview question for a Junior candidate applying for a Frontend Developer role. Also provide clear evaluation criteria."
 
-Regardless of which challenge you choose, we'll evaluate your submission on:
+---
 
-1. **Problem Solving**: How you approach and decompose a complex problem
-2. **AI Integration**: Strategic use of LLMs beyond simple prompt engineering
-3. **Code Quality**: Structure, readability, and maintainability
-4. **System Design**: Architecture decisions and technical tradeoffs
-5. **Functionality**: Effectiveness of your solution for the intended use case
+##  How Difficulty is Calibrated
 
-## Time Expectation
+- **Junior**: Questions focus on fundamental concepts and basics.
+- **Mid-level**: Questions test applied skills and deeper understanding.
+- **Senior**: Questions challenge architectural knowledge, design patterns, and system thinking.
 
-Each challenge is designed to take approximately 4-8 hours. We value your time and don't expect a production-ready system. Focus on demonstrating your approach and technical thinking rather than perfecting every detail.
+Difficulty calibration is controlled through the **prompt phrasing** sent to the model.
 
-## Submission Process
+---
 
-1. Fork this repository
-2. Create a new branch with a descriptive name (`your-name-solution`)
-3. Implement your solution
-4. Submit a pull request with a summary of your approach
-5. Include setup instructions in your README
+##  Technical Decisions and Trade-offs
 
-We're excited to see your creative solutions to these challenges!
+| Decision | Reason |
+|----------|--------|
+| **TypeScript** on both frontend and backend | Type safety and better scalability |
+| **Material UI (MUI)** for frontend components | Quick, responsive, professional UI |
+| **Groq LLM API** instead of OpenAI | Lower latency and cheaper token pricing |
+| **Backend handles prompt construction** | Separation of concerns — frontend stays clean |
+| **No database for MVP** | Focus on functionality over persistence |
 
-## Questions?
+**Trade-off**: If scaled for production, question caching and database storage would be necessary.
 
-If you have questions about the assignment, please open an issue in this repository.
+---
+
+## 🛠 Setup Instructions (Local Running)
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/your-username/interview-question-generator.git
+cd interview-question-generator
+
+
+
+![alt text](image-1.png)
+![alt text](image.png)

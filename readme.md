@@ -1,6 +1,6 @@
 #  Technical Interview Question Generator
 
-An AI-powered web app that generates tailored technical interview questions based on job role and candidate experience level.
+An AI-powered web app that generates tailored technical interview questions based on job role and candidate experience level.(2 Images attached)
 
 ---
 

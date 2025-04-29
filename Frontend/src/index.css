@@ -1,0 +1,146 @@
+@import url("https://fonts.googleapis.com/css2?family=Glory:ital,wght@0,100..800;1,100..800&display=swap");
+
+@import "tailwindcss";
+
+* {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.path-svg {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: dash 2s linear forwards;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+body {
+  font-family: "Arial Th", Arial, sans-serif;
+  -webkit-touch-callout: none;
+}
+
+@media (max-width: 1023px) {
+  #root.noscroll {
+    overflow-x: hidden;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
+.marquee-text-container {
+  display: flex;
+  gap: 60px;
+  animation: marquee 15s linear infinite;
+  white-space: nowrap;
+}
+
+.marquee-text {
+  display: inline-block;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-30%);
+  }
+}
+
+.path-svg {
+  text-transform: uppercase;
+  animation: stroke 5s infinite alternate;
+  stroke-width: 2;
+  stroke: white;
+}
+
+@keyframes stroke {
+  0% {
+    fill: rgba(72, 138, 20, 0);
+    stroke: #7F00FF;
+    stroke-dashoffset: 25%;
+    stroke-dasharray: 0 50%;
+    stroke-width: 2;
+  }
+  70% {
+    fill: rgba(72, 138, 20, 0);
+    stroke: #7F00FF;
+  }
+  80% {
+    fill: rgba(72, 138, 20, 0);
+    stroke: #7F00FF;
+    stroke-width: 3;
+  }
+  100% {
+    stroke: rgba(54, 95, 160, 0);
+    stroke-dashoffset: -25%;
+    stroke-dasharray: 50% 0;
+    stroke-width: 0;
+  }
+}
+
+.submit-btn {
+  background: #7F00FF;
+}
+
+.submit-btn:hover {
+  background: black;
+}
+
+.main-title {
+  opacity: 0;
+}
+
+.toggle-point{
+  opacity: 0;
+}
+
+/* Path Animation for AI Chat */
+.path1 {
+  opacity: 0;
+  animation: fadeInDown 800ms ease-out 0ms infinite;
+}
+
+.path2 {
+  opacity: 0;
+  animation: fadeInDown 800ms ease-out 150ms infinite;
+}
+
+.path3 {
+  opacity: 0;
+  animation: fadeInDown 800ms ease-out 300ms infinite;
+}
+
+.path4 {
+  opacity: 0;
+  animation: fadeInDown 800ms ease-out 450ms infinite;
+}
+
+@keyframes fadeInDown {
+  0% {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  30% {
+    transform: translateY(5px);
+    opacity: 0.8;
+  }
+  70% {
+    transform: translateY(2px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

@@ -1,17 +1,16 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route  } from 'react-router-dom';
 import './App.css';
-
-// Import pages
 import QuestionGenPage from './pages/QuestionGenPage';
+import OnlineAssessmentPage from './pages/OnlineAssessmentPage';
 
-// Define the App component with routes
 const App: React.FC = () => {
   return (
     <Router>
       <div className="App">
         <Routes>
           <Route path="/" element={<QuestionGenPage />} />
+          <Route path='/assesment' element={<OnlineAssessmentPage />} />
         </Routes>
       </div>
     </Router>

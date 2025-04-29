@@ -13,3 +13,8 @@ export interface FormErrors {
     experienceUpper: string;
   }
   
+  export interface QuestionData {
+    question: string;
+    evaluationGuidelines: string;
+    skillsAssessed: string[];
+  }

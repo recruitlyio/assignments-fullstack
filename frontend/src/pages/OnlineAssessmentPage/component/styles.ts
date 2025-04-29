@@ -35,8 +35,6 @@ export const styles = {
   questionText: "text-md font-medium text-gray-900", 
   guidelinesText: "text-sm text-gray-700", 
   skillsText: "text-sm text-gray-600 italic", 
-  playButton:
-    "mt-3 inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition ease-in-out duration-150",
 };
 
 export const combineClasses = (...classes: (string | undefined | null | false)[]) => {

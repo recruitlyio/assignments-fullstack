@@ -1,4 +1,14 @@
+import { DatePicker } from "@/components/date-picker";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 
@@ -15,7 +25,6 @@ export default function JobSeekerForm() {
     skills: "",
     preferredRoles: "",
     jobType: "",
-    startDate: "",
   });
 
   const handleChange = (e: any) => {
@@ -60,8 +69,8 @@ export default function JobSeekerForm() {
       <h2 className="text-2xl font-bold">Job Seeker Form</h2>
 
       <div className="flex flex-col space-y-2">
-        <label>Full Name</label>
-        <input
+        <Label>Full Name</Label>
+        <Input
           type="text"
           name="fullName"
           value={formData.fullName}
@@ -72,8 +81,8 @@ export default function JobSeekerForm() {
       </div>
 
       <div className="flex flex-col space-y-2">
-        <label>Email</label>
-        <input
+        <Label>Email</Label>
+        <Input
           type="email"
           name="email"
           value={formData.email}
@@ -84,8 +93,8 @@ export default function JobSeekerForm() {
       </div>
 
       <div className="flex flex-col space-y-2">
-        <label>Phone Number</label>
-        <input
+        <Label>Phone Number</Label>
+        <Input
           type="tel"
           name="phone"
           value={formData.phone}
@@ -96,8 +105,8 @@ export default function JobSeekerForm() {
       </div>
 
       <div className="flex flex-col space-y-2">
-        <label>Current Location</label>
-        <input
+        <Label>Current Location</Label>
+        <Input
           type="text"
           name="location"
           value={formData.location}
@@ -114,7 +123,7 @@ export default function JobSeekerForm() {
           checked={formData.relocate}
           onChange={handleChange}
         />
-        <label>Willing to relocate</label>
+        <Label>Willing to relocate</Label>
       </div>
 
       <div className="flex items-center space-x-2">
@@ -124,12 +133,12 @@ export default function JobSeekerForm() {
           checked={formData.remote}
           onChange={handleChange}
         />
-        <label>Prefer remote work</label>
+        <Label>Prefer remote work</Label>
       </div>
 
       <div className="flex flex-col space-y-2">
-        <label>Current Job Title</label>
-        <input
+        <Label>Current Job Title</Label>
+        <Input
           type="text"
           name="currentTitle"
           value={formData.currentTitle}
@@ -140,8 +149,8 @@ export default function JobSeekerForm() {
       </div>
 
       <div className="flex flex-col space-y-2">
-        <label>Years of Experience</label>
-        <input
+        <Label>Years of Experience</Label>
+        <Input
           type="text"
           name="experienceYears"
           value={formData.experienceYears}
@@ -152,8 +161,8 @@ export default function JobSeekerForm() {
       </div>
 
       <div className="flex flex-col space-y-2">
-        <label>Skills (comma separated)</label>
-        <input
+        <Label>Skills (comma separated)</Label>
+        <Input
           type="text"
           name="skills"
           value={formData.skills}
@@ -165,8 +174,8 @@ export default function JobSeekerForm() {
       </div>
 
       <div className="flex flex-col space-y-2">
-        <label>Preferred Roles</label>
-        <input
+        <Label>Preferred Roles</Label>
+        <Input
           type="text"
           name="preferredRoles"
           value={formData.preferredRoles}
@@ -178,35 +187,24 @@ export default function JobSeekerForm() {
       </div>
 
       <div className="flex flex-col space-y-2">
-        <label>Preferred Job Type</label>
-        <select
-          name="jobType"
-          value={formData.jobType}
-          onChange={handleChange}
-          required
-          className="border p-2 rounded"
+        <Label>Preferred Job Type</Label>
+        <Select
+          onValueChange={(value) => {
+            setFormData((current) => ({ ...current, preferredRoles: value }));
+          }}
         >
-          <option value="">Select</option>
-          <option value="Full-time">Full-time</option>
-          <option value="Part-time">Part-time</option>
-          <option value="Contract">Contract</option>
-          <option value="Internship">Internship</option>
-        </select>
+          <SelectTrigger className="w-[500px]">
+            <SelectValue placeholder="Select job type" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value={"Full-time"}>Full-time</SelectItem>
+            <SelectItem value={"Part-time"}>Part-time</SelectItem>
+            <SelectItem value={"Contract"}>Contract</SelectItem>
+            <SelectItem value={"Internship"}>Internship</SelectItem>
+          </SelectContent>
+        </Select>
       </div>
-
-      <div className="flex flex-col space-y-2">
-        <label>Start Date Availability</label>
-        <input
-          type="date"
-          name="startDate"
-          value={formData.startDate}
-          required
-          onChange={handleChange}
-          className="border p-2 rounded"
-        />
-      </div>
-
-      <Button type="submit" className="mx-auto w-32">
+      <Button type="submit" className="mx-auto w-32 mb-10">
         Submit
       </Button>
     </form>

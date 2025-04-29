@@ -32,7 +32,9 @@ export function Questions() {
     setLoading(true);
     try {
       const response = await axios.post(
-        `http://localhost:8000/api/questions?fullName=${encodeURIComponent(
+        `${
+          import.meta.env.VITE_BACKEND_URL
+        }/api/questions?fullName=${encodeURIComponent(
           searchParams.get("fullName") || ""
         )}&email=${encodeURIComponent(
           searchParams.get("email") || ""

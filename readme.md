@@ -80,7 +80,7 @@ Extracted profile:
 
 ---
 
-### ⚖️ Tradeoffs:
+###  Tradeoffs:
 
 -  **Double API calls** (chat + profile extraction) increase accuracy but may incur higher LLM usage cost. This is acceptable for a demo/assignment, but could be optimized later using a single multi-task LLM prompt.
 -  **In-memory context** is suitable for short-lived conversations but not persistent or multi-user scenarios.
@@ -88,15 +88,15 @@ The job description is hardcoded for simplicity — a real product would let HR 
 
 ---
 
-## 🧪 Running Locally
+##  Running Locally
 
-### 📦 Prerequisites:
+###  Prerequisites:
 - Node.js (v18+)
 - Google Gemini API Key
 
 ---
 
-### 🔧 Setup Steps
+###  Setup Steps
 
 #### 1. Clone the repository
 
@@ -113,6 +113,8 @@ npm install
 ```
 
 #### 3. Create a .env file with your Gemini API key:
+
+- Make sure that the api key is for the model (Google Gemini 2.0 Flash)
 
 ```code
 GEMINI_API_KEY=your-api-key-here
@@ -160,7 +162,7 @@ http://localhost:3000
 
 ---
 
-## ✅ Demo: Try These Messages
+##  Demo: Try These Messages
 
 - Ask a job-related question:  
   _“What’s the tech stack for this role?”_
@@ -168,6 +170,6 @@ http://localhost:3000
 - Share background info:  
   _“I have 4 years of experience with React and Node.js. Graduated from BITS Pilani.”_
 
-➡️ Watch the **live summary panel** update with your name, education, experience, and skills.
+Watch the **live summary panel** update with your name, education, experience, and skills.
 
 ---

@@ -1,9 +1,9 @@
 // src/services/api.ts
 
 import axios from 'axios';
-import { ValidatedResume } from '../types'; // Adjust path if your types file is elsewhere
+import { ValidatedResume } from '../types'; 
 
-// !!! IMPORTANT: Make sure this URL points to your running backend !!!
+
 const API_BASE_URL = 'http://localhost:5001/api'; // Change port if needed
 
 /**

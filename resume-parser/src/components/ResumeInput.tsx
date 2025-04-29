@@ -1,4 +1,3 @@
-// src/components/ResumeInput.tsx
 
 import React, { useState } from 'react';
 

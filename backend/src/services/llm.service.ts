@@ -9,7 +9,7 @@ const API_KEY = process.env.GEMINI_API_KEY;
 if (!API_KEY) {
   console.error("ERROR: GEMINI_API_KEY is not defined in the environment variables.");
   // In a real app, you might throw or handle this more gracefully depending on startup needs
-  // For this demo, we'll let it potentially fail later if called without a key.
+  // For this demo, i will let it potentially fail later if called without a key.
 }
 
 // Ensure API_KEY is defined before initializing

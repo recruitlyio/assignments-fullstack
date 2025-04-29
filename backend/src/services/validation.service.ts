@@ -357,11 +357,6 @@ export const validateAndStandardizeResume = async (rawData: RawParsedResume): Pr
     // Ensure the notes array in the returned object is the one we populated
     validatedData.validationNotes = validationNotes;
 
-
-    console.log("[Validation]: Final validatedData object before return:"); // ADD THIS LOG
-    console.log(JSON.stringify(validatedData, null, 2)); // ADD THIS LOG
-    console.log("[Validation]: --- End of validatedData ---");
-    
     return validatedData;
 };
 

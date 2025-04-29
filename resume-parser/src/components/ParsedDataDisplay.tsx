@@ -1,4 +1,3 @@
-// src/components/ParsedDataDisplay.tsx
 
 import React from 'react';
 // Import the types defined earlier

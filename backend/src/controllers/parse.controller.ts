@@ -36,16 +36,9 @@ export const parseResumeController = async (req: Request, res: Response, next: N
     const rawParsedData = await parseResumeWithLLM(resumeText);
     console.log("LLM parsing completed.");
 
-    console.log("--- Raw Data from LLM ---"); // ADD THIS LOG
-console.log(JSON.stringify(rawParsedData, null, 2)); // ADD THIS LOG (stringify for better readability)
-console.log("-------------------------"); // ADD THIS LOG
-
     // 3. Call Validation Service - ADD AWAIT HERE!
     const validatedData = await validateAndStandardizeResume(rawParsedData); // <--- Added await!
     console.log("Validation and standardization completed."); // This log now runs AFTER validation finishes
-    console.log("--- Final Data before sending response ---"); // ADD THIS LOG
-console.log(JSON.stringify(validatedData, null, 2)); // ADD THIS LOG
-console.log("--------------------------------------"); // ADD THIS LOG
 
     // 4. Send Success Response (with the actual data, not a promise)
     res.status(200).json(validatedData);

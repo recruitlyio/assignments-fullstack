@@ -1,56 +1,147 @@
-Welcome to our technical assessment repository! This collection of challenges is designed to evaluate your ability to build AI-powered recruitment tools that solve real-world problems.
+# Candidate Engagement bot
 
-## Instructions
+## Overview
 
-1. Review the challenges below
-2. Choose ONE that best matches your skills and interests
-3. Fork this repository and implement your solution
-4. Submit a pull request with your completed challenge
+This chatbot has the information of recruitly.io's full stack development role and will use it to engage with potential candidates, providing them information, clarifying their doubts while assessing their skills and creating their profile.
 
-## About Our Platform
+## Setup
 
-We are building an Agentic recruitment platform with specialized agents that automate key aspects of the hiring process. Our technology stack includes React, Node.js, TypeScript, and modern AI/LLM integrations.
+This is a mono repo containing two directories
 
-## Challenge Options
+```
+- client
+- server
+```
 
-Choose ONE of the following challenges:
+You can install the packages with npm in the root itself with
 
-### [Advanced Candidate Matching System](./candidate-matcher.md)
-Design an intelligent system that matches candidates to jobs by understanding skill equivalence, experience depth, and potential fit.
+```
+npm install
+```
 
-### [Intelligent Resume Parser](./resume-analyzer.md)
-Build a system that extracts structured, validated data from unstructured resume content.
+### Note
 
-### [Candidate Engagement Chatbot](./candidate-engagement-bot.md)
-Create a conversational agent that provides job information while qualifying candidates through natural dialogue.
+- Please make sure that you add a .env file in the root directory.
+- env.example can be modified in place
 
-### [Technical Interview Question Generator](./interview-generator.md)
-Develop a tool that generates tailored technical interview questions with appropriate difficulty calibration.
+## Run
 
-## Evaluation Criteria
+Run both server and client simultaneously with the below command in the root directory. Then go to localhost:3000 to start chatting
 
-Regardless of which challenge you choose, we'll evaluate your submission on:
+```
+npm run dev
+```
 
-1. **Problem Solving**: How you approach and decompose a complex problem
-2. **AI Integration**: Strategic use of LLMs beyond simple prompt engineering
-3. **Code Quality**: Structure, readability, and maintainability
-4. **System Design**: Architecture decisions and technical tradeoffs
-5. **Functionality**: Effectiveness of your solution for the intended use case
+### Ports
 
-## Time Expectation
+- Server: 5000
+- Client: 3000
 
-Each challenge is designed to take approximately 4-8 hours. We value your time and don't expect a production-ready system. Focus on demonstrating your approach and technical thinking rather than perfecting every detail.
+## Technical Deep Dive - Server
 
-## Submission Process
+The application runs on express backend with state and llm (OpenAI) management is handled by Langraph.
 
-1. Fork this repository
-2. Create a new branch with a descriptive name (`your-name-solution`)
-3. Implement your solution
-4. Submit a pull request with a summary of your approach
-5. Include setup instructions in your README
+### State Management
 
-We're excited to see your creative solutions to these challenges!
+- **State Structure**:
+  - `messages`: Conversation history
+  - `profile`: Extracted profile data from conversations
 
-## Questions?
+### Workflow Architecture
 
-If you have questions about the assignment, please open an issue in this repository.
+- **Directed Graph**: Simple sequential flow using `StateGraph`:
+  - `START → model → profileExtractor → END`
+- **Node Functions**:
+  - `model`: Invokes LLM to generate responses
+  - `profileExtractor`: Extracts structured profile information
+
+### Memory System
+
+- `MemorySaver` maintains state across API calls in memory.
+- Message thread persistence via UUID-based references
+
+### LLM Integration
+
+- OpenAI chat model (`ChatOpenAI`) serves as the core LLM
+- Configurable via environment variables (`OPENAI_MODEL`)
+
+### Structured Output
+
+- Uses `StructuredOutputParser` with Zod schemas for profile extraction
+- Profile schema captures: name, contact, experience, skills, education, title
+
+## Working Principles
+
+### Profile Extraction Process
+
+1. Dedicated system prompt analyzes conversation
+2. Extracts **only** explicitly stated candidate information
+3. Incrementally builds profile across conversation turns
+4. Structures data via Zod schema validation
+
+### API Flow
+
+1. Thread creation initializes LangGraph workflow
+2. Message processing:
+   - Sends message through model node
+   - Extracts profile data
+   - Returns response with updated profile
+
+## Technical Deep Dive - Client
+
+### Main Components
+
+- **App**: Entry point that initializes the chat thread
+- **Chat**: Primary component handling message state and API interactions
+- **ProfileCard**: Dynamic display of extracted candidate information
+- **MessageList**: Rendering of conversation history
+- **MessageInput**: User input interface with loading states
+
+### Data Flow
+
+- Thread creation → Chat rendering → Message exchange → Profile updates
+
+## Key Functionality
+
+### Thread Management
+
+- **useCreateThread Hook**:
+  - Custom React Query hook for thread initialization
+  - Creates conversation thread via API on application load
+  - Returns thread_id and initial AI message
+
+### Message Processing
+
+- **State Management**:
+  - Local state tracks messages and loading states
+  - Profile data maintained in separate state object
+  - Auto-scrolling to latest messages
+
+### Profile Visualization
+
+- **Dynamic Rendering**:
+  - Empty state shown when no profile data exists
+  - Progressive disclosure as candidate information is extracted
+  - Organized sections for different profile attributes:
+    - Basic info (name, contact)
+    - Professional details (title, experience)
+    - Skills (with badge visualization)
+    - Education history
+
+### UI Components
+
+- Tailwind CSS for styling
+- UI primitives (Card, Avatar, Badge, etc.) from ShadCN
+- Lucide icons for visual elements
+
+### State Management
+
+- React useState for local component state
+- React Query for API state management
+- Effect hooks for DOM interactions (scrolling)
+
+### User Experience
+
+- Loading indicators for API operations
+- Responsive message layout with role-based styling
+- Error handling for failed API requests

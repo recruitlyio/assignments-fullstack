@@ -1,4 +1,3 @@
-import { DatePicker } from "@/components/date-picker";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -55,16 +54,14 @@ export default function JobSeekerForm() {
       formData.skills
     )}&preferredRoles=${encodeURIComponent(
       formData.preferredRoles
-    )}&jobType=${encodeURIComponent(
-      formData.jobType
-    )}&startDate=${encodeURIComponent(formData.startDate)}`;
+    )}&jobType=${encodeURIComponent(formData.jobType)}`;
     navigate(`/questions${qeuryString}`);
   };
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="max-w-2xl h-screen mx-auto p-6 space-y-6"
+      className="max-w-2xl mx-auto p-6 space-y-6 border-2 border-slate-500 shadow-2xl rounded-md my-5"
     >
       <h2 className="text-2xl font-bold">Job Seeker Form</h2>
 
@@ -193,7 +190,7 @@ export default function JobSeekerForm() {
             setFormData((current) => ({ ...current, preferredRoles: value }));
           }}
         >
-          <SelectTrigger className="w-[500px]">
+          <SelectTrigger className="w-full">
             <SelectValue placeholder="Select job type" />
           </SelectTrigger>
           <SelectContent>
@@ -204,7 +201,7 @@ export default function JobSeekerForm() {
           </SelectContent>
         </Select>
       </div>
-      <Button type="submit" className="mx-auto w-32 mb-10">
+      <Button type="submit" className="mx-auto w-full mb-10 cursor-pointer">
         Submit
       </Button>
     </form>

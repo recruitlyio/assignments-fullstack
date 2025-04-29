@@ -1,56 +1,175 @@
-Welcome to our technical assessment repository! This collection of challenges is designed to evaluate your ability to build AI-powered recruitment tools that solve real-world problems.
+# Candidate Engagement Chatbot - Technical Challenge
 
-## Instructions
+## My Solution Overview
 
-1. Review the challenges below
-2. Choose ONE that best matches your skills and interests
-3. Fork this repository and implement your solution
-4. Submit a pull request with your completed challenge
+This is a full-stack AI-powered chatbot that engages with candidates for a specific role and extracts relevant information from the conversation. It includes:
 
-## About Our Platform
+- A conversational UI for candidates to ask questions
+- An intelligent backend that answers only based on a provided job description
+- Automatic candidate profiling using an LLM (Google Gemini)
+- A live summary panel showing extracted insights like skills, experience, education, and contact info
 
-We are building an Agentic recruitment platform with specialized agents that automate key aspects of the hiring process. Our technology stack includes React, Node.js, TypeScript, and modern AI/LLM integrations.
+---
 
-## Challenge Options
+##  Conversation Design Approach
 
-Choose ONE of the following challenges:
+The system is designed to simulate a job-specific recruiter chatbot. Here's how it works:
 
-### [Advanced Candidate Matching System](./candidate-matcher.md)
-Design an intelligent system that matches candidates to jobs by understanding skill equivalence, experience depth, and potential fit.
+1. **System prompt + Job Description (in backend)**:  
+   The LLM is always primed with context:
+   - System instruction (e.g. "Only answer questions related to this job description")
+   - The actual job description
 
-### [Intelligent Resume Parser](./resume-analyzer.md)
-Build a system that extracts structured, validated data from unstructured resume content.
+2. **Conversation context maintained across messages**
+   - Previous user + bot messages are stored in memory
+   - A trimmed version (last 20 turns) is included in each prompt to the LLM
 
-### [Candidate Engagement Chatbot](./candidate-engagement-bot.md)
-Create a conversational agent that provides job information while qualifying candidates through natural dialogue.
+3. **Real-time typing feedback**
+   - A "Recruiter is typing..." indicator is shown while the LLM is responding
+   - The input is cleared immediately after the user sends a message (like ChatGPT)
 
-### [Technical Interview Question Generator](./interview-generator.md)
-Develop a tool that generates tailored technical interview questions with appropriate difficulty calibration.
+---
 
-## Evaluation Criteria
+##  How Candidate Information is Extracted
 
-Regardless of which challenge you choose, we'll evaluate your submission on:
+After every message from the user, the backend makes a **second Gemini API call** to extract structured candidate details. The LLM is prompted to extract:
 
-1. **Problem Solving**: How you approach and decompose a complex problem
-2. **AI Integration**: Strategic use of LLMs beyond simple prompt engineering
-3. **Code Quality**: Structure, readability, and maintainability
-4. **System Design**: Architecture decisions and technical tradeoffs
-5. **Functionality**: Effectiveness of your solution for the intended use case
+- `name`
+- `email`
+- `yearsOfExperience`
+- `skills`
+- `education`
 
-## Time Expectation
+If the field isn't mentioned, it is excluded. The extracted data is then returned to the frontend and merged into the live summary panel.
 
-Each challenge is designed to take approximately 4-8 hours. We value your time and don't expect a production-ready system. Focus on demonstrating your approach and technical thinking rather than perfecting every detail.
+Example user message:
+> "Hi, I’m Alex. I have 4 years of experience with React and Node.js. I graduated from IIT Delhi."
 
-## Submission Process
+Extracted profile:
+```json
+{
+  "name": "Alex",
+  "yearsOfExperience": 4,
+  "skills": ["React", "Node.js"],
+  "education": "IIT Delhi"
+}
+```
 
-1. Fork this repository
-2. Create a new branch with a descriptive name (`your-name-solution`)
-3. Implement your solution
-4. Submit a pull request with a summary of your approach
-5. Include setup instructions in your README
+---
 
-We're excited to see your creative solutions to these challenges!
+## Technical Decisions & Tradeoffs
 
-## Questions?
+###  Stack Choices:
+- **Frontend**: React + TypeScript + Tailwind CSS
+- **Backend**: Node.js + Express + TypeScript
+- **LLM**: Google Gemini 2.0 Flash (accessed via REST API)
 
-If you have questions about the assignment, please open an issue in this repository.
+---
+
+###  Key Architecture Decisions:
+
+- **Modular Backend Services**
+   - `llm.ts`: Handles user-bot chat and manages Gemini interaction
+   - `candidateProfile.ts`: Makes a second Gemini call to extract structured candidate data
+   - `conversationManager.ts`: Stores conversation context in memory to simulate persistent sessions
+
+- **Frontend State Separation**
+   - `messages[]`: for chat display
+   - `CandidateProfile`: structured profile extracted via LLM
+   - `ChatWindow` and `CandidateSummary` are split for modularity
+
+---
+
+###  Tradeoffs:
+
+-  **Double API calls** (chat + profile extraction) increase accuracy but may incur higher LLM usage cost. This is acceptable for a demo/assignment, but could be optimized later using a single multi-task LLM prompt.
+-  **In-memory context** is suitable for short-lived conversations but not persistent or multi-user scenarios.
+The job description is hardcoded for simplicity — a real product would let HR upload/manage multiple JDs.
+
+---
+
+##  Running Locally
+
+###  Prerequisites:
+- Node.js (v18+)
+- Google Gemini API Key
+
+---
+
+###  Setup Steps
+
+#### 1. Clone the repository
+
+```code
+git clone https://github.com/renji18/assignments-fullstack
+cd assignments-fullstack
+```
+
+#### 2. Backend Setup
+
+```code
+cd candidate-chatbot-backend
+npm install
+```
+
+#### 3. Create a .env file with your Gemini API key:
+
+- Make sure that the api key is for the model (Google Gemini 2.0 Flash)
+
+```code
+GEMINI_API_KEY=your-api-key-here
+```
+
+#### 4. Start the backend:
+
+```code
+npm run dev
+```
+
+#### 5. Frontend Setup
+
+```code
+cd ../candidate-chatbot-frontend
+npm install
+npm start
+```
+
+#### 6. Open the app
+
+```code
+http://localhost:3000
+```
+
+---
+
+##  Notes
+
+- All data is stored in memory (stateless between restarts)
+- The chatbot is aware of only one job description, defined in `jobDescription.ts` on the backend
+- The frontend merges extracted profile data incrementally as the conversation progresses
+- Candidate summary includes: name, email, years of experience, skills, and education
+- LLM integration is modular — can be swapped with OpenAI, Claude, or others
+
+---
+
+##  Future Enhancements
+
+- Support multiple job descriptions and recruiter roles
+- Replace in-memory context with persistent database storage
+- Use a single Gemini prompt that handles both response and extraction to reduce latency and cost
+- Add user authentication and multi-user session handling
+- Improve UI/UX with better avatars, markdown formatting, and mobile responsiveness
+
+---
+
+##  Demo: Try These Messages
+
+- Ask a job-related question:  
+  _“What’s the tech stack for this role?”_
+
+- Share background info:  
+  _“I have 4 years of experience with React and Node.js. Graduated from BITS Pilani.”_
+
+Watch the **live summary panel** update with your name, education, experience, and skills.
+
+---

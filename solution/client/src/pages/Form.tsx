@@ -53,7 +53,10 @@ export default function JobSeekerForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-2xl mx-auto p-6 space-y-6">
+    <form
+      onSubmit={handleSubmit}
+      className="max-w-2xl h-screen mx-auto p-6 space-y-6"
+    >
       <h2 className="text-2xl font-bold">Job Seeker Form</h2>
 
       <div className="flex flex-col space-y-2">
@@ -87,6 +90,7 @@ export default function JobSeekerForm() {
           name="phone"
           value={formData.phone}
           onChange={handleChange}
+          required
           className="border p-2 rounded"
         />
       </div>
@@ -98,6 +102,7 @@ export default function JobSeekerForm() {
           name="location"
           value={formData.location}
           onChange={handleChange}
+          required
           className="border p-2 rounded"
         />
       </div>
@@ -129,6 +134,7 @@ export default function JobSeekerForm() {
           name="currentTitle"
           value={formData.currentTitle}
           onChange={handleChange}
+          required
           className="border p-2 rounded"
         />
       </div>
@@ -140,6 +146,7 @@ export default function JobSeekerForm() {
           name="experienceYears"
           value={formData.experienceYears}
           onChange={handleChange}
+          required
           className="border p-2 rounded"
         />
       </div>
@@ -151,6 +158,7 @@ export default function JobSeekerForm() {
           name="skills"
           value={formData.skills}
           onChange={handleChange}
+          required
           className="border p-2 rounded"
           placeholder="e.g., React, Node.js, Figma"
         />
@@ -163,6 +171,7 @@ export default function JobSeekerForm() {
           name="preferredRoles"
           value={formData.preferredRoles}
           onChange={handleChange}
+          required
           className="border p-2 rounded"
           placeholder="e.g., Frontend Developer, Product Manager"
         />
@@ -174,6 +183,7 @@ export default function JobSeekerForm() {
           name="jobType"
           value={formData.jobType}
           onChange={handleChange}
+          required
           className="border p-2 rounded"
         >
           <option value="">Select</option>
@@ -190,6 +200,7 @@ export default function JobSeekerForm() {
           type="date"
           name="startDate"
           value={formData.startDate}
+          required
           onChange={handleChange}
           className="border p-2 rounded"
         />

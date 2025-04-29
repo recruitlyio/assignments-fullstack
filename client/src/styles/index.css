@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: "Inter", system-ui, sans-serif;
+  }
+
+  /* Improved scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-100 rounded;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 rounded hover:bg-gray-400 transition-colors;
+  }
+}
+
+@layer components {
+  .chat-bubble {
+    @apply relative px-4 py-3 rounded-lg max-w-[80%];
+  }
+
+  .chat-bubble-user {
+    @apply bg-primary-600 text-white;
+  }
+
+  .chat-bubble-assistant {
+    @apply bg-white text-gray-800 shadow-sm;
+  }
+
+  .btn {
+    @apply font-medium rounded transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed inline-flex items-center justify-center;
+  }
+
+  .btn-primary {
+    @apply bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary-500 text-white hover:bg-secondary-600 focus:ring-secondary-400;
+  }
+
+  .btn-outline {
+    @apply border border-primary-600 text-primary-600 hover:bg-primary-50 focus:ring-primary-400;
+  }
+
+  .btn-ghost {
+    @apply text-gray-700 hover:bg-gray-100 focus:ring-gray-300;
+  }
+
+  .btn-sm {
+    @apply text-xs py-1 px-3 h-8;
+  }
+
+  .btn-md {
+    @apply text-sm py-2 px-4 h-10;
+  }
+
+  .btn-lg {
+    @apply text-base py-3 px-6 h-12;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

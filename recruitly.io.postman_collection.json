@@ -1,0 +1,47 @@
+{
+	"info": {
+		"_postman_id": "40d6a90e-714b-46f8-ab1c-10a408c22763",
+		"name": "recruitly.io",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17953118",
+		"_collection_link": "https://crimson-trinity-429126.postman.co/workspace/My-Workspace~81f6d802-35ca-4242-846d-ed871d527d76/collection/17953118-40d6a90e-714b-46f8-ab1c-10a408c22763?action=share&source=collection_link&creator=17953118"
+	},
+	"item": [
+		{
+			"name": "questions",
+			"item": [
+				{
+					"name": "generate questions",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jobTitle\": \"Software Engineer\",\n    \"skill\": \"React.js\",\n    \"experienceLevel\": \"easy\",\n    \"isNew\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/v1/questions/generate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"v1",
+								"questions",
+								"generate"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

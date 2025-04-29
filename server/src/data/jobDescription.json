@@ -1,0 +1,79 @@
+{
+  "id": "jd-001",
+  "title": "Full-stack AI Developer",
+  "company": "Recruitly.io",
+  "location": "Remote",
+  "remote": true,
+  "description": "We are seeking a skilled Full-stack AI Developer to join our team building next-generation AI agents and intelligent systems. You will be working with cutting-edge AI technologies while leveraging your expertise in modern JavaScript frameworks.",
+  "responsibilities": [
+    "Designing and developing AI agents that can autonomously perform complex tasks and interact with users",
+    "Building responsive, intuitive front end interfaces in ReactJS that showcase AI capabilities",
+    "Implementing robust backend systems with NodeJS, TypeScript, and Fastify/Express to power AI functionalities",
+    "Creating and optimizing API integrations with various AI/ML models and services",
+    "Developing conversational interfaces and natural language processing components",
+    "Engineering decision systems and autonomous logic flows for intelligent agents",
+    "Working on real time data processing systems to support AI agent operations",
+    "Implementing and testing machine learning model integrations",
+    "Optimizing AI agent performance across the entire stack"
+  ],
+  "requirements": [
+    {
+      "type": "experience",
+      "description": "Minimum 4+ years of professional experience in full stack JavaScript development",
+      "isRequired": true
+    },
+    {
+      "type": "skill",
+      "description": "Strong proficiency with ReactJS, including state management, hooks, and component architecture",
+      "isRequired": true
+    },
+    {
+      "type": "skill",
+      "description": "Solid backend development skills with NodeJS, TypeScript, and Fastify or Express",
+      "isRequired": true
+    },
+    {
+      "type": "skill",
+      "description": "Experience integrating with third party APIs and services",
+      "isRequired": true
+    },
+    {
+      "type": "skill",
+      "description": "Understanding of AI concepts and experience working with Claude, OpenAI, DeepSeek and Google LLMs",
+      "isRequired": true
+    },
+    {
+      "type": "skill",
+      "description": "Strong JavaScript/TypeScript skills and understanding of modern ES6+ features",
+      "isRequired": true
+    },
+    {
+      "type": "education",
+      "description": "Bachelor's degree in Computer Science, Software Engineering, or related field",
+      "isRequired": false
+    },
+    {
+      "type": "experience",
+      "description": "Previous experience with AI/ML applications and integrations",
+      "isRequired": false
+    },
+    {
+      "type": "skill",
+      "description": "Familiarity with cloud services (AWS, GCP, or Azure)",
+      "isRequired": false
+    }
+  ],
+  "benefits": [
+    "Competitive salary (₹12L – ₹24L)",
+    "Flexible remote work policy",
+    "Health insurance benefits",
+    "Professional development budget",
+    "Regular team events and retreats",
+    "Opportunity to work with cutting-edge AI technologies"
+  ],
+  "salary": {
+    "min": 1200000,
+    "max": 2400000,
+    "currency": "INR"
+  }
+}

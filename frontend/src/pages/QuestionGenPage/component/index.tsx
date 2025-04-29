@@ -1,24 +1,22 @@
 import React, { ReactNode } from "react";
 import { FormData, FormErrors } from "../types";
-import { styles, combineClasses } from "./styles"; // Assuming styles and combineClasses are defined
+import { styles, combineClasses } from "./styles";
 import { QuestionData } from "../types";
 import { useNavigate } from "react-router-dom";
 
-const navigate = useNavigate();
 interface FormProps {
   formData: FormData;
   formErrors: FormErrors;
   isSubmitting: boolean;
-  handleChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
+  handleChange: (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => void;
   handleSubmit: (e: React.FormEvent) => void;
   generateExperienceOptions: () => ReactNode;
   questions: QuestionData[];
 }
-
-const handlePlayClick = (questionData: QuestionData) => {
-  navigate("/interview-session", { state: { questionData } });
-};
-
 
 const Component: React.FC<FormProps> = ({
   formData,
@@ -27,8 +25,14 @@ const Component: React.FC<FormProps> = ({
   handleChange,
   handleSubmit,
   generateExperienceOptions,
-  questions 
+  questions,
 }) => {
+  const navigate = useNavigate();
+
+  const handlePlayClick = (questionData: QuestionData) => {
+    navigate("/online-assessment", { state: { questionData } });
+  };
+
   return (
     <div className={styles.pageContainer}>
       <form onSubmit={handleSubmit} className={styles.formContainer} noValidate>
@@ -43,9 +47,13 @@ const Component: React.FC<FormProps> = ({
             value={formData.jobTitle}
             onChange={handleChange}
             placeholder="e.g., Senior Software Engineer"
-            className={formErrors.jobTitle ? styles.inputWithError : styles.input}
+            className={
+              formErrors.jobTitle ? styles.inputWithError : styles.input
+            }
             aria-invalid={!!formErrors.jobTitle}
-            aria-describedby={formErrors.jobTitle ? "jobTitle-error" : undefined}
+            aria-describedby={
+              formErrors.jobTitle ? "jobTitle-error" : undefined
+            }
             required
           />
           {formErrors.jobTitle && (
@@ -81,7 +89,11 @@ const Component: React.FC<FormProps> = ({
             onChange={handleChange}
             rows={5}
             placeholder="Describe the role, responsibilities, and requirements..."
-            className={formErrors.jobDescription ? styles.textareaWithError : styles.textarea}
+            className={
+              formErrors.jobDescription
+                ? styles.textareaWithError
+                : styles.textarea
+            }
             aria-invalid={!!formErrors.jobDescription}
             aria-describedby={
               formErrors.jobDescription ? "jobDescription-error" : undefined
@@ -97,11 +109,15 @@ const Component: React.FC<FormProps> = ({
 
         <fieldset className={styles.fieldset}>
           <legend className={styles.legend}>
-            Required Experience Range <span className={styles.requiredMark}>*</span>
+            Required Experience Range{" "}
+            <span className={styles.requiredMark}>*</span>
           </legend>
           <div className={styles.experienceGrid}>
             <div className={styles.fieldGroup}>
-              <label htmlFor="experienceLower" className={styles.experienceLabel}>
+              <label
+                htmlFor="experienceLower"
+                className={styles.experienceLabel}
+              >
                 Minimum Years
               </label>
               <select
@@ -109,7 +125,9 @@ const Component: React.FC<FormProps> = ({
                 name="experienceLower"
                 value={formData.experienceLower}
                 onChange={handleChange}
-                className={formErrors.experience ? styles.selectWithError : styles.select}
+                className={
+                  formErrors.experience ? styles.selectWithError : styles.select
+                }
                 aria-invalid={!!formErrors.experience}
                 aria-describedby={
                   formErrors.experience ? "experience-error" : undefined
@@ -124,7 +142,10 @@ const Component: React.FC<FormProps> = ({
             </div>
 
             <div className={styles.fieldGroup}>
-              <label htmlFor="experienceUpper" className={styles.experienceLabel}>
+              <label
+                htmlFor="experienceUpper"
+                className={styles.experienceLabel}
+              >
                 Maximum Years
               </label>
               <select
@@ -132,7 +153,9 @@ const Component: React.FC<FormProps> = ({
                 name="experienceUpper"
                 value={formData.experienceUpper}
                 onChange={handleChange}
-                className={formErrors.experience ? styles.selectWithError : styles.select}
+                className={
+                  formErrors.experience ? styles.selectWithError : styles.select
+                }
                 aria-invalid={!!formErrors.experience}
                 aria-describedby={
                   formErrors.experience ? "experience-error" : undefined
@@ -169,10 +192,14 @@ const Component: React.FC<FormProps> = ({
 
       {questions && questions.length > 0 && (
         <div className={styles.questionsContainer}>
-          <h2 className={styles.questionsTitle}>Generated Interview Questions</h2>
+          <h2 className={styles.questionsTitle}>
+            Generated Interview Questions
+          </h2>
           {questions.map((q, index) => (
             <div key={index} className={styles.questionItem}>
-              <h3 className={styles.questionText}>Question {index + 1}: {q.question}</h3>
+              <h3 className={styles.questionText}>
+                Question {index + 1}: {q.question}
+              </h3>
               <p className={styles.guidelinesText}>
                 <strong>Evaluation Guidelines:</strong> {q.evaluationGuidelines}
               </p>
@@ -181,7 +208,7 @@ const Component: React.FC<FormProps> = ({
               </p>
               <button
                 onClick={() => handlePlayClick(q)}
-                className={styles.playButton} 
+                className={styles.playButton}
                 aria-label={`Start interview session for question ${index + 1}`}
               >
                 ▶️ Play

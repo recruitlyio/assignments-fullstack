@@ -1,42 +1,29 @@
-const inputBase =
-  "w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2";
-const inputNormal =
-  "border-gray-300 focus:ring-indigo-500 focus:border-indigo-500";
-const inputError =
-  "border-red-500 focus:ring-red-500 focus:border-red-500";
-const labelBase = "block text-sm font-medium text-gray-700 mb-1";
-const errorText = "mt-1 text-xs text-red-600";
-const requiredMark = "text-red-500";
-
 export const styles = {
-  pageContainer: "max-w-4xl mx-auto p-4 md:p-8 space-y-8", // Added page container style
-  formContainer:
-    "p-6 bg-white border border-gray-200 rounded-lg shadow-md space-y-6",
-  fieldGroup: "space-y-1",
-  label: labelBase,
-  requiredMark: requiredMark,
-  input: `${inputBase} ${inputNormal}`,
-  inputWithError: `${inputBase} ${inputError}`,
-  textarea: `${inputBase} ${inputNormal}`,
-  textareaWithError: `${inputBase} ${inputError}`,
-  select: `${inputBase} ${inputNormal}`,
-  selectWithError: `${inputBase} ${inputError}`,
-  errorText: errorText,
-  fieldset: "space-y-4",
-  legend: `${labelBase} mb-1`, 
-  experienceGrid: "grid grid-cols-1 sm:grid-cols-2 gap-4 items-start",
-  experienceLabel: "block text-xs font-medium text-gray-600 mb-1",
-  submitButton:
-    "w-full py-2 px-4 bg-indigo-600 text-white font-semibold rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500",
-  submitButtonDisabled: "opacity-50 cursor-not-allowed",
-  questionsContainer: "mt-8 p-6 bg-gray-50 border border-gray-200 rounded-lg shadow-sm space-y-6",
-  questionsTitle: "text-xl font-semibold text-gray-800 border-b pb-2 mb-4", 
-  questionItem: "p-4 bg-white border border-gray-100 rounded-md shadow-xs space-y-2",
-  questionText: "text-md font-medium text-gray-900", 
-  guidelinesText: "text-sm text-gray-700", 
-  skillsText: "text-sm text-gray-600 italic", 
+  listeningIndicatorContainer: "flex items-center justify-center space-x-2 mt-4",
+  listeningIndicatorBarBase: "w-2 h-6 rounded bg-blue-500 transition-all duration-300",
+  listeningIndicatorBarListening: "animate-pulse",
+
+  videoStream: "rounded-lg w-full h-auto shadow-md",
+
+  assessmentUIContainer: "p-6 space-y-6 max-w-3xl mx-auto",
+  assessmentUITitle: "text-2xl font-bold text-gray-900",
+  questionContainer: "p-4 border rounded shadow-sm bg-white",
+  questionTitle: "text-xl font-semibold text-gray-800 mb-3",
+  questionText: "text-gray-700",
+  mediaContainer: "flex flex-col items-center space-y-4",
+
+  controlsContainer: "my-4 text-center", 
+  startButton: "px-5 py-2 text-base cursor-pointer border-none rounded text-white mx-1 bg-green-500 hover:bg-green-600 disabled:bg-gray-300 disabled:cursor-not-allowed", // Green start button
+  stopButton: "px-5 py-2 text-base cursor-pointer border-none rounded text-white mx-1 bg-red-600 hover:bg-red-700 disabled:bg-gray-300 disabled:cursor-not-allowed", // Red stop button
+  warningText: "text-orange-500 font-bold text-center my-2", 
+
+  transcriptContainer: "mt-4 p-4 border rounded bg-gray-50 min-h-[80px]", 
+  transcriptLabel: "text-sm font-medium text-gray-600 mb-1",
+  transcriptText: "text-gray-800 whitespace-pre-wrap min-h-[50px] bg-gray-50 border border-gray-300 p-2 rounded", 
+
+  submitButton: "mt-4 px-6 py-2 bg-blue-600 text-white rounded font-medium hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 disabled:opacity-50 disabled:cursor-not-allowed", 
+  errorText: "p-6 text-red-600",
 };
 
-export const combineClasses = (...classes: (string | undefined | null | false)[]) => {
-    return classes.filter(Boolean).join(' ');
-}
+export const getListeningIndicatorDelay = (index: number): string => `delay-${index * 100}`;
+

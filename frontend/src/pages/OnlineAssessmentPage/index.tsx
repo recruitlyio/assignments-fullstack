@@ -1,3 +1,2 @@
-// import page from './container';
-
-// export default page;
+import page from './container';
+export default page;

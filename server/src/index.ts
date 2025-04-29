@@ -1,10 +1,12 @@
 import express from "express";
 import interviewRouter from "./routes/interview.route";
+import questionRouter from "./routes/question.route";
 
 const app = express();
 
 app.use(express.json());
 app.use("/api/v1/interview", interviewRouter);
+app.use("/api/v1/question", questionRouter);
 
 app.get("/", (req, res) => {
    res.send("Hello World!");

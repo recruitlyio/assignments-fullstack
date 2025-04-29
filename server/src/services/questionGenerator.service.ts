@@ -1,11 +1,9 @@
-import * as dotenv from "dotenv";
 import { ChatPromptTemplate } from "@langchain/core/prompts";
 import { StringOutputParser } from "@langchain/core/output_parsers";
 import { RunnableSequence } from "@langchain/core/runnables";
 import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
 // import { PrismaClient } from "../../generated/prisma";
 
-dotenv.config();
 // const prisma = new PrismaClient();
 
 interface GenerateQuestionsParams {
@@ -34,16 +32,11 @@ export class QuestionGeneratorService {
          apiKey: process.env.GEMINI_API_KEY,
       });
 
-      this.prompt = ChatPromptTemplate.fromMessages([
-         [
-            "system",
-            "You are a senior software engineer with skills in web development, mobile development, and cloud computing",
-         ],
-         [
-            "human",
-            "Ask a list of questions to the candidate also list the evaluation criteria for each generated question for this job description:\n{description} for a candidate who is {years} years experienced and keep the interview difficulty in {difficulty}",
-         ],
-      ]);
+      this.prompt = ChatPromptTemplate.fromTemplate(
+         `You are a senior software engineer with skills in web development, mobile development, and cloud computing.
+       Ask a list of questions to the candidate and also list the evaluation criteria for each generated question for this job description:
+       {description} for a candidate who is {years} years experienced and keep the interview difficulty in {difficulty}.`
+      );
 
       this.chain = RunnableSequence.from([
          this.prompt,
@@ -53,37 +46,25 @@ export class QuestionGeneratorService {
    }
 
    private parseAIResponse(response: string): ParsedResponse {
-      try {
-         // Split the response into lines and process each question
-         const lines = response.split("\n");
-         const questions: Question[] = [];
-         let currentQuestion: Partial<Question> = {};
+      const questions: Question[] = [];
 
-         for (const line of lines) {
-            if (line.startsWith("Q:") || line.startsWith("Question:")) {
-               if (currentQuestion.question) {
-                  questions.push(currentQuestion as Question);
-               }
-               currentQuestion = {
-                  question: line.replace(/^(Q:|Question:)\s*/, "").trim(),
-               };
-            } else if (line.startsWith("A:") || line.startsWith("Answer:")) {
-               currentQuestion.answer = line
-                  .replace(/^(A:|Answer:)\s*/, "")
-                  .trim();
-            }
-         }
+      const questionRegex = /(?:\d+\.\s+)?\*\*Question:\*\*\s*"(.*?)"/g;
+      const answerRegex =
+         /\*\*Evaluation Criteria:\*\*([\s\S]*?)(?=\n\d+\.|\n\*\*Bonus|\n\*\*General|$)/g;
 
-         // Add the last question if exists
-         if (currentQuestion.question && currentQuestion.answer) {
-            questions.push(currentQuestion as Question);
-         }
+      const questionMatches = [...response.matchAll(questionRegex)];
+      const answerMatches = [...response.matchAll(answerRegex)];
 
-         return { questions };
-      } catch (error) {
-         console.error("Error parsing AI response:", error);
-         throw new Error("Failed to parse AI response");
+      // Combine matched questions and their evaluation criteria
+      for (let i = 0; i < questionMatches.length; i++) {
+         const question = questionMatches[i][1].trim();
+         const answer =
+            answerMatches[i]?.[1].trim() ?? "Evaluation criteria not found.";
+
+         questions.push({ question, answer });
       }
+
+      return { questions };
    }
 
    async generateQuestions(params: GenerateQuestionsParams) {
@@ -95,6 +76,7 @@ export class QuestionGeneratorService {
          });
 
          const parsedResponse = this.parseAIResponse(result);
+
          return parsedResponse;
       } catch (error) {
          console.error("Error generating questions:", error);

@@ -119,6 +119,14 @@ exports.Prisma.InterviewScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.QuestionsScalarFieldEnum = {
+  id: 'id',
+  questions: 'questions',
+  interviewId: 'interviewId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -131,7 +139,8 @@ exports.Prisma.QueryMode = {
 
 
 exports.Prisma.ModelName = {
-  Interview: 'Interview'
+  Interview: 'Interview',
+  Questions: 'Questions'
 };
 
 /**

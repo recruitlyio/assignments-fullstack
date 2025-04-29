@@ -1,4 +1,5 @@
-Welcome to our technical assessment repository! This collection of challenges is designed to evaluate your ability to build AI-powered recruitment tools that solve real-world problems.
+TBD
+<!-- Welcome to our technical assessment repository! This collection of challenges is designed to evaluate your ability to build AI-powered recruitment tools that solve real-world problems.
 
 ## Instructions
 
@@ -53,4 +54,4 @@ We're excited to see your creative solutions to these challenges!
 
 ## Questions?
 
-If you have questions about the assignment, please open an issue in this repository.
+If you have questions about the assignment, please open an issue in this repository. -->

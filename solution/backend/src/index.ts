@@ -4,13 +4,14 @@ import cors from "cors";
 
 const app = express();
 app.use(cors());
+app.use(express.json());
 
 app.post("/api/questions", async (req, res) => {
-  const currentTitle = req.query.currentTitle;
-  const experienceYears = Number(req.query.experienceYears);
-  const skills = req.query.skills;
-  const preferredRoles = req.query.preferredRoles;
-  const jobType = req.query.jobType;
+  const currentTitle = req.body.currentTitle;
+  const experienceYears = Number(req.body.experienceYears);
+  const skills = req.body.skills;
+  const preferredRoles = req.body.preferredRoles;
+  const jobType = req.body.jobType;
 
   const experienceLevel =
     experienceYears <= 2 ? "beginner" : experienceYears <= 5 ? "mid" : "senior";

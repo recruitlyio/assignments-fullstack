@@ -32,27 +32,14 @@ export function Questions() {
     setLoading(true);
     try {
       const response = await axios.post(
-        `${
-          import.meta.env.VITE_BACKEND_URL
-        }/api/questions?fullName=${encodeURIComponent(
-          searchParams.get("fullName") || ""
-        )}&email=${encodeURIComponent(
-          searchParams.get("email") || ""
-        )}&location=${encodeURIComponent(
-          searchParams.get("location") || ""
-        )}&relocate=${searchParams.get("relocate")}&remote=${searchParams.get(
-          "remote"
-        )}&currentTitle=${encodeURIComponent(
-          searchParams.get("currentTitle") || ""
-        )}&experienceYears=${encodeURIComponent(
-          searchParams.get("experienceYears") || ""
-        )}&skills=${encodeURIComponent(
-          searchParams.get("skills") || ""
-        )}&preferredRoles=${encodeURIComponent(
-          searchParams.get("preferredRoles") || ""
-        )}&jobType=${encodeURIComponent(
-          searchParams.get("jobType ") || ""
-        )}&startDate=${encodeURIComponent(searchParams.get("startDate") || "")}`
+        `${import.meta.env.VITE_BACKEND_URL}/api/questions`,
+        {
+          currentTitle: searchParams.get("currentTitle"),
+          experienceYears: searchParams.get("experienceYears"),
+          skills: searchParams.get("skills"),
+          preferredRoles: searchParams.get("preferredRoles"),
+          jobType: searchParams.get("jobType"),
+        }
       );
       setQuestions(response.data.questions);
       setLoading(false);
@@ -93,9 +80,12 @@ export function Questions() {
                   <strong>Evaluation Criteria:</strong> {evaluationCriteria}
                 </div>
                 <div className="flex space-x-1.5 my-2">
-                  {skills.split(",").map((x) => {
+                  {skills.split(",").map((x, index) => {
                     return (
-                      <div className="bg-red-400 px-2 py-0.5 rounded-md text-sm">
+                      <div
+                        className="bg-red-400 px-2 py-0.5 rounded-md text-sm"
+                        key={index}
+                      >
                         {x.trim()}
                       </div>
                     );

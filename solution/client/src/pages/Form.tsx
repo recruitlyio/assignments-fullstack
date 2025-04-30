@@ -40,13 +40,8 @@ export default function JobSeekerForm() {
   const navigate = useNavigate();
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    const qeuryString = `?fullName=${encodeURIComponent(
-      formData.fullName
-    )}&email=${encodeURIComponent(
-      formData.email
-    )}&location=${encodeURIComponent(formData.location)}&relocate=${
-      formData.relocate
-    }&remote=${formData.remote}&currentTitle=${encodeURIComponent(
+
+    const qeuryString = `?currentTitle=${encodeURIComponent(
       formData.currentTitle
     )}&experienceYears=${encodeURIComponent(
       formData.experienceYears
@@ -55,6 +50,7 @@ export default function JobSeekerForm() {
     )}&preferredRoles=${encodeURIComponent(
       formData.preferredRoles
     )}&jobType=${encodeURIComponent(formData.jobType)}`;
+
     navigate(`/questions${qeuryString}`);
   };
 

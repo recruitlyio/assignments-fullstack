@@ -1,56 +1,75 @@
-Welcome to our technical assessment repository! This collection of challenges is designed to evaluate your ability to build AI-powered recruitment tools that solve real-world problems.
+# Interview Questions Generator AI
 
-## Instructions
+## Table of Contents
+1. [Description](#description)
+2. [Features](#features)
+3. [Installation](#installation)
+4. [Usage](#usage)
 
-1. Review the challenges below
-2. Choose ONE that best matches your skills and interests
-3. Fork this repository and implement your solution
-4. Submit a pull request with your completed challenge
+## Description
+This project includes features like new interview creation, ai based question generation and visiting previously generated interviews based on the date and the difficulty level. 
+Client: ReactJS (Vite)
+Server: NodeJS (Express)
+Database: MongoDB
 
-## About Our Platform
 
-We are building an Agentic recruitment platform with specialized agents that automate key aspects of the hiring process. Our technology stack includes React, Node.js, TypeScript, and modern AI/LLM integrations.
+## Features
+- **Question Interface**: User-friendly interface which showcases questions in a chat like interface.
+- **Interview Generation**: AI algorithm generates questions based on the difficulty level and the topic.
+- **Interview Creation**: User can create new interviews with the job description, years of experience, and the difficulty level.
 
-## Challenge Options
+## Installation
 
-Choose ONE of the following challenges:
+https://www.loom.com/share/a15908a1a94b4c3f8666db1c7cbf9a2f?sid=449254c0-b7f2-4238-9f29-d681120ebfc9
 
-### [Advanced Candidate Matching System](./candidate-matcher.md)
-Design an intelligent system that matches candidates to jobs by understanding skill equivalence, experience depth, and potential fit.
+### Prerequisites
+Ensure the following are installed:
+- **Node.js**  
+- **Docker**  
 
-### [Intelligent Resume Parser](./resume-analyzer.md)
-Build a system that extracts structured, validated data from unstructured resume content.
+### Steps
+1. **Clone the repository**:
+   
+  ```bash
+   git clone https://github.com/keshavsaini2607/user-management-app.git
+  ```
+2. **Setup Frontend:**
+   
+  ```bash
+    cd assignments-fullstack/client
+    npm install
+    npm run dev
+  ```
+  Access the frontend at: http://localhost:3000/
 
-### [Candidate Engagement Chatbot](./candidate-engagement-bot.md)
-Create a conversational agent that provides job information while qualifying candidates through natural dialogue.
+3. **Setup Backend:**
 
-### [Technical Interview Question Generator](./interview-generator.md)
-Develop a tool that generates tailored technical interview questions with appropriate difficulty calibration.
+Open a new terminal and navigate to the backend directory:
+  ```
+    cd assignments-fullstack/server
+  ```
 
-## Evaluation Criteria
+4. **Pull and run the Docker image:**
 
-Regardless of which challenge you choose, we'll evaluate your submission on:
+ ```
+    docker pull keshavsaini0905/interview-server:latest
+    docker run -d -p 8000:8000 keshavsaini0905/interview-server:latest
+  ```
+Backend API: http://localhost:8000/
 
-1. **Problem Solving**: How you approach and decompose a complex problem
-2. **AI Integration**: Strategic use of LLMs beyond simple prompt engineering
-3. **Code Quality**: Structure, readability, and maintainability
-4. **System Design**: Architecture decisions and technical tradeoffs
-5. **Functionality**: Effectiveness of your solution for the intended use case
+5. **Access the Application:**:
+Visit http://localhost:3000/ to use the application.
 
-## Time Expectation
+**Key Components:**
 
-Each challenge is designed to take approximately 4-8 hours. We value your time and don't expect a production-ready system. Focus on demonstrating your approach and technical thinking rather than perfecting every detail.
+1. **Client (ReactJS/Vite):** The frontend of the application, built using ReactJS with Vite as the build tool, handles user interactions and displays the interview interface.
+2. **Express Server:** A Node.js web application framework that handles the backend logic, processes API requests, and integrates with the AI service for question generation.
+3. **MongoDB:** A NoSQL database that stores interview data, questions, and user responses. It provides flexible schema design for handling various types of interview data.
+4. **AI Integration:** An artificial intelligence component that generates relevant interview questions based on provided parameters like difficulty level and topic.
 
-## Submission Process
+**Data Flow and Interactions**
 
-1. Fork this repository
-2. Create a new branch with a descriptive name (`your-name-solution`)
-3. Implement your solution
-4. Submit a pull request with a summary of your approach
-5. Include setup instructions in your README
-
-We're excited to see your creative solutions to these challenges!
-
-## Questions?
-
-If you have questions about the assignment, please open an issue in this repository.
+1. **Client to Server:** The React frontend sends requests to the Express backend when users create new interviews or request question generation.
+2. **Server to AI Service:** The Express server communicates with the AI service to generate appropriate interview questions based on user parameters.
+3. **Server to Database:** The Express server interacts with MongoDB to store and retrieve interview data, including generated questions and user responses.
+4. **Client Display:** The React frontend receives and displays the generated questions in a chat-like interface, allowing for an interactive interview experience.

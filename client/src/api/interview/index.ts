@@ -14,3 +14,8 @@ export const createInterview = async (interviewBody: Iinterview) => {
    );
    return interview;
 };
+
+export const getAllInterviews = async () => {
+   const interviews = await api.get(API_ENDPOINTS.INTERVIEW.GET_ALL);
+   return interviews;
+};

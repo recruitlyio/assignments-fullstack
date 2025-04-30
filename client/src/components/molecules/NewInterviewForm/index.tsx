@@ -6,6 +6,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { createInterview } from "@/api/interview";
+import { useNavigate } from "react-router";
 
 const formSchema = z.object({
    jobRequirements: z.string().min(1, "Job requirements are required"),
@@ -20,6 +22,7 @@ const NewInterviewForm = () => {
       register,
       handleSubmit,
       formState: { errors, isSubmitting },
+      setValue,
       watch,
    } = useForm<FormValues>({
       resolver: zodResolver(formSchema),
@@ -28,10 +31,19 @@ const NewInterviewForm = () => {
          difficultyLevel: "easy",
       },
    });
+   const navigate = useNavigate();
 
    const onSubmit = async (data: FormValues) => {
       try {
-         console.log(data); // Replace with your API call
+         console.log(data);
+         const response = await createInterview(data);
+         if (response.status !== 200) {
+            console.log("Interview created successfully");
+            return;
+         }
+         if(response.data && response.data.newinterview && response.data.newinterview.id) {
+            navigate(`/chat/${response.data.newinterview.id}`);
+         }
       } catch (error) {
          console.error("Error submitting form:", error);
       }
@@ -64,9 +76,7 @@ const NewInterviewForm = () => {
                <RadioGroup
                   value={watch("experienceLevel")}
                   onValueChange={(value) => {
-                     register("experienceLevel").onChange({
-                        target: { value },
-                     });
+                     setValue("experienceLevel", value);
                   }}
                   className="flex items-center gap-4"
                >
@@ -94,12 +104,9 @@ const NewInterviewForm = () => {
                <RadioGroup
                   value={watch("difficultyLevel")}
                   onValueChange={(value) => {
-                     register("difficultyLevel").onChange({
-                        target: { value },
-                     });
+                     setValue("difficultyLevel", value);
                   }}
                   className="flex items-center gap-4"
-                  defaultValue="easy"
                >
                   <div className="flex items-center space-x-2">
                      <RadioGroupItem value="easy" id="easy" />

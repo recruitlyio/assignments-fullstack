@@ -1,10 +1,16 @@
 import express from "express";
+import cors from "cors";
 import interviewRouter from "./routes/interview.route";
 import questionRouter from "./routes/question.route";
 
 const app = express();
 
 app.use(express.json());
+app.use(cors({
+   origin: "*",
+   methods: ["GET", "POST", "PUT", "DELETE"],
+   allowedHeaders: ["Content-Type", "Authorization"],
+}));
 app.use("/api/v1/interview", interviewRouter);
 app.use("/api/v1/question", questionRouter);
 

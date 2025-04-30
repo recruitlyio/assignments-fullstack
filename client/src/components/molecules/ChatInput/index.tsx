@@ -1,38 +1,43 @@
-import React, { useState } from 'react';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { SendIcon } from 'lucide-react';
+import React from "react";
+import { Button } from "@/components/ui/button";
+import { SendIcon } from "lucide-react";
+import { generateNewQuestions } from "@/api/question";
+import { useMessageStore } from "@/store/messageStore";
 
 interface ChatInputProps {
-  onSendMessage: (message: string) => void;
-  disabled?: boolean;
+   disabled?: boolean;
 }
 
-const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage, disabled }) => {
-  const [message, setMessage] = useState('');
+const ChatInput: React.FC<ChatInputProps> = () => {
+   const { setMessages, messages, setMessageLoading } = useMessageStore();
+   const interviewId = React.useMemo(
+      () => window.location.pathname.split("/")[2],
+      []
+   );
+   const handleSubmit = async (e: React.FormEvent) => {
+      e.preventDefault();
+      setMessageLoading(true);
+      if (interviewId) {
+         const questions = await generateNewQuestions(interviewId, "regenerate")
+         if (questions.data && questions.data.length > 0) {
+            const extractedQuestions = questions.data.flatMap((qList: any) => qList.questions || []);
+            if (extractedQuestions.length > 0) {
+               const mess = [...messages, ...extractedQuestions];
+               setMessages(mess);
+            }
+         }
+      }
+      setMessageLoading(false);
+   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (message.trim()) {
-      onSendMessage(message);
-      setMessage('');
-    }
-  };
-
-  return (
-    <form onSubmit={handleSubmit} className="flex gap-2">
-      <Input
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-        placeholder="Type your message..."
-        disabled={disabled}
-        className="flex-1"
-      />
-      <Button type="submit" disabled={disabled || !message.trim()}>
-        <SendIcon className="h-4 w-4" />
-      </Button>
-    </form>
-  );
+   return (
+      <div className="flex gap-2">
+         <Button type="submit" onClick={handleSubmit}>
+            <span>Generate More</span>
+            <SendIcon className="h-4 w-4" />
+         </Button>
+      </div>
+   );
 };
 
 export default ChatInput;

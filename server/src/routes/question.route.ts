@@ -3,6 +3,7 @@ import { generateQuestions } from "../controllers/question.controller";
 
 const router = express.Router();
 
-router.get("/:interviewId", generateQuestions);
+// genType: "initial" | "regenerate"
+router.get("/:interviewId/:genType", generateQuestions);
 
 export default router;

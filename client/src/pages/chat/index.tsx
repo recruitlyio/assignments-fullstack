@@ -1,43 +1,63 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import ChatMessage from "@/components/molecules/ChatMessage";
 import ChatInput from "@/components/molecules/ChatInput";
 import { ChevronLeft } from "lucide-react";
 import { useNavigate } from "react-router";
-
-interface Message {
-   text: string;
-   isAI: boolean;
-}
+import { generateNewQuestions } from "@/api/question";
+import { useMessageStore } from "@/store/messageStore";
+import Loader from "@/components/atoms/Loader";
 
 const ChatPage = () => {
-   const [messages, setMessages] = useState<Message[]>([]);
-   const [isLoading, setIsLoading] = useState(false);
+   const { messages, setMessages, messageLoading, setMessageLoading } =
+      useMessageStore();
    const navigate = useNavigate();
+   // get interview id from url
+   const interviewId = React.useMemo(
+      () => window.location.pathname.split("/")[2],
+      []
+   );
 
-   const handleSendMessage = async (message: string) => {
-      // Add user message
-      setMessages((prev) => [...prev, { text: message, isAI: false }]);
-      setIsLoading(true);
+   useEffect(() => {
+      let isMounted = true;
 
-      try {
-         // TODO: Replace with actual API call
-         // Simulating API delay
-         await new Promise((resolve) => setTimeout(resolve, 1000));
+      const fetchQuestions = async () => {
+         if (!interviewId || messages.length > 0) return;
+         
+         setMessageLoading(true);
+         try {
+            const questions = await generateNewQuestions(
+               interviewId,
+               "initial"
+            );
+            if (!isMounted) return;
 
-         // Add AI response
-         setMessages((prev) => [
-            ...prev,
-            {
-               text: "This is a sample AI response. Replace with actual API integration.",
-               isAI: true,
-            },
-         ]);
-      } catch (error) {
-         console.error("Error getting AI response:", error);
-      } finally {
-         setIsLoading(false);
-      }
-   };
+            if (questions.data && questions.data.length > 0) {
+               const extractedQuestions = questions.data.flatMap(
+                  (qList: any) => qList.questions || []
+               );
+               if (extractedQuestions.length > 0) {
+                  setMessages(extractedQuestions);
+               }
+            }
+         } catch (error) {
+            console.error("Error fetching questions:", error);
+         } finally {
+            if (isMounted) {
+               setMessageLoading(false);
+            }
+         }
+      };
+
+      fetchQuestions();
+
+      return () => {
+         isMounted = false;
+      };
+   }, [interviewId]); // Removed messages from dependency array
+
+   if (messageLoading) {
+      return <Loader />;
+   }
 
    return (
       <div className="flex flex-col h-screen p-4">
@@ -50,21 +70,26 @@ const ChatPage = () => {
             >
                <ChevronLeft />
                <span className="text-gray-700 font-semibold text-xl">
-                  Interview Chat
+                  Interview Questions
                </span>
             </div>
          </nav>
+         <div className="bg-orange-100 p-3">
+            <span className="text-gray-800">
+               Welcome to the AI Interview helper you can start the interview
+               here with some basic understanding questions and gradually
+               increase the complexity with following questions. To generate new
+               questions click on the generate button below.
+            </span>
+         </div>
          <div className="flex-1 overflow-y-auto mb-4 p-3">
-            {messages.map((message, index) => (
-               <ChatMessage
-                  key={index}
-                  message={message.text}
-                  isAI={message.isAI}
-               />
-            ))}
+            {messages &&
+               messages.map((message, index) => (
+                  <ChatMessage key={index} question={message} />
+               ))}
          </div>
          <div className="sticky bottom-0 bg-white p-4 border-t">
-            <ChatInput onSendMessage={handleSendMessage} disabled={isLoading} />
+            <ChatInput disabled={messageLoading} />
          </div>
       </div>
    );

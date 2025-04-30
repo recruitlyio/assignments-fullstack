@@ -40,7 +40,7 @@ export default function Home() {
     <div className="flex items-center flex-col mt-8">
       <h1 className="text-center text-2xl font-bold">Smart Resume Parser</h1>
       <form
-        className="mt-4  bg-white shadow-md rounded-lg p-8 w-2xl flex flex-col items-center"
+        className="mt-4  bg-white shadow-md rounded-lg p-8 w-full md:w-2xl flex flex-col items-center"
         onSubmit={async (e) => {
           e.preventDefault();
           const resumeContent = e.currentTarget.resumeContent.value;

@@ -1,3 +1,8 @@
+The main thing to note if you get any issue i also make other repo for this project by chance any issue got there also
+Here is the link for that repo: https://github.com/naaa760/app-neha-chat
+
+and here is the link of the demo video also: https://www.loom.com/share/aec5ef51f5e9427ea5fbd7685cfcee5f?sid=a0a179d5-4d61-4f87-a1ea-3d9d4c7c7e65
+
 # Candidate Engagement Chatbot
 
 A specialized chatbot that engages job applicants with contextually relevant information while qualifying their fit for open positions. This application features a React frontend with a conversational interface and a Node.js/TypeScript backend for managing conversation state and candidate information extraction.

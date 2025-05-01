@@ -1,0 +1,84 @@
+{
+  "result": [
+    {
+      "Que": "What is JSX in React?",
+      "Ans": "JSX is a syntax extension for JavaScript that allows writing HTML-like code within React components."
+    },
+    {
+      "Que": "What is the difference between state and props in React?",
+      "Ans": "Props are passed from parent to child components, while state is managed within the component itself."
+    },
+    {
+      "Que": "What are React Hooks?",
+      "Ans": "Hooks are functions like useState and useEffect that let you use state and lifecycle features in functional components."
+    },
+    {
+      "Que": "What does the useEffect hook do?",
+      "Ans": "useEffect lets you perform side effects such as data fetching, subscriptions, or manual DOM manipulation in function components."
+    },
+    {
+      "Que": "What is the virtual DOM in React?",
+      "Ans": "The virtual DOM is a lightweight copy of the real DOM that React uses to efficiently update the UI by comparing changes."
+    },
+    {
+      "Que": "What is the purpose of keys in React lists?",
+      "Ans": "Keys help React identify which items have changed, are added, or are removed, improving rendering performance."
+    },
+    {
+      "Que": "How do you handle forms in React?",
+      "Ans": "Forms in React are usually handled using controlled components where form data is synced with state."
+    },
+    {
+      "Que": "What are controlled and uncontrolled components?",
+      "Ans": "Controlled components have their value controlled by React state, whereas uncontrolled components use refs to access DOM values."
+    },
+    {
+      "Que": "What is prop drilling and how do you avoid it?",
+      "Ans": "Prop drilling is the process of passing props through multiple components. It can be avoided using Context API or state management tools like Redux."
+    },
+    {
+      "Que": "What is React.memo used for?",
+      "Ans": "React.memo is a higher-order component that prevents unnecessary re-renders of functional components by memoizing the result."
+    },
+    {
+      "Que": "What is Node.js?",
+      "Ans": "Node.js is a runtime environment that allows running JavaScript on the server side using the V8 engine."
+    },
+    {
+      "Que": "What is the difference between require and import?",
+      "Ans": "`require` is used in CommonJS modules, while `import` is used in ES Modules (ESM) and requires the 'type': 'module' flag."
+    },
+    {
+      "Que": "What is the purpose of the package.json file?",
+      "Ans": "package.json contains metadata about the project and lists dependencies, scripts, and configurations."
+    },
+    {
+      "Que": "What is the event loop in Node.js?",
+      "Ans": "The event loop allows Node.js to perform non-blocking I/O operations by handling events and callbacks asynchronously."
+    },
+    {
+      "Que": "What are streams in Node.js?",
+      "Ans": "Streams are used for reading or writing data in chunks, improving performance with large files or network operations."
+    },
+    {
+      "Que": "What is middleware in Express.js?",
+      "Ans": "Middleware functions in Express are functions that have access to the request and response objects and can modify or handle them before reaching the final route."
+    },
+    {
+      "Que": "How does Node.js handle asynchronous operations?",
+      "Ans": "Node.js uses callbacks, promises, and async/await to handle asynchronous code without blocking the main thread."
+    },
+    {
+      "Que": "What is the use of process.env in Node.js?",
+      "Ans": "process.env is used to access environment variables which are useful for storing sensitive configuration like API keys."
+    },
+    {
+      "Que": "What is the difference between synchronous and asynchronous code?",
+      "Ans": "Synchronous code blocks execution until it finishes, while asynchronous code allows the program to continue executing while it completes in the background."
+    },
+    {
+      "Que": "What is a callback function in Node.js?",
+      "Ans": "A callback function is a function passed as an argument to another function, to be executed after the first function completes."
+    }
+  ]
+}

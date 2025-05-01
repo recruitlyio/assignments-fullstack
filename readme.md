@@ -1,56 +1,91 @@
-Welcome to our technical assessment repository! This collection of challenges is designed to evaluate your ability to build AI-powered recruitment tools that solve real-world problems.
+# 🧠 AI Technical Interview Question Generator
 
-## Instructions
+An AI-powered system that generates technical interview questions tailored to job roles and candidate experience levels. It helps recruiters create role-specific, skill-focused, and difficulty-calibrated questions — along with evaluation criteria.
 
-1. Review the challenges below
-2. Choose ONE that best matches your skills and interests
-3. Fork this repository and implement your solution
-4. Submit a pull request with your completed challenge
+---
 
-## About Our Platform
+## 📌 Features
 
-We are building an Agentic recruitment platform with specialized agents that automate key aspects of the hiring process. Our technology stack includes React, Node.js, TypeScript, and modern AI/LLM integrations.
+- Input job role, skills, and candidate experience level
+- Generate domain-specific technical questions using GPT-3.5-turbo
+- Clear evaluation guidelines for each question
+- Categorized by skill topic (e.g., React, Node.js, SQL)
 
-## Challenge Options
+---
 
-Choose ONE of the following challenges:
+## 🛠 Tech Stack
 
-### [Advanced Candidate Matching System](./candidate-matcher.md)
-Design an intelligent system that matches candidates to jobs by understanding skill equivalence, experience depth, and potential fit.
+- Frontend React JS
+- Backend Node.js (TypeScript)
+- API OpenAI GPT-3.5-turbo
+- Styling TailwindCSS
 
-### [Intelligent Resume Parser](./resume-analyzer.md)
-Build a system that extracts structured, validated data from unstructured resume content.
+---
 
-### [Candidate Engagement Chatbot](./candidate-engagement-bot.md)
-Create a conversational agent that provides job information while qualifying candidates through natural dialogue.
+## 🧠 How It Works
 
-### [Technical Interview Question Generator](./interview-generator.md)
-Develop a tool that generates tailored technical interview questions with appropriate difficulty calibration.
+1. Recruiter enters
 
-## Evaluation Criteria
+   - Job Role (e.g., Frontend Developer)
+   - Core Skills (e.g., React, TypeScript)
+   - Experience In Years
+   - Job Description
+   - No Of Question
 
-Regardless of which challenge you choose, we'll evaluate your submission on:
+2. Backend processes this into a structured GPT prompt.
 
-1. **Problem Solving**: How you approach and decompose a complex problem
-2. **AI Integration**: Strategic use of LLMs beyond simple prompt engineering
-3. **Code Quality**: Structure, readability, and maintainability
-4. **System Design**: Architecture decisions and technical tradeoffs
-5. **Functionality**: Effectiveness of your solution for the intended use case
+3. GPT-3.5-turbo generates
 
-## Time Expectation
+   - A technical question
+   - Suggested answer or key points
+   - Evaluation criteria
 
-Each challenge is designed to take approximately 4-8 hours. We value your time and don't expect a production-ready system. Focus on demonstrating your approach and technical thinking rather than perfecting every detail.
+---
 
-## Submission Process
+## 🧪 Sample Output
 
-1. Fork this repository
-2. Create a new branch with a descriptive name (`your-name-solution`)
-3. Implement your solution
-4. Submit a pull request with a summary of your approach
-5. Include setup instructions in your README
+```json
+{
+  "result": [
+    {
+      "question": "What is JSX in React?",
+      "answer": "JSX is a syntax extension for JavaScript that allows writing HTML-like code within React components."
+    },
+    {
+      "question": "What is the difference between state and props in React?",
+      "answer": "Props are passed from parent to child components, while state is managed within the component itself."
+    },
+    {
+      "question": "What are React Hooks?",
+      "answer": "Hooks are functions like useState and useEffect that let you use state and lifecycle features in functional components."
+    }
+  ]
+}
+```
 
-We're excited to see your creative solutions to these challenges!
+## 🤖 AI Integration
 
-## Questions?
+This project integrates with the **OpenAI GPT-3.5-Turbo** model to generate role-specific technical interview questions.
 
-If you have questions about the assignment, please open an issue in this repository.
+### ⚠️ Important Notes:
+
+- You need a valid OpenAI API key to enable dynamic question generation.
+- GPT-3.5-Turbo is a paid API, and free-tier access may be limited or unavailable.
+- Without an API key, the system UI will load, but question generation will not work.
+- I have tried using several alternative APIs, but most of them are paid and the ones that are free do not provide quality questions or generate them accurately. If you could provide me with the purchased OpenAI credentials or API key, I would be able to complete everything perfectly.
+
+### 🧪 Fallback System
+
+- I attempted integration with **Hugging Face models**, but the **response accuracy was poor and inconsistent** for technical interview tasks.
+- As a workaround, I have included a local `sample.json` file that:
+  - Mimics the structure of real AI-generated questions.
+  - Allows the UI and logic to function for **demo purposes**, even without an API key.
+
+### 🔐 Setup Your OpenAI API Key
+
+Create a `.env` file inside the `server` folder:
+
+```env
+OPENAI_API_KEY=your-api-key-here
+
+```

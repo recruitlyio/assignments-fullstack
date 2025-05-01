@@ -1,0 +1,26 @@
+# dependencies
+node_modules/
+**/node_modules/
+/.pnp
+.pnp.js
+
+# environment variables
+**/.env
+**/.env.local
+**/.env.development.local
+**/.env.test.local
+**/.env.production.local
+
+# logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# build directories
+**/build
+**/dist
+
+# misc
+.DS_Store

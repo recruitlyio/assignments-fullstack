@@ -20,16 +20,20 @@ An AI-powered application that generates tailored technical interview questions 
 ## Installation
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/akhil2510/interview-generator.git
 cd interview-generator
 ```
+
 2. Switch to the branch akhilesh_muchhala :
+
 ```bash
 git checkout akhilesh_muchhala
 ```
 
-2. Install dependencies for both server and client:
+3. Install dependencies for both server and client:
+
 ```bash
 # Install server dependencies
 cd server
@@ -38,13 +42,15 @@ npm install
 # Install client dependencies
 cd ../client
 npm install
+```
 
-3. Set up environment variables:
- 3.1Create a .env file in the server directory with the following variables:
- OPENAI_API_KEY=your_openai_api_key_with_gpt4_access
- VALID_API_KEY=your_custom_api_key_for_authentication
+4. Set up environment variables:
 
-3.2 Create a .env file in the client directory:
- REACT_APP_API_KEY=your_custom_api_key_for_authentication
+   4.1Create a .env file in the server directory with the following variables:
+   OPENAI_API_KEY=your_openai_api_key_with_gpt4_access
+   VALID_API_KEY=your_custom_api_key_for_authentication
+
+   4.2 Create a .env file in the client directory:
+   REACT_APP_API_KEY=your_custom_api_key_for_authentication
 
 Note: The VALID_API_KEY in the server and REACT_APP_API_KEY in the client must match exactly.

@@ -21,9 +21,14 @@ An AI-powered application that generates tailored technical interview questions 
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
+git clone https://github.com/akhil2510/interview-generator.git
 cd interview-generator
 ```
+2. Switch to the branch akhilesh_muchhala :
+```bash
+git checkout akhilesh_muchhala
+```
+
 2. Install dependencies for both server and client:
 ```bash
 # Install server dependencies

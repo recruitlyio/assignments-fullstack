@@ -1,0 +1,261 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Petit+Formal+Script&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: "Poppins", Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light;
+  color: #213547;
+  background-color: #ffffff;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+#root {
+  width: 100%;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c5c5c5;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1;
+}
+
+/* Animation utilities */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease forwards;
+}
+
+/* Apply fade-in animation to chat messages */
+.chat-message {
+  animation: fadeIn 0.3s ease forwards;
+}
+
+/* Chat bubble animations */
+@keyframes popIn {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.bubble-animation {
+  animation: bubbleIn 0.3s ease-out;
+}
+
+@keyframes bubbleIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animated-gradient {
+  background: linear-gradient(
+    -45deg,
+    #f0f2f0,
+    #c5cae9,
+    #7986cb,
+    #3f51b5,
+    #000c40
+  );
+  background-size: 400% 400%;
+  animation: gradientAnimation 15s ease infinite;
+}
+
+.navbar-rounded {
+  border-radius: 1rem;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.brand-text {
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 0.05em;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.candibot-title {
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 10px rgba(255, 255, 255, 0.5),
+    0 0 20px rgba(255, 255, 255, 0.3);
+  color: #e0e0e0;
+  background-clip: text;
+  -webkit-background-clip: text;
+  background-image: linear-gradient(135deg, #ffffff, #c0c0c0, #a9a9a9, #e0e0e0);
+}
+
+/* Add responsive animation */
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-slideIn {
+  animation: slideIn 0.3s ease-out forwards;
+}
+
+/* Responsive media queries */
+@media (max-width: 640px) {
+  .candibot-title {
+    font-size: 1.75rem;
+  }
+
+  header .container {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}
+
+/* Fix for mobile safari height issues */
+@supports (-webkit-touch-callout: none) {
+  .h-screen {
+    height: -webkit-fill-available;
+  }
+}
+
+/* Add responsive image handling */
+.responsive-img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Add better breakpoint handling */
+.responsive-container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 576px) {
+  .responsive-container {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .responsive-container {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .responsive-container {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .responsive-container {
+    max-width: 1140px;
+  }
+}
+
+/* Add styling for the recruiting assistant text */
+.recruiting-assistant-text {
+  font-family: "Petit Formal Script", cursive, "Poppins", sans-serif;
+  color: #000;
+  font-style: italic;
+  letter-spacing: 0.05em;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.3);
+  font-weight: 500;
+}
+
+/* Add new input animation */
+@keyframes focusGlow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(63, 81, 181, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(63, 81, 181, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(63, 81, 181, 0);
+  }
+}
+
+.focus-within\:ring-2:focus-within {
+  animation: focusGlow 2s infinite;
+}
+
+/* Animate send button icon */
+@keyframes gentle-pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-pulse {
+  animation: gentle-pulse 2s infinite ease-in-out;
+}

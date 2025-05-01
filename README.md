@@ -47,10 +47,13 @@ npm install
 4. Set up environment variables:
 
    4.1Create a .env file in the server directory with the following variables:
+   ```Bash
    OPENAI_API_KEY=your_openai_api_key_with_gpt4_access
+   
    VALID_API_KEY=your_custom_api_key_for_authentication
-
+   ```
    4.2 Create a .env file in the client directory:
+   ```Bash
    REACT_APP_API_KEY=your_custom_api_key_for_authentication
-
+   ```
 Note: The VALID_API_KEY in the server and REACT_APP_API_KEY in the client must match exactly.

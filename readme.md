@@ -1,56 +1,102 @@
-Welcome to our technical assessment repository! This collection of challenges is designed to evaluate your ability to build AI-powered recruitment tools that solve real-world problems.
 
-## Instructions
 
-1. Review the challenges below
-2. Choose ONE that best matches your skills and interests
-3. Fork this repository and implement your solution
-4. Submit a pull request with your completed challenge
+Interview Question Generator
 
-## About Our Platform
+## Overview
 
-We are building an Agentic recruitment platform with specialized agents that automate key aspects of the hiring process. Our technology stack includes React, Node.js, TypeScript, and modern AI/LLM integrations.
+This project is designed to generate technical interview questions based on job requirements and experience levels. It leverages OpenAI's GPT-3 to produce high-quality interview questions, categorized by difficulty and evaluation criteria. The system is capable of adapting to various job requirements and experience levels, providing a customizable and scalable solution for technical interviews.
 
-## Challenge Options
+---
 
-Choose ONE of the following challenges:
+## Approach to Question Generation
 
-### [Advanced Candidate Matching System](./candidate-matcher.md)
-Design an intelligent system that matches candidates to jobs by understanding skill equivalence, experience depth, and potential fit.
+1. **Input**: The user provides job requirements (e.g., React ,redux,node) and an experience level (junior, mid, or senior). 
 
-### [Intelligent Resume Parser](./resume-analyzer.md)
-Build a system that extracts structured, validated data from unstructured resume content.
+2. **Question Generation**: Using GPT-3, we craft a prompt that instructs the model to generate technical questions. The prompt is dynamic and is structured to ensure that the generated questions focus on:
+   - The specified job requirements (technologies)
+   - The experience level of the candidate
+   - Clear question formatting with the question, difficulty, and evaluation criteria
+   
+3. **Output**: Each generated question is returned with the following attributes:
+   - **Question**: The actual interview question
+   - **Difficulty**: The difficulty of the question (e.g., Easy, Medium, Hard)
+   - **Evaluation Criteria**: Guidelines on what constitutes a good answer
 
-### [Candidate Engagement Chatbot](./candidate-engagement-bot.md)
-Create a conversational agent that provides job information while qualifying candidates through natural dialogue.
+---
 
-### [Technical Interview Question Generator](./interview-generator.md)
-Develop a tool that generates tailored technical interview questions with appropriate difficulty calibration.
+## Calibrating Difficulty
 
-## Evaluation Criteria
+To ensure questions align with the specified difficulty level, we use the following approach:
+- **Junior**: Questions focus on basic concepts and practical knowledge, often involving straightforward tasks like explaining concepts or solving simple coding problems.
+- **Mid**: Questions increase in complexity, often testing the candidate’s ability to handle more challenging scenarios and problem-solving.
+- **Senior**: These questions delve into complex topics, architectural decisions, and optimization challenges that require in-depth knowledge and experience.
 
-Regardless of which challenge you choose, we'll evaluate your submission on:
+The difficulty is assigned based on the complexity of the task, the level of understanding required, and the experience expected for each role.
 
-1. **Problem Solving**: How you approach and decompose a complex problem
-2. **AI Integration**: Strategic use of LLMs beyond simple prompt engineering
-3. **Code Quality**: Structure, readability, and maintainability
-4. **System Design**: Architecture decisions and technical tradeoffs
-5. **Functionality**: Effectiveness of your solution for the intended use case
+---
 
-## Time Expectation
+## Technical Decisions and Tradeoffs
 
-Each challenge is designed to take approximately 4-8 hours. We value your time and don't expect a production-ready system. Focus on demonstrating your approach and technical thinking rather than perfecting every detail.
+1. **Using OpenAI GPT-3**:
+   - **Advantages**: GPT-3 is capable of generating high-quality, contextually relevant questions tailored to different domains. It reduces the manual effort of creating questions.
+   - **Disadvantages**: Depending on the quality of input and prompt design, the model might generate questions that are either too generic or overly complex. It may also introduce biases or inaccuracies, which need to be manually filtered.
 
-## Submission Process
+2. **Question Format**:
+   - The questions are returned in a structured format (question, difficulty, evaluation criteria), making it easy to integrate them into an interview pipeline.
+   - **Tradeoff**: While structured, some questions may need human review to ensure they align well with the role and requirements.
 
-1. Fork this repository
-2. Create a new branch with a descriptive name (`your-name-solution`)
-3. Implement your solution
-4. Submit a pull request with a summary of your approach
-5. Include setup instructions in your README
+3. **Customization**:
+   - The approach allows the user to specify the job role and experience level, providing flexibility in the types of questions generated.
+   - **Tradeoff**: Extensive customization might require fine-tuning the prompts for each unique scenario, which could be time-consuming.
 
-We're excited to see your creative solutions to these challenges!
+4. **Handling Edge Cases**:
+   - To address cases where the model may generate vague or irrelevant questions, we’ve implemented basic validation for content accuracy (e.g., ensuring all parts of the question format are present).
+   - **Tradeoff**: While validation improves quality, it’s not foolproof, and manual review may still be required.
 
-## Questions?
+---
 
-If you have questions about the assignment, please open an issue in this repository.
+## Setup Instructions
+
+### Prerequisites
+
+- Node.js (v14 or higher)
+- npm (v6 or higher)
+- OpenAI API key
+
+### 1. Clone the Repository
+
+
+git clone https://github.com/your-username/your-forked-repo.git
+cd your-forked-repo
+
+
+### 2. Install Dependencies
+
+
+npm install
+
+
+### 3. Set Up OpenAI API Key
+
+Ensure that you have an OpenAI API key and store it securely. You can set it as an environment variable or add it to a configuration file (`.env`):
+
+
+OPENAI_API_KEY=your-api-key-here
+
+
+Alternatively, configure your OpenAI API in `config/openai.js`.
+
+### 4. Running Locally
+
+To start the application, run the following command:
+
+
+npm run dev
+
+
+This will start both the frontend and backend services, and you can begin interacting with the interview question generator through the UI.
+
+
+
+
+

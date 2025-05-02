@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
 import { ApiError } from '../types';
 
 //  TODO change URL
-const API_BASE_URL = 'http://localhost:3001/api';
+const API_BASE_URL = 'https://assignments-fullstack-server.vercel.app/api';
 
 const api = axios.create({
   baseURL: API_BASE_URL,

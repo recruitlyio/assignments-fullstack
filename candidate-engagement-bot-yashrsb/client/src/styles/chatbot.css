@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-gradient-to-tr from-indigo-100 via-purple-100 to-pink-100 min-h-screen;
+}
+
+.chat-container {
+  @apply flex flex-col h-full p-4 overflow-y-auto bg-white/80 rounded-xl shadow-lg;
+}
+
+.message {
+  @apply p-3 rounded-lg max-w-[80%] text-sm;
+}
+
+.message.user {
+  @apply bg-blue-500 text-white self-end;
+}
+
+.message.bot {
+  @apply bg-gray-200 text-gray-800 self-start;
+}
+
+.input-container {
+  @apply p-4 bg-white/80 shadow-xl rounded-xl flex items-center space-x-2;
+}

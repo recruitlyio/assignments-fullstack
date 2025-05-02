@@ -30,21 +30,34 @@ Candidate information is collected from free-form input using the following appr
 
 ### Step-by-step:
 
-1. Folder Location: My solution is in `candidate-engagement-bot-yashrsb/`.
+1. Folder Location: Project present in `candidate-engagement-bot-yashrsb/`.
+
+2. Navigate to the project folder:
 ```bash
 cd candidate-engagement-bot-yashrsb
 ```
 
-2. Install all dependencies:
-
+3. Install all dependencies:
 ```bash
 npm install
 ```
 
-3. Run the application:
+4. Set up environment variables:
+    In the server/ folder, copy the .env.example file and rename it to .env.
+    Add Gemini API key in the following format:
+```ini
+# Server Port
+PORT=3001
+
+# Gemini API Key
+GEMINI_API_KEY=gemini-api-key
+```
+
+4. Run the application:
 
 ```bash
 npm run dev
 ```
 
-4. Access the app: ```http://localhost:3000```
+4. Access the app:
+Open ````http://localhost:3000``` in the browser.

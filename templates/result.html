@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Match Results</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Resume Match Results</h1>
+    {% if error %}
+        <p class="error">Error: {{ error }}</p>
+    {% else %}
+        <table>
+            <tr>
+                <th>Job Title</th>
+                <th>Match Score (%)</th>
+                <th>Matched Skills</th>
+                <th>Missing Skills</th>
+            </tr>
+            {% for match in matches %}
+                <tr>
+                    <td>{{ match.job_title }}</td>
+                    <td>{{ match.match_score }}</td>
+                    <td>{{ match.matched_skills | join(", ") }}</td>
+                    <td>{{ match.missing_skills | join(", ") }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+    <a href="/">Back to Upload</a>
+</body>
+</html>

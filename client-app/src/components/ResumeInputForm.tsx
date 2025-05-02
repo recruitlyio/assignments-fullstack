@@ -26,7 +26,7 @@ const ResumeInputForm: React.FC<ResumeInputFormProps> = ({ onSubmit, isLoading }
     <form onSubmit={handleSubmit(handleFormSubmit)} className='space-y-4'>
       <div>
         <label htmlFor='resumeText' className='block text-sm font-medium text-gray-700'>
-          Paste Resume Text
+          Enter Resume Text
         </label>
         <textarea
           id='resumeText'

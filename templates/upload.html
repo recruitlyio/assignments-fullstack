@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resume Matching</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .form-group { margin-bottom: 15px; }
+        .job-group { margin-bottom: 20px; border: 1px solid #ddd; padding: 10px; }
+        input[type="text"] { width: 100%; padding: 5px; }
+        textarea { width: 100%; height: 100px; padding: 5px; }
+        label { display: block; margin-bottom: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Upload Resume and Job Descriptions</h1>
+    <form action="/match" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="resume">Resume (PDF/DOCX):</label>
+            <input type="file" id="resume" name="resume" accept=".pdf,.docx" required>
+        </div>
+        <div class="job-group">
+            <h3>Job 1</h3>
+            <label for="job_title1">Job Title:</label>
+            <input type="text" id="job_title1" name="job_title1" required>
+            <label for="jd1">Job Description:</label>
+            <textarea id="jd1" name="jd1" required></textarea>
+        </div>
+        <div class="job-group">
+            <h3>Job 2</h3>
+            <label for="job_title2">Job Title:</label>
+            <input type="text" id="job_title2" name="job_title2" required>
+            <label for="jd2">Job Description:</label>
+            <textarea id="jd2" name="jd2" required></textarea>
+        </div>
+        <div class="job-group">
+            <h3>Job 3</h3>
+            <label for="job_title3">Job Title:</label>
+            <input type="text" id="job_title3" name="job_title3" required>
+            <label for="jd3">Job Description:</label>
+            <textarea id="jd3" name="jd3" required></textarea>
+        </div>
+        <div class="job-group">
+            <h3>Job 4</h3>
+            <label for="job_title4">Job Title:</label>
+            <input type="text" id="job_title4" name="job_title4" required>
+            <label for="jd4">Job Description:</label>
+            <textarea id="jd4" name="jd4" required></textarea>
+        </div>
+        <div class="job-group">
+            <h3>Job 5</h3>
+            <label for="job_title5">Job Title:</label>
+            <input type="text" id="job_title5" name="job_title5" required>
+            <label for="jd5">Job Description:</label>
+            <textarea id="jd5" name="jd5" required></textarea>
+        </div>
+        <div class="job-group">
+            <h3>Job 6</h3>
+            <label for="job_title6">Job Title:</label>
+            <input type="text" id="job_title6" name="job_title6" required>
+            <label for="jd6">Job Description:</label>
+            <textarea id="jd6" name="jd6" required></textarea>
+        </div>
+        <button type="submit">Match Resume</button>
+    </form>
+</body>
+</html>

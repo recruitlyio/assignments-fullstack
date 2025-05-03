@@ -82,7 +82,7 @@ export default function Component({
                           y={(viewBox.cy || 0) + 24}
                           className="fill-muted-foreground"
                         >
-                          Visitors
+                          Score
                         </tspan>
                       </text>
                     );

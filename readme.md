@@ -1,56 +1,69 @@
-Welcome to our technical assessment repository! This collection of challenges is designed to evaluate your ability to build AI-powered recruitment tools that solve real-world problems.
 
-## Instructions
+### Problem-Solution Breakdown
 
-1. Review the challenges below
-2. Choose ONE that best matches your skills and interests
-3. Fork this repository and implement your solution
-4. Submit a pull request with your completed challenge
+#### 1. **Problem: Search Engine Indexing**
 
-## About Our Platform
+* The application must be indexed properly by search engines for discoverability.
 
-We are building an Agentic recruitment platform with specialized agents that automate key aspects of the hiring process. Our technology stack includes React, Node.js, TypeScript, and modern AI/LLM integrations.
+**Solution:**
 
-## Challenge Options
+* Design and implement pages in an SEO-friendly manner (e.g., server-rendered pages, meta tags, sitemaps).
 
-Choose ONE of the following challenges:
+---
 
-### [Advanced Candidate Matching System](./candidate-matcher.md)
-Design an intelligent system that matches candidates to jobs by understanding skill equivalence, experience depth, and potential fit.
+#### 2. **Problem: Handling Multiple Resume Uploads and Parsing**
 
-### [Intelligent Resume Parser](./resume-analyzer.md)
-Build a system that extracts structured, validated data from unstructured resume content.
+There are challenges with how resumes are parsed and processed, especially at scale.
 
-### [Candidate Engagement Chatbot](./candidate-engagement-bot.md)
-Create a conversational agent that provides job information while qualifying candidates through natural dialogue.
+**Solutions:**
 
-### [Technical Interview Question Generator](./interview-generator.md)
-Develop a tool that generates tailored technical interview questions with appropriate difficulty calibration.
+* **Approach A: Backend Parsing**
 
-## Evaluation Criteria
+  * Parse resumes on the server after upload.
+  * *Challenges*: High RAM usage, difficulty scaling with traffic, need for message queues for async processing.
 
-Regardless of which challenge you choose, we'll evaluate your submission on:
+* **Approach B: Use LLMs (e.g., Gemini)**
 
-1. **Problem Solving**: How you approach and decompose a complex problem
-2. **AI Integration**: Strategic use of LLMs beyond simple prompt engineering
-3. **Code Quality**: Structure, readability, and maintainability
-4. **System Design**: Architecture decisions and technical tradeoffs
-5. **Functionality**: Effectiveness of your solution for the intended use case
+  * Send resume files to an LLM to get structured data.
+  * *Challenges*: Expensive API calls, especially for large files.
 
-## Time Expectation
+* **Approach C: Frontend Parsing (Recommended)**
 
-Each challenge is designed to take approximately 4-8 hours. We value your time and don't expect a production-ready system. Focus on demonstrating your approach and technical thinking rather than perfecting every detail.
+  * Perform parsing on the client-side (browser/PC) and send structured data to the server.
+  * *Advantages*: Offloads processing to client machines, reducing server load.
 
-## Submission Process
+---
 
-1. Fork this repository
-2. Create a new branch with a descriptive name (`your-name-solution`)
-3. Implement your solution
-4. Submit a pull request with a summary of your approach
-5. Include setup instructions in your README
+#### 3. **Problem: High RAM Usage with Large Resume Sets**
 
-We're excited to see your creative solutions to these challenges!
+* Processing many or large resumes can consume significant RAM.
 
-## Questions?
+**Solution:**
 
-If you have questions about the assignment, please open an issue in this repository.
+* Process a limited batch of resume content at a time.
+* Use a database to persist intermediate data, retaining it for 24 hours to avoid loss and reprocessing.
+
+---
+
+#### 4. **Problem: Filtering Candidates Effectively**
+
+* Manually shortlisting resumes is inefficient and prone to bias/errors.
+
+**Solution:**
+
+* Apply configurable conditions and filters to automatically shortlist candidates based on parsed resume data.
+
+---
+
+#### 5. **Problem: No Standardized Export Format for Shortlisted Resumes**
+
+* Difficulty in sharing or integrating shortlisted candidates into other systems.
+
+**Solution:**
+
+* Provide export options:
+
+  * **CSV** for spreadsheet-based workflows.
+  * **PDF** for formatted, printable reports.
+
+---

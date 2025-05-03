@@ -1,56 +1,61 @@
-Welcome to our technical assessment repository! This collection of challenges is designed to evaluate your ability to build AI-powered recruitment tools that solve real-world problems.
+# Fullstack Assignment Project
 
-## Instructions
+**Deployed URL:**  
+[fullstack-project-backend-5y7m.vercel.app](https://fullstack-project-backend-5y7m.vercel.app)
 
-1. Review the challenges below
-2. Choose ONE that best matches your skills and interests
-3. Fork this repository and implement your solution
-4. Submit a pull request with your completed challenge
+---
 
-## About Our Platform
+### Problem
 
-We are building an Agentic recruitment platform with specialized agents that automate key aspects of the hiring process. Our technology stack includes React, Node.js, TypeScript, and modern AI/LLM integrations.
+- Inconsistent formatting and missing key elements.
+- Download functionality is not consistent or reliable.
+- Difficulty in distinguishing between similar terms with different meanings.
 
-## Challenge Options
+---
 
-Choose ONE of the following challenges:
+## Solution
 
-### [Advanced Candidate Matching System](./candidate-matcher.md)
-Design an intelligent system that matches candidates to jobs by understanding skill equivalence, experience depth, and potential fit.
+- Use **Gemini API** to improve content consistency and semantic understanding.
+- Add consistent **download** functionality for all reports.
 
-### [Intelligent Resume Parser](./resume-analyzer.md)
-Build a system that extracts structured, validated data from unstructured resume content.
+---
 
-### [Candidate Engagement Chatbot](./candidate-engagement-bot.md)
-Create a conversational agent that provides job information while qualifying candidates through natural dialogue.
+## Comparison to Job Description
 
-### [Technical Interview Question Generator](./interview-generator.md)
-Develop a tool that generates tailored technical interview questions with appropriate difficulty calibration.
+- Enable comparison and scoring based on the job description.
+- Allow users to **download all comparison reports** easily.
 
-## Evaluation Criteria
+---
 
-Regardless of which challenge you choose, we'll evaluate your submission on:
+## SEO Strategy
 
-1. **Problem Solving**: How you approach and decompose a complex problem
-2. **AI Integration**: Strategic use of LLMs beyond simple prompt engineering
-3. **Code Quality**: Structure, readability, and maintainability
-4. **System Design**: Architecture decisions and technical tradeoffs
-5. **Functionality**: Effectiveness of your solution for the intended use case
+- Use **Next.js** to serve server-rendered pages for SEO benefits.
+- Use client components only where necessary to maintain performance.
 
-## Time Expectation
+---
 
-Each challenge is designed to take approximately 4-8 hours. We value your time and don't expect a production-ready system. Focus on demonstrating your approach and technical thinking rather than perfecting every detail.
+##  Setup Instructions
 
-## Submission Process
+```bash
+git clone https://github.com/abhaydixit8115/assignments-fullstack.git
+cd frontend
+npm install
+npm run dev
+````
 
-1. Fork this repository
-2. Create a new branch with a descriptive name (`your-name-solution`)
-3. Implement your solution
-4. Submit a pull request with a summary of your approach
-5. Include setup instructions in your README
+>  Backend is already deployed, and the endpoint URL is pre-configured.
 
-We're excited to see your creative solutions to these challenges!
+---
 
-## Questions?
+##  Screenshot
 
-If you have questions about the assignment, please open an issue in this repository.
+![Project Screenshot](https://media-hosting.imagekit.io/ebbf4dfdfff84559/screencapture-fullstack-project-backend-5y7m-vercel-app-2025-05-03-22_25_52%20(1).png?Expires=1840899896&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=2p89dX16EcOw9vbW2QLfFLNvuseXnj4So8yxCAscBa2hteMX7Z1E2pW0WbvT9aTcTIyuUvEF4MIDE82AyKLORbwNorXfDrGKBwF6j7Owyhz1aF~j0RgpFmR8rvIWNavNZQW0VbvVTw7u1F6dR7TKvoVbR03AhY0qKFxvdkicv3RfOQ7~kee4NbhP2Uau6~O-Pu02VBzOyMICAQDM4A4pukIxsFK4M~LLwQ-O~CTxFbdXgkzUD5BK3pHbnYy4XEmaIfZL34J1S4BbKT1PG5b~vdawCMIT96tOSchg8Y9YqEuIvgmCCpcHEUs8DkwAJDQVwHvINuVzdurhIE4ypoOZfw__)
+
+
+
+##  Screenshot
+
+![Project Screenshot](https://media-hosting.imagekit.io/4541502967a44454/report.png?Expires=1840900432&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=JGI89N-kURRBdt~OabBd0m6wR4TB69XFMDTCDiS-fu0XxpegENgMnzVCfRTeyxW5A5yayv34r8X8i4EKtY8bT~dythanmbXsIlAdXbAUGJpEJlqXgTLx6ltvSnFB4AcIGSpuWQXZALb~DKpvIVj7VVCe-6Ay1F40wvxNRUAimGf5Ma9Ip-S152-s~Yr~3oe795W0ITUg11uSfYrfV18ngFjK9gww9SSdXWNrUyNHh8p4RXMA7dAfhUxJe85i3sCJ4amaAPP-r-FH7wRYu7~FxN2B4UK1ziVqeCFd~yEWotJ1TXXw8n4D4hBFMpHM7TvIyw8umWYMYZ2ciAmPOMsLXQ__)
+
+
+```

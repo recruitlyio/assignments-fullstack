@@ -1,69 +1,56 @@
+# Fullstack Assignment Project
 
-### Problem-Solution Breakdown
-
-#### 1. **Problem: Search Engine Indexing**
-
-* The application must be indexed properly by search engines for discoverability.
-
-**Solution:**
-
-* Design and implement pages in an SEO-friendly manner (e.g., server-rendered pages, meta tags, sitemaps).
+**Deployed URL:**  
+[fullstack-project-backend-5y7m.vercel.app](https://fullstack-project-backend-5y7m.vercel.app)
 
 ---
 
-#### 2. **Problem: Handling Multiple Resume Uploads and Parsing**
+## 🚨 Problem
 
-There are challenges with how resumes are parsed and processed, especially at scale.
-
-**Solutions:**
-
-* **Approach A: Backend Parsing**
-
-  * Parse resumes on the server after upload.
-  * *Challenges*: High RAM usage, difficulty scaling with traffic, need for message queues for async processing.
-
-* **Approach B: Use LLMs (e.g., Gemini)**
-
-  * Send resume files to an LLM to get structured data.
-  * *Challenges*: Expensive API calls, especially for large files.
-
-* **Approach C: Frontend Parsing (Recommended)**
-
-  * Perform parsing on the client-side (browser/PC) and send structured data to the server.
-  * *Advantages*: Offloads processing to client machines, reducing server load.
+- Inconsistent formatting and missing key elements.
+- Download functionality is not consistent or reliable.
+- Difficulty in distinguishing between similar terms with different meanings.
 
 ---
 
-#### 3. **Problem: High RAM Usage with Large Resume Sets**
+## ✅ Solution
 
-* Processing many or large resumes can consume significant RAM.
-
-**Solution:**
-
-* Process a limited batch of resume content at a time.
-* Use a database to persist intermediate data, retaining it for 24 hours to avoid loss and reprocessing.
+- Use **Gemini API** to improve content consistency and semantic understanding.
+- Add consistent **download** functionality for all reports.
 
 ---
 
-#### 4. **Problem: Filtering Candidates Effectively**
+## 🧠 Comparison to Job Description
 
-* Manually shortlisting resumes is inefficient and prone to bias/errors.
-
-**Solution:**
-
-* Apply configurable conditions and filters to automatically shortlist candidates based on parsed resume data.
+- Enable comparison and scoring based on the job description.
+- Allow users to **download all comparison reports** easily.
 
 ---
 
-#### 5. **Problem: No Standardized Export Format for Shortlisted Resumes**
+## 🔍 SEO Strategy
 
-* Difficulty in sharing or integrating shortlisted candidates into other systems.
+- Use **Next.js** to serve server-rendered pages for SEO benefits.
+- Use client components only where necessary to maintain performance.
 
-**Solution:**
+---
 
-* Provide export options:
+## 🛠️ Setup Instructions
 
-  * **CSV** for spreadsheet-based workflows.
-  * **PDF** for formatted, printable reports.
+```bash
+git clone https://github.com/abhaydixit8115/assignments-fullstack.git
+cd frontend
+npm install
+npm run dev
+````
+
+> 💡 Backend is already deployed, and the endpoint URL is pre-configured.
+
+---
+
+## 🖼️ Screenshot
+
+![Project Screenshot](https://i.ibb.co/hJH0nhcN/screencapture-fullstack-project-backend-5y7m-vercel-app-2025-05-03-22-25-52.png)
+
+```
 
 ---

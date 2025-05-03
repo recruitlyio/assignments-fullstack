@@ -9,22 +9,20 @@ import jsPDF from "jspdf";
 import JsonFormatter from "react-json-formatter";
 import autoTable from "jspdf-autotable";
 const LeftResume = () => {
-  const [resumeContent, setResumeContent] = useState<string>(`Abhay Dixit
+  const [resumeContent, setResumeContent] = useState<string>(`John Doe
 Full Stack Developer
-Hardoi, India +91 9363791662 adixit7386@gmail.com Portfolio/Blog
-adixit7386
-adixit7386
+India +91 9999999999 johndoe@gmail.com Portfolio/Blog
 Experience
-Full Stack Developer (Contract) | Docshare Jan 2025 - Present | Remote
+Full Stack Developer (Contract) | Recruitly Jan 2025 - Present | Remote
 Developed a fully functional MVP for a document-sharing and selling platform using Markdown.
 Leveraged React.js, Node.js, MongoDB, MySQL, Redis, RabbitMQ, Razorpay, Google Analytics, and Meta Pixel.
 Implemented CI/CD pipeline with GitHub, AWS CodeBuild, CodeDeploy, CodePipeline, and S3.
 Automated note generation from PDFs using Gemini, significantly enhancing efficiency.
-Devops Engineer | Barclays Jul 2024 - Dec 2024 | Chennai
+Devops Engineer | Cricbuzz Jul 2024 - Dec 2024 | Chennai
 Worked on Ab Initio releases for OAT and PROD environments, ensuring smooth deployment and stability.
 Created Tivoli Workload Scheduler (TWS) definitions, performed sandbox migrations, and rollback testing.
 Migrated the Change Governance Dashboard from Django MVT to React.js, UI-backend separation.
-Devops Engineer - Intern | Barclays Jun 2023 - Aug 2023 | Chennai
+Devops Engineer - Intern | Espncricinfo Jun 2023 - Aug 2023 | Chennai
 Developed a Dashboard to measure, monitor, and address SLA breaches in Change Requests.
 Developed automated email warning using Python scripting and integration with the Nylas API.
 Enabled real-time tracking and governance of Change Requests to ensure SLA compliance.

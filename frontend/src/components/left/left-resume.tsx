@@ -6,6 +6,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Skeleton } from "@/components/ui/skeleton"; // Assuming you're using shadcn/ui or similar
 import RadialChart from "@/components/radial-chart"; // Adjust the import path as necessary
 import jsPDF from "jspdf";
+import JsonFormatter from "react-json-formatter";
 import autoTable from "jspdf-autotable";
 const LeftResume = () => {
   const [resumeContent, setResumeContent] = useState<string>(`Abhay Dixit
@@ -91,21 +92,21 @@ Solid backend development skills with NodeJS, TypeScript, and Fastify or Express
 Experience integrating with third party APIs and services
 Understanding of AI concepts and experience working with Claude, OpenAI, DeepSeek and Google LLMs
 Strong JavaScript/TypeScript skills and understanding of modern ES6+ features`);
-  const [analysisResult, setAnalysisResult] = useState<string | null>(null);
+  const [analysisResult, setAnalysisResult] = useState([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-
+  const [json, setJson] = useState({});
   const handleAnalyze = async () => {
     setIsLoading(true);
     setAnalysisResult(null);
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/resume-analyzer/analyze",
+        `https://fullstack-project-backend.vercel.app/api/resume-analyzer/analyze`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: process.env.NEXT_PUBLIC_API_KEY || "", // Use a public env var for frontend
+            Authorization: "test", // Use a public env var for frontend
           },
           body: JSON.stringify({
             resume: resumeContent,
@@ -115,11 +116,12 @@ Strong JavaScript/TypeScript skills and understanding of modern ES6+ features`);
       );
 
       const data = await response.json();
-      console.log(data);
-      setAnalysisResult(data);
+
+      setAnalysisResult(data.analysis);
+      setJson(data.data);
     } catch (error) {
       console.error("Analysis error:", error);
-      setAnalysisResult("An error occurred during analysis.");
+      //   setAnalysisResult("An error occurred during analysis.");
     } finally {
       setIsLoading(false);
     }
@@ -142,6 +144,23 @@ Strong JavaScript/TypeScript skills and understanding of modern ES6+ features`);
     });
 
     doc.save("report.pdf");
+  };
+  const downloadJSON = (data: object, filename = "data.json") => {
+    const jsonStr = JSON.stringify(data, null, 2); // Pretty print JSON
+    const blob = new Blob([jsonStr], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = filename;
+    link.click();
+
+    URL.revokeObjectURL(url); // Clean up
+  };
+  const jsonStyle = {
+    propertyStyle: { color: "#2A9D90" },
+    stringStyle: { color: "grey" },
+    numberStyle: { color: "darkorange" },
   };
   return (
     <div className="flex flex-col w-full max-w-3xl mx-auto space-y-6">
@@ -194,9 +213,11 @@ Strong JavaScript/TypeScript skills and understanding of modern ES6+ features`);
             <h3 className="text-lg font-semibold px-4 py-4 mb-2 text-foreground">
               Analysis Result
             </h3>
-            <Button onClick={generatePDF} className="cursor-pointer ml-auto">
-              Download
-            </Button>
+            {analysisResult && analysisResult.length > 0 && (
+              <Button onClick={generatePDF} className="cursor-pointer ml-auto">
+                Download
+              </Button>
+            )}
           </div>
           <div className="flex justify-evenly flex-wrap gap-4">
             {isLoading ? (
@@ -208,6 +229,31 @@ Strong JavaScript/TypeScript skills and understanding of modern ES6+ features`);
                   item: { title: string; description: string; score: number },
                   index
                 ) => <RadialChart key={index} data={item} />
+              )
+            )}
+          </div>
+        </div>
+        <div className="w-full p-4 border border-border rounded-md mt-4 bg-background">
+          <div className="flex">
+            <h3 className="text-lg font-semibold px-4 py-4 mb-2 text-foreground">
+              Parsed Data
+            </h3>
+            {analysisResult && analysisResult.length > 0 && (
+              <Button
+                onClick={() => downloadJSON(json, "projectData.json")}
+                className="cursor-pointer ml-auto"
+              >
+                Download
+              </Button>
+            )}
+          </div>
+          <div className="flex justify-evenly flex-wrap gap-4">
+            {isLoading ? (
+              <Skeleton className="h-20 w-full rounded-md" />
+            ) : (
+              analysisResult &&
+              analysisResult.length > 0 && (
+                <JsonFormatter json={json} tabWith={4} jsonStyle={jsonStyle} />
               )
             )}
           </div>

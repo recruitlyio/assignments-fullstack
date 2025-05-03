@@ -1,9 +1,7 @@
-// analyzeResume.js
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 const analyzeResume = async (req, res) => {
   const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-  console.log(process.env.GEMINI_API_KEY);
 
   try {
     const { resume, jobDescription } = req.body;
@@ -14,7 +12,8 @@ const analyzeResume = async (req, res) => {
 
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-    const prompt = `
+    // Prompt 1: Resume Analysis
+    const analysisPrompt = `
 You are a resume analysis expert.
 
 Compare the following resume and job description and analyze the resume based on the following metrics. For each, give a score out of 100 and a short explanation.
@@ -46,22 +45,62 @@ Job Description:
 ${jobDescription}
 `;
 
-    const result = await model.generateContent(prompt);
-    const responseText = result.response.text();
+    const analysisResult = await model.generateContent(analysisPrompt);
+    const analysisText = analysisResult.response.text();
+    const analysisJson = JSON.parse(analysisText.slice(analysisText.indexOf("{"), analysisText.lastIndexOf("}") + 1));
 
-    const jsonStart = responseText.indexOf("{");
-    const jsonEnd = responseText.lastIndexOf("}") + 1;
-    const structuredResult = JSON.parse(responseText.slice(jsonStart, jsonEnd));
-
-    // Convert object to array of { title, score, description }
-    const formattedResult = Object.entries(structuredResult).map(([title, data]) => ({
+    const formattedAnalysis = Object.entries(analysisJson).map(([title, data]) => ({
       title,
       score: data.score,
       description: data.description
     }));
 
-    console.log(formattedResult);
-    res.status(200).json(formattedResult);
+    // Prompt 2: Extract Structured Resume Data
+    const extractPrompt = `
+You are an expert resume parser.
+
+Extract structured data from the following resume in JSON format:
+{
+  "name": "...",
+  "title": "...",
+  "skills": ["...", "..."],
+  "experiences": [
+    {
+      "duration": "...",
+      "title": "...",
+      "description": "..."
+    }
+  ],
+  "projects": [
+    {
+      "title": "...",
+      "description": "...",
+      "technologies": ["...", "..."]
+    }
+  ],
+  "education": [
+    {
+      "institution": "...",
+      "degree": "...",
+      "year": "..."
+    }
+  ],
+  "achievement": ["..."]
+}
+
+Resume:
+${resume}
+`;
+
+    const extractResult = await model.generateContent(extractPrompt);
+    const extractText = extractResult.response.text();
+    const extractJson = JSON.parse(extractText.slice(extractText.indexOf("{"), extractText.lastIndexOf("}") + 1));
+
+    // Final response
+    res.status(200).json({
+      data: extractJson,
+      analysis: formattedAnalysis
+    });
 
   } catch (error) {
     console.error("Error analyzing resume:", error);

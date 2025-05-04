@@ -3,28 +3,47 @@ import { NextResponse } from 'next/server';
 import { promises as fs } from 'fs';
 import path from 'path';
 
-const ai = new GoogleGenAI({ apiKey: 'AIzaSyCAdlBcDqU5JtuPbpIRl54ZZmPVEaMnWYM' });
+const ai = new GoogleGenAI({ apiKey: process.env.GOOGLE_GEMINI_API_KEY });
 const DATA_PATH = path.join(process.cwd(), 'data', 'resume.json');
-
-function extractJsonFromResponse(text: string | undefined,response_type:string): any | null {
-  if (!text) return null;
-  
-  if(response_type=='{}'){
-    const cleaned = text.replace(/```json|```/g, '').trim();
-    const match = cleaned.match(/{[\s\S]*}/);
-    return match && match[0] ? JSON.parse(match[0]) : null;
-  }
-  else if(response_type=='[{}]'){
-    const cleaned = text.replace(/``````/g, '').trim();
-    const match = cleaned.match(/\[[\s\S]*?\]/)
-    return match && match[0] ? JSON.parse(match[0]) : null;
+function extractJsonFromResponse1(text: string | undefined): any[] | null {
+    if (!text) {
+    //   console.error("Input text is undefined or empty");
+      return null;
     }
-  else{
+  
+    // Clean the text from unwanted markdown/code block characters
     const cleaned = text.replace(/```json|```/g, '').trim();
-    const match = cleaned.match(/\[[\s\S]*\]/);
-    return match && match[0] ? JSON.parse(match[0]): null;
+    console.log("Cleaned Text:", cleaned); // Log to check if the text is cleaned properly
+  
+    // Match the JSON structure (either object or array)
+    const match = cleaned.match(/(\{[\s\S]*\}|\[[\s\S]*\])/); // Match both objects and arrays
+  
+    if (!match || !match[0]) {
+      console.error("No valid JSON match found in the text");
+      return null;
+    }
+  
+    const jsonString = match[0].trim();
+    console.log("JSON String Found:", jsonString); // Log the matched JSON string
+  
+    try {
+      const parsed = JSON.parse(jsonString);
+  
+      // If the parsed result is an object, wrap it in an array
+      if (typeof parsed === 'object') {
+        return Array.isArray(parsed) ? parsed : [parsed]; // Return as an array
+      }
+  
+      // If it's neither an object nor an array, return null
+      console.error("Parsed result is neither an object nor an array");
+      return null;
+  
+    } catch (e) {
+      console.error("JSON parsing failed:", e, "Input string:", jsonString);
+      return null;
+    }
   }
-}
+
 
 export async function POST() {
   try {
@@ -61,6 +80,7 @@ export async function POST() {
                                             "location": "string",
                                             "dates": "string",
                                             "description": "array"`;
+
     const prompt5 = `Can you extract all the skills from ${text} into a json format? Don't group the skills 
                                     and please use skills mentioned in the skill section only.`;
 
@@ -97,11 +117,11 @@ export async function POST() {
     console.log(response5?.text)
 
 
-    const final_json1 = extractJsonFromResponse(response1?.text,'{[]}')
-    const final_json2 = extractJsonFromResponse(response2?.text,'[{}]')
-    const final_json3 = extractJsonFromResponse(response3?.text,'[{..,[]}]')
-    const final_json4 = extractJsonFromResponse(response4?.text,'[{..,[]}]')
-    const final_json5 = extractJsonFromResponse(response5?.text,'[{}]')
+    const final_json1 = extractJsonFromResponse1(response1?.text)
+    const final_json2 = extractJsonFromResponse1(response2?.text)
+    const final_json3 = extractJsonFromResponse1(response3?.text)
+    const final_json4 = extractJsonFromResponse1(response4?.text)
+    const final_json5 = extractJsonFromResponse1(response5?.text)
 
 
 

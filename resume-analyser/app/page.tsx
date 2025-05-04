@@ -1,103 +1,120 @@
-import Image from "next/image";
+"use client"
 
-export default function Home() {
+import React, { useState } from 'react';
+import { TextField, Autocomplete, Button, IconButton, Box } from "@mui/material";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { useRouter } from "next/navigation";
+
+
+interface IFormData {
+  about: string;
+}
+
+const AboutPage = () => {
+const schema = yup.object().shape({
+  about: yup.string().trim().required("Resume content is required"),
+});
+
+const {
+  handleSubmit,
+  register,
+  formState: { errors },
+  reset
+} = useForm<IFormData>({
+  defaultValues: {
+    about: '',
+  },
+  resolver: yupResolver(schema),
+  mode: "all",
+});
+
+const router = useRouter();
+const [submitting, setSubmitting] = useState(false);
+const [submitError, setSubmitError] = useState("");
+const [error, setError] = useState('');
+const [responseMessage,setResponseMessage] = useState('');
+
+const onSubmit = async (data: IFormData) => {
+  setSubmitError("");
+  setResponseMessage("");
+  setSubmitting(true);
+  try {
+    const postBody = {text: data?.about};
+    console.log('Submitting text:', JSON.stringify(postBody));
+
+    const res = await fetch('/api/submitResume',{
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(postBody), 
+    });
+
+    const res_data = await res.json();
+    
+    if (!res.ok) {
+      setError(res_data.error || 'Something went wrong');
+      setResponseMessage('');
+    } else {
+      setResponseMessage(res_data.message);
+      // after uploading data
+      setTimeout(() => {
+        router.push("/resume?refresh=true");
+      }, 1500); 
+      setError('');
+      reset(); // Clear the form input
+    }
+
+    setSubmitting(false);
+  } catch (error) {
+    setError('Network error');
+    setResponseMessage('');
+    setSubmitting(false);
+  }
+};
+
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+    <div className='h-[100vh] w-[100vw] bg-gradient-to-r to-purple-200'>
+      <div className='h-full w-full p-10 flex flex-col justify-between items-center'>
+        <div className='text-4xl font-bold text-purple-500'>Resume Parser</div>
+        <div className='py-8 px-10 bg-white shadow-md my-auto rounded-xl border-gray-200 hover:shadow-lg flex flex-col justify-between items-center gap-8'>
+          <div className='text-xl text-center font-semibold text-gray-800'>Paste your resume below</div>
+          <div className='flex flex-col gap-3 items-center'>
+          <TextField
+              multiline
+              minRows={2}
+              maxRows={13}
+              fullWidth
+              type="text"
+              {...register("about")}
+              placeholder="Copy and Paste all your resume's text/content here..."
+              sx={{
+                "& .MuiInputBase-root": {
+                  background: "rgba(54, 57, 62, 0.05)",
+                  height:'300px',
+                  width: '700px',
+                  "&.Mui-focused fieldset": { borderColor: 'gray',
+                                              borderWidth:'1px' },
+                  
+                },
+              }}
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            {submitError && (
+            <div className="text-red-600 font-semibold">{submitError}</div>
+          )}
+          {responseMessage && (
+            <div className="text-green-600 font-semibold">{responseMessage}</div>
+          )}
+          </div>
+            <button type="button" className="cursor-pointer bg-gradient-to-r from-purple-400  to-purple-800 hover:from-purple-400 hover:to-purple-900 px-8 py-2  text-white rounded-md w-[308px] h-[71px] text-3xl font-secondary shadow-md" onClick={handleSubmit(onSubmit)}>Upload</button>
+
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
     </div>
   );
-}
+};
+
+export default AboutPage;

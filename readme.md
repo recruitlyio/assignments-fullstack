@@ -1,56 +1,24 @@
-Welcome to our technical assessment repository! This collection of challenges is designed to evaluate your ability to build AI-powered recruitment tools that solve real-world problems.
+## Steps for the solution:
 
-## Instructions
+1. Created of a **Nextjs** app with an App route, Tailwind CSS and a internal file system as database.
+2. Created of a UI with 2 routes/pages and 2 API endpoints.
+3. First route/page is the Homepage, with a large textbox where user can paste their resume text. This text is uploaded as a JSON body,to the first API, which stores it in internal file system. Everytime we upload new resume, this file is overwritten.
+4. Second route/page is actually the Resume Parse, with an UI showing parsed resume sectionwise with a structured format. We have chosen **Personal Information**, **Eductaion**, **Work Experience** and **Projects** as the sections.
+5. The Second page is automatically routed after an user uploads the resume text, which triggers the 2nd API that is the doing the **Resume Parsing**.
+6. This API has two layers one is the AI layers and other layer is preprocessing along with validation.
+7. The AI layer contains a LLM, in which with the help of the **Zero-shot Prompt Engineering** we retrive each section separately in a JSON string form. We are using **Google Gemini 2.0 Flash** model, which can do about 1500 **Respones Per Minute (RPM)**.
+8. The 2nd layer is the prepocessing layer, where pre-process the JSON string to extract the actual data. So, there are two different forms in which the retrived data is expected:
+   (i) Array of Objects
+   (ii) Objects
+9. For example profile information can be only object, because we have single person in the resume. But, sometimes with a resume having large number of pages, the LLM might hallucinate and give us an Array of Objects, which should also be pre-processed properly. So, we have created a common pathway to pre-process the data using Regex Matching. But, also as the LLM has a Maximum Generation Token Limit, we have encounter that in few cases where the output is beyond this limit, the LLM truncates unexpectedly, and we catch this error. This is also a limitaion of using a LLM with limited Maximum Token Length both input and output.
+10. Once, the data is pro-processed its parsed to the second route/page and parsed resume is displayed in the UI.
 
-1. Review the challenges below
-2. Choose ONE that best matches your skills and interests
-3. Fork this repository and implement your solution
-4. Submit a pull request with your completed challenge
+## Home Page:
 
-## About Our Platform
+## Parsed Resume Page:
 
-We are building an Agentic recruitment platform with specialized agents that automate key aspects of the hiring process. Our technology stack includes React, Node.js, TypeScript, and modern AI/LLM integrations.
+## DEMO video:
 
-## Challenge Options
+https://github.com/Stitaprajna/assignments-fullstack/blob/main/resume-analyser/demo_.mov
 
-Choose ONE of the following challenges:
-
-### [Advanced Candidate Matching System](./candidate-matcher.md)
-Design an intelligent system that matches candidates to jobs by understanding skill equivalence, experience depth, and potential fit.
-
-### [Intelligent Resume Parser](./resume-analyzer.md)
-Build a system that extracts structured, validated data from unstructured resume content.
-
-### [Candidate Engagement Chatbot](./candidate-engagement-bot.md)
-Create a conversational agent that provides job information while qualifying candidates through natural dialogue.
-
-### [Technical Interview Question Generator](./interview-generator.md)
-Develop a tool that generates tailored technical interview questions with appropriate difficulty calibration.
-
-## Evaluation Criteria
-
-Regardless of which challenge you choose, we'll evaluate your submission on:
-
-1. **Problem Solving**: How you approach and decompose a complex problem
-2. **AI Integration**: Strategic use of LLMs beyond simple prompt engineering
-3. **Code Quality**: Structure, readability, and maintainability
-4. **System Design**: Architecture decisions and technical tradeoffs
-5. **Functionality**: Effectiveness of your solution for the intended use case
-
-## Time Expectation
-
-Each challenge is designed to take approximately 4-8 hours. We value your time and don't expect a production-ready system. Focus on demonstrating your approach and technical thinking rather than perfecting every detail.
-
-## Submission Process
-
-1. Fork this repository
-2. Create a new branch with a descriptive name (`your-name-solution`)
-3. Implement your solution
-4. Submit a pull request with a summary of your approach
-5. Include setup instructions in your README
-
-We're excited to see your creative solutions to these challenges!
-
-## Questions?
-
-If you have questions about the assignment, please open an issue in this repository.
+## Deployed Endpoint:

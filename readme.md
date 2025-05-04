@@ -4,7 +4,7 @@
 2. Created of a UI with 2 routes/pages and 2 API endpoints.
 3. First route/page is the Homepage, with a large textbox where user can paste their resume text. This text is uploaded as a JSON body,to the first API, which stores it in internal file system. Everytime we upload new resume, this file is overwritten.
 4. Second route/page is actually the Resume Parse, with an UI showing parsed resume sectionwise with a structured format. We have chosen **Personal Information**, **Eductaion**, **Work Experience** and **Projects** as the sections.
-5. The Second page is automatically routed after an user uploads the resume text, which triggers the 2nd API that is the doing the **Resume Parsing**.
+5. The Second page is automatically routed after an user uploads the resume text, which triggers the 2nd API that is doing the **Resume Parsing**.
 6. This API has two layers one is the AI layers and other layer is preprocessing along with validation.
 7. The AI layer contains a LLM, in which with the help of the **Zero-shot Prompt Engineering** we retrive each section separately in a JSON string form. We are using **Google Gemini 2.0 Flash** model, which can do about 1500 **Respones Per Minute (RPM)**.
 8. The 2nd layer is the prepocessing layer, where pre-process the JSON string to extract the actual data. So, there are two different forms in which the retrived data is expected:
@@ -25,4 +25,9 @@
 
 https://github.com/Stitaprajna/assignments-fullstack/blob/main/resume-analyser/demo_.mov
 
-## Deployed Endpoint:
+To start the app:
+
+```
+cd resume-analyse
+npm run dev
+```

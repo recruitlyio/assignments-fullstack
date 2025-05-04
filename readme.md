@@ -15,7 +15,11 @@
 
 ## Home Page:
 
+![](https://github.com/Stitaprajna/assignments-fullstack/blob/main/resume-analyser/homepage.png)
+
 ## Parsed Resume Page:
+
+![](https://github.com/Stitaprajna/assignments-fullstack/blob/main/resume-analyser/parsedresume.png)
 
 ## DEMO video:
 

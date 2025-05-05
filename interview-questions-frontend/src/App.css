@@ -1,0 +1,184 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+}
+
+.App {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.App-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.App-header h1 {
+  color: #2c3e50;
+}
+
+.loading {
+  text-align: center;
+  padding: 20px;
+  font-size: 18px;
+  color: #666;
+}
+
+/* Form Styles */
+.question-form {
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+.submit-button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+  background-color: #2980b9;
+}
+
+/* Results Styles */
+.question-results {
+  margin-top: 30px;
+}
+
+.question-results h2 {
+  color: #2c3e50;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.question-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+  margin-bottom: 25px;
+}
+
+.question-card h3 {
+  color: #3498db;
+  margin-top: 0;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.question-text {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.question-details {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.question-category, .question-difficulty {
+  margin-right: 30px;
+  font-size: 14px;
+}
+
+.evaluation-criteria h4 {
+  margin-bottom: 10px;
+  color: #2c3e50;
+}
+
+.evaluation-criteria ul {
+  padding-left: 20px;
+}
+
+.evaluation-criteria li {
+  margin-bottom: 8px;
+}
+/* Add these styles to your App.css */
+
+/* LLM Status Indicator */
+.llm-status {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.llm-enabled {
+  background-color: #e3f2fd;
+  color: #0d47a1;
+  border-left: 4px solid #2196f3;
+}
+
+.llm-disabled {
+  background-color: #ffebee;
+  color: #b71c1c;
+  border-left: 4px solid #ef5350;
+}
+
+.llm-indicator {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.llm-enabled .llm-indicator {
+  background-color: #2196f3;
+  box-shadow: 0 0 8px #2196f3;
+}
+
+.llm-disabled .llm-indicator {
+  background-color: #ef5350;
+}
+
+/* Animation for loading state */
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+.loading {
+  animation: pulse 1.5s infinite;
+}

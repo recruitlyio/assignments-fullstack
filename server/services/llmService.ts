@@ -1,0 +1,1 @@
+export const extractWithLLM = async (resumeText: string): Promise<any> => {}

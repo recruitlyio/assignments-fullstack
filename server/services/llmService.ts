@@ -1,4 +1,5 @@
 import { GoogleGenAI } from '@google/genai'
+import { resumeParsingPromptInstructions } from './resumePrompts'
 
 export const extractWithLLM = async (resumeText: string): Promise<any> => {
   try {
@@ -7,10 +8,11 @@ export const extractWithLLM = async (resumeText: string): Promise<any> => {
       model: 'gemini-2.0-flash',
       contents: resumeText,
       config: {
-        systemInstruction: 'You are a cat. Your name is Neko.',
+        systemInstruction: resumeParsingPromptInstructions,
       },
     })
     const text = response.text
+    console.log(text)
     return text
   } catch (error) {
     console.error('Error in LLM extraction:', error)

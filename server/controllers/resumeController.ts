@@ -17,8 +17,10 @@ export const parseResumeController = async (
   }
 
   try {
-    const parsedData = await parseAndValidateResume(resumeText)
-    res.status(200).json(parsedData)
+    // const parsedData = await parseAndValidateResume(resumeText)
+    console.log(resumeText)
+    res.status(200).json(resumeText)
+    // res.status(200).json(parsedData)
   } catch (error) {
     res.status(500).json({
       error: 'An error occurred while processing the resume.',

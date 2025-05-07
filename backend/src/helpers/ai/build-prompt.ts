@@ -17,7 +17,7 @@ Return the result in **valid JSON** format like this:
 [
   {
     "question": "string",
-    "answer": "string",
+    "answers": "string",
     "maxMarks": number
   }
 ]

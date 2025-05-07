@@ -34,7 +34,7 @@ export const QuestionsAndAnswersForm: FC<QuestionsAndAnswersFormProps> = ({
   } = useForm<TInterviewValidation>({
     resolver: zodResolver(interviewValidations),
   });
-
+  console.log({ errors });
   const obtainedMarksWatch = watch("questionsAndAnswers");
   const [totalMarks, setTotalMarks] = useState(0);
   const [totalObtainedMarks, setTotalObtainedMarks] = useState(0);
@@ -48,12 +48,13 @@ export const QuestionsAndAnswersForm: FC<QuestionsAndAnswersFormProps> = ({
     setValue("interviewId", interviewId);
     if (questionsAndAnswers && questionsAndAnswers.length)
       questionsAndAnswers?.forEach((qA) => {
-        questionsAndAnswersFieldsArray.append({
-          answers: qA.answers,
-          marksObtained: 0,
-          maxMarks: qA.maxMarks,
-          question: qA.question,
-        });
+        if (qA)
+          questionsAndAnswersFieldsArray.append({
+            answers: qA.answers,
+            marksObtained: 0,
+            maxMarks: qA.maxMarks,
+            question: qA.question,
+          });
       });
   }, []);
   useEffect(() => {

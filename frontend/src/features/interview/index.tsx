@@ -100,27 +100,26 @@ export const InterviewFeature: FC<IInterviewFeatureProps> = ({
             <>
               {interviewId ? (
                 <>
-                  <div className="flex justify-center pt-8">
-                    <div className="flex justify-center pt-4">
-                      <div className="w-72">
-                        <FormLabel text={`Difficulty:${difficulty}`} />
-                        <Selext
-                          onChange={(val) => {
-                            setDifficulty(val as string);
-                            initInterviewMutation.mutate({
-                              candidateId,
-                              difficulty: val as string,
-                            });
-                          }}
-                          options={[
-                            { label: "Easy", value: "Easy" },
-                            { label: "Medium", value: "Medium" },
-                            { label: "Hard", value: "Hard" },
-                          ]}
-                        />
-                      </div>
+                  <div className="flex justify-center pt-4">
+                    <div className="w-72">
+                      <FormLabel text={`Difficulty:${difficulty}`} />
+                      <Selext
+                        onChange={(val) => {
+                          setDifficulty(val as string);
+                          initInterviewMutation.mutate({
+                            candidateId,
+                            difficulty: val as string,
+                          });
+                        }}
+                        options={[
+                          { label: "Easy", value: "Easy" },
+                          { label: "Medium", value: "Medium" },
+                          { label: "Hard", value: "Hard" },
+                        ]}
+                      />
                     </div>
-
+                  </div>
+                  <div className="flex justify-center pt-4">
                     <QuestionsAndAnswersForm
                       questionsAndAnswers={questionsAndAnswers}
                       candidateId={candidateId}

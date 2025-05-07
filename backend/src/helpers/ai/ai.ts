@@ -25,7 +25,7 @@ export function parseAIResponse(raw: string): QuestionAndAnswer[] {
     return parsed.filter(
       (q: any) =>
         typeof q.question === "string" &&
-        typeof q.answer === "string" &&
+        typeof q.answers === "string" &&
         typeof q.maxMarks === "number"
     );
   } catch (err) {

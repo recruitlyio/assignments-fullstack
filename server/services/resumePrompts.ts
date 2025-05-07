@@ -39,12 +39,12 @@ Specific Guidelines:
 
 1.  **Output Format:** Your entire response *must* be a valid JSON object matching the schema exactly. No other text or formatting is permitted before, during, or after the JSON.
 2.  **Date Normalization:** Normalize all dates found (start/end dates for education and experience) to the "YYYY-MM" format. If an end date is "Present" or "Current", use the string "Present".
-3.  **Skills:** Extract *only* technical skills, software/tool proficiency, programming languages, frameworks, and domain-specific technical abilities. *Exclude* soft skills (e.g., communication, leadership, teamwork), personal attributes, or generic responsibilities. List each distinct skill as a separate string item in the array.
+3.  **Skills:** Extract *only* technical skills, software/tool proficiency, programming languages, frameworks, and domain-specific technical abilities from both the dedicated skills section AND from job descriptions in the experience section. *Exclude* soft skills (e.g., communication, leadership, teamwork), personal attributes, or generic responsibilities. List each distinct skill as a separate string item in the array. 
 4.  **Location:** Extract the most specific location available (e.g., City, State; City, Country) for contact information, education institutions, and experience roles.
 5.  **Missing Information:** If a specific field (e.g., phone number) or an entire section (e.g., certifications) is not present in the resume, use an empty string (\`""\`) for single string fields and an empty array (\`[]\`) for array fields. Do *not* omit keys from the JSON object.
 6.  **Description Fields (Summary, Experience Description):** Extract the full text of the summary/objective. For experience descriptions, capture the key responsibilities and achievements listed (often in bullet points) and concatenate them into a single string, preserving the core information.
 7.  **Irrelevant Sections:** Ignore and do not include information from sections not represented in the schema (e.g., Hobbies, References, Personal Interests, *unless* they clearly belong within the 'summary').
 8.  **Data Verification:** Extract only information that is explicitly stated in the resume text. Do not infer, guess, or hallucinate data.
-
+9.  **Technical Skills Inference:** Carefully analyze each job description in the experience section to identify technical skills, tools, software, programming languages, and technologies mentioned. These should be added to the skills array even if they don't appear in a dedicated skills section.
 --- Resume Text to Process ---
 ` // Use markers to clearly separate instructions from the input text

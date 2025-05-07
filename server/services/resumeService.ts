@@ -1,9 +1,5 @@
 import { extractWithLLM } from './llmService'
-import dotenv from 'dotenv'
 import { parseLLMResponse } from './parseLLMResponse'
-
-// Call dotenv.config() once, early. If index.ts does it, this might not be needed here
-dotenv.config()
 
 export const parseAndValidateResume = async (
   resumeText: string

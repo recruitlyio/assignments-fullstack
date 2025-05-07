@@ -10,7 +10,7 @@ export const parseAndValidateResume = async (
 ): Promise<any> => {
   try {
     const llmOutput = await extractWithLLM(resumeText)
-    return 'parsedData'
+    return llmOutput
   } catch (error:any) {
     console.error(`Error in service (parseAndValidateResume): ${error.message}`);
     throw error

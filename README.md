@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# CVX - Intelligent Resume Parser
 
-## Getting Started
+The **CVX - Intelligent Resume Parser** is a powerful tool designed to parse and validate resumes using a single AI prompt powered by Gemini AI Flow. This project extracts structured data such as personal information, skills, work experience, and education from raw resume text.
 
-First, run the development server:
+## Features
+
+- **Single Prompt Parsing**: Uses a single AI prompt to handle both parsing and validation of resume data.
+- **Structured Data Extraction**: Extracts personal information, skills, work experience, and education details.
+- **Error Handling**: Provides detailed error messages for invalid or incomplete resumes.
+- **Validation**: Ensures the extracted data adheres to predefined schemas.
+
+## Dependencies
+
+This project is built using a next js stack and includes the following key dependencies:
+
+- **[Genkit](https://www.npmjs.com/package/genkit)**: Core AI toolkit used for schema validation and prompt orchestration, with support for Google AI via `@genkit-ai/googleai`.
+- **[Lucide React](https://www.npmjs.com/package/lucide-react)**: A collection of open-source, beautifully designed icons for React applications.
+- **[Next.js](https://nextjs.org/)**: React framework used for server-side rendering and optimized web performance.
+- **[React 19](https://react.dev/)** and **React DOM**: The core libraries for building and rendering user interfaces.
+- **[Radix UI](https://www.radix-ui.com/)**: Provides unstyled, accessible UI components such as `react-accordion` and `react-slot`.
+- **[Tailwind CSS](https://tailwindcss.com/)** and **tailwind-merge**: Utility-first CSS framework and helper for merging class names efficiently.
+- **[class-variance-authority](https://www.npmjs.com/package/class-variance-authority)** and **clsx**: Utilities to manage conditional class names and style variants.
+
+## Installation & Usage
+
+### 1. Install Dependencies
+
+```bash
+npm install
+```
+
+### 2. Start Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## How It Works
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Input:** User pastes raw resume text into the input field.
+2. **AI Prompt:** A single AI prompt, defined using Gemini AI Flow, processes the input text to extract structured data.
+3. **Validation:** Extracted data is validated against predefined schemas by gemini to ensure accuracy and consistency.
+4. **Output:** Parsed data is displayed in a user-friendly format.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Demo
 
-## Learn More
+[Watch Demo Video](demo/video.mp4)
 
-To learn more about Next.js, take a look at the following resources:
+## Author
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [Hritik R](https://github.com/HritikR)

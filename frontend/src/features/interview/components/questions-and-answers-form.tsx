@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import { Controller, useFieldArray, useForm } from "react-hook-form";
 import {
   TInterviewValidation,
@@ -34,11 +34,13 @@ export const QuestionsAndAnswersForm: FC<QuestionsAndAnswersFormProps> = ({
   } = useForm<TInterviewValidation>({
     resolver: zodResolver(interviewValidations),
   });
+  const [totalMarks, setTotalMarks] = useState(0);
+  const [totalObtainedMarks, setTotalObtainedMarks] = useState(0);
   const questionsAndAnswersFieldsArray = useFieldArray({
     control,
     name: "questionsAndAnswers",
   });
-  console.log({ errors });
+
   useEffect(() => {
     setValue("candidateId", candidateId);
     setValue("interviewId", interviewId);
@@ -52,6 +54,16 @@ export const QuestionsAndAnswersForm: FC<QuestionsAndAnswersFormProps> = ({
         });
       });
   }, []);
+  useEffect(() => {
+    let t = 0,
+      to = 0;
+    questionsAndAnswersFieldsArray.fields.forEach((f) => {
+      t = f.maxMarks + t;
+      to = parseInt(f.marksObtained.toString()) + to;
+    });
+    setTotalMarks(t);
+    setTotalObtainedMarks(to);
+  }, [questionsAndAnswersFieldsArray]);
 
   return (
     <>
@@ -89,6 +101,13 @@ export const QuestionsAndAnswersForm: FC<QuestionsAndAnswersFormProps> = ({
             </div>
           </div>
         ))}
+
+        <div className="pt-4 flex justify-center">
+          <h3 className="text-xl">
+            Grading:{totalObtainedMarks}/{totalMarks}
+          </h3>
+        </div>
+
         <div className="pt-4 flex justify-center">
           <button
             className="h-10 w-72 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"

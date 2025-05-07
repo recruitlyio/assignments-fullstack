@@ -22,7 +22,7 @@ export const ListCandidateFeature: React.FC = () => {
 
   return (
     <div className="p-6">
-      <div className="pl-8">
+      <div className="pl-8 pb-4">
         <PageHeading
           breadcrumbs={[
             { link: "/", text: "Home" },
@@ -32,7 +32,7 @@ export const ListCandidateFeature: React.FC = () => {
               linkDisabled: true,
             },
           ]}
-          headingText="Create Candidate"
+          headingText="List Candidates"
         />
       </div>
       {listCandidatesMutation.isLoading ? (

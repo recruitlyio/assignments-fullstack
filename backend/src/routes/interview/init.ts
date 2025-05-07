@@ -38,7 +38,7 @@ route.get(
       const rawOutput = await callAI(prompt);
 
       const questionsAndAnswers = parseAIResponse(rawOutput);
-
+      console.log({ questionsAndAnswers });
       const data = {
         interview,
         candidate,

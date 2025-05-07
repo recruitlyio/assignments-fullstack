@@ -34,7 +34,7 @@ const ListCandidateTable: React.FC<ListCandidateTableProps> = ({ data }) => {
       ),
     },
 
-    { accessorKey: "jobDescription", header: "Job Description" },
+    // { accessorKey: "jobDescription", header: "Job Description" },
     {
       id: "interview",
       header: "Interview",

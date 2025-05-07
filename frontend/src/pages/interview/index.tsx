@@ -1,4 +1,6 @@
 import { Loading } from "@/features/app/loading";
+import Navbar from "@/features/app/navbar";
+import { PageHeading } from "@/features/app/page-heading";
 import { ListCandidateFeature } from "@/features/candidate/list";
 import { InterviewFeature } from "@/features/interview";
 import { useRouter } from "next/router";
@@ -17,8 +19,26 @@ export default function InterviewPage() {
   }, [router.query.candidateId]);
   return (
     <>
+      <Navbar />
+      <div className="pl-8">
+        <PageHeading
+          breadcrumbs={[
+            { link: "/", text: "Home" },
+            {
+              link: "/candidate/list",
+              text: "Candidates",
+            },
+            {
+              link: "/interview",
+              text: "Interview",
+              linkDisabled: true,
+            },
+          ]}
+          headingText="New Interview"
+        />
+      </div>
       <QueryClientProvider client={queryClient}>
-        <div>
+        <div className="pt-10">
           {candidateId ? (
             <>
               <InterviewFeature candidateId={candidateId} />

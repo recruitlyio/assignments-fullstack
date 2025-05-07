@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Intelligent Resume Parser",
+  title: "CVX - Intelligent Resume Parser",
   description: "Parse resumes intelligently with AI",
 };
 
@@ -25,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}>
-        <main className="flex-grow container mx-auto p-4 md:p-6">
+        <main className="flex-grow container mx-auto p-4 md:p-6 max-w-6xl">
           {children}
         </main>
       </body>

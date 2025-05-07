@@ -11,8 +11,8 @@ export const ViewCandidateDetails: FC<IViewCandidateProps> = ({
 }) => {
   return (
     <div className="flex justify-items-start gap-20 font-bold text-3xl">
-      <div>Name:{name}</div>
-      <div>Experience:{experience}</div>
+      <div>Name: {name}</div>
+      <div>Experience: {experience}</div>
     </div>
   );
 };

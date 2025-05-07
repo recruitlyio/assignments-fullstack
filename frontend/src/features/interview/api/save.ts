@@ -6,7 +6,7 @@ import { TInterviewValidation } from "../validations/interview";
 export const saveInterviewApi = async (args: TInterviewValidation) => {
   try {
     const htpClient = buildClient({ timeout: 1500000 });
-    const response = await htpClient.post(`/interview/save`);
+    const response = await htpClient.post(`/interview/save`, args);
     if (response.status !== 200) {
       throw new Error(`POST /interview/save request failed.`);
     }

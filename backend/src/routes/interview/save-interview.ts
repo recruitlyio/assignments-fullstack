@@ -7,7 +7,10 @@ import {
   TQuestionsAndAnswers,
   saveInterviewValidations,
 } from "../../validations/interview/save";
-import { Interview } from "../../models/interview/interview";
+import {
+  Interview,
+  InterviewStatusEnum,
+} from "../../models/interview/interview";
 
 const route = Router();
 
@@ -30,6 +33,7 @@ route.post(
       savedInterview.questionsAndAnswers = req.body.questionsAndAnswers;
       savedInterview.totalMarks = totalMarks;
       savedInterview.totalObtainedMarks = totaObtainedlMarks;
+      savedInterview.status = InterviewStatusEnum.Finished;
       await savedInterview.save();
       res.status(200).json({ message: "Success", data: savedInterview });
     } catch (error) {

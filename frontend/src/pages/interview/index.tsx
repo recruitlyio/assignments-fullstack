@@ -34,7 +34,7 @@ export default function InterviewPage() {
               linkDisabled: true,
             },
           ]}
-          headingText="New Interview"
+          headingText="Interview"
         />
       </div>
       <QueryClientProvider client={queryClient}>

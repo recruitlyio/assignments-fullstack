@@ -35,6 +35,13 @@ export const validateRequest = (
       });
     }
     if (requestValidationErrors.length) {
+      console.log({
+        requestValidationErrors: JSON.stringify(
+          requestValidationErrors,
+          null,
+          4
+        ),
+      });
       throw new RequestValidationError(requestValidationErrors);
     }
     return next();

@@ -9,7 +9,6 @@ export const questionsAndAnswers = z.object({
 
 export const saveInterviewValidations = z.object({
   questionsAndAnswers: z.array(questionsAndAnswers),
-
   interviewId: z.string(),
 });
 

@@ -7,6 +7,7 @@ import { connectToMongodb } from "./helpers/connect-to-mongodb";
 import { createCandidateRouter } from "./routes/candidate/create";
 import { listCandidateRouter } from "./routes/candidate/list";
 import { initInterviewRouter } from "./routes/interview/init";
+import { saveInterviewRouter } from "./routes/interview/save-interview";
 dotenv.config();
 
 const app = express();
@@ -20,6 +21,8 @@ app.use(errorHandler as any);
 app.use("/candidate", createCandidateRouter);
 app.use("/candidate", listCandidateRouter);
 app.use("/interview", initInterviewRouter);
+app.use("/interview", saveInterviewRouter);
+
 const server = app.listen(process.env.PORT || 5000, async () => {
   await connectToMongodb();
 });

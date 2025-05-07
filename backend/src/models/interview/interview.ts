@@ -1,12 +1,17 @@
 import { ObjectId } from "../../types/mongoose";
 import mongoose, { Schema, model, Types } from "mongoose";
 
+export enum InterviewStatusEnum {
+  Init = "init",
+  Finished = "finished",
+}
+
 const QuestionsAndAnswersSchema = new Schema(
   {
     question: { type: String, required: true },
-    answer: { type: String, required: true },
+    answers: { type: String, required: true },
     maxMarks: { type: Number, required: true },
-    obtainedMarks: { type: Number, required: true },
+    marksObtained: { type: Number, required: true },
   },
   { _id: false }
 );
@@ -20,6 +25,12 @@ const InterviewSchema = new Schema(
     },
     totalMarks: { type: Number, required: false, default: 0 },
     totalObtainedMarks: { type: Number, required: false, default: 0 },
+    status: {
+      type: String,
+      required: true,
+      default: InterviewStatusEnum.Init,
+      enum: InterviewStatusEnum,
+    },
   },
   {
     strict: true,

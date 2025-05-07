@@ -1,5 +1,6 @@
 export type TQuestionAndAnswers = {
   question: string;
-  answer: string;
+  answers: string;
   maxMarks: number;
+  marksObtained?: number;
 }[];

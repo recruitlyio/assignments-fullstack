@@ -34,6 +34,8 @@ export const QuestionsAndAnswersForm: FC<QuestionsAndAnswersFormProps> = ({
   } = useForm<TInterviewValidation>({
     resolver: zodResolver(interviewValidations),
   });
+
+  const obtainedMarksWatch = watch("questionsAndAnswers");
   const [totalMarks, setTotalMarks] = useState(0);
   const [totalObtainedMarks, setTotalObtainedMarks] = useState(0);
   const questionsAndAnswersFieldsArray = useFieldArray({
@@ -47,7 +49,7 @@ export const QuestionsAndAnswersForm: FC<QuestionsAndAnswersFormProps> = ({
     if (questionsAndAnswers && questionsAndAnswers.length)
       questionsAndAnswers?.forEach((qA) => {
         questionsAndAnswersFieldsArray.append({
-          answers: qA.answer,
+          answers: qA.answers,
           marksObtained: 0,
           maxMarks: qA.maxMarks,
           question: qA.question,
@@ -55,15 +57,14 @@ export const QuestionsAndAnswersForm: FC<QuestionsAndAnswersFormProps> = ({
       });
   }, []);
   useEffect(() => {
-    let t = 0,
-      to = 0;
-    questionsAndAnswersFieldsArray.fields.forEach((f) => {
+    if (!questionsAndAnswers) return;
+    let t = 0;
+
+    questionsAndAnswers?.forEach((f) => {
       t = f.maxMarks + t;
-      to = parseInt(f.marksObtained.toString()) + to;
     });
     setTotalMarks(t);
-    setTotalObtainedMarks(to);
-  }, [questionsAndAnswersFieldsArray]);
+  }, [questionsAndAnswers]);
 
   return (
     <>
@@ -86,10 +87,15 @@ export const QuestionsAndAnswersForm: FC<QuestionsAndAnswersFormProps> = ({
               <div className="pt-4">
                 <FormLabel text="Obtained Marks" />
                 <input
-                  {...register(`questionsAndAnswers.${index}.marksObtained`)}
+                  {...register(`questionsAndAnswers.${index}.marksObtained`, {
+                    valueAsNumber: true,
+                    setValueAs: (v) => (v === "" ? undefined : parseInt(v)),
+                  })}
                   type="number"
                   placeholder="Id"
                   className="shadow appearance-none border border-black py-2 px-3 text-gray-700 leading-tight focus:border-primary focus:border-2 focus:outline-none rounded-md focus:ring-2"
+                  max={item.maxMarks}
+                  min={0}
                 />
                 {errors.questionsAndAnswers &&
                   errors.questionsAndAnswers[index] && (
@@ -101,12 +107,6 @@ export const QuestionsAndAnswersForm: FC<QuestionsAndAnswersFormProps> = ({
             </div>
           </div>
         ))}
-
-        <div className="pt-4 flex justify-center">
-          <h3 className="text-xl">
-            Grading:{totalObtainedMarks}/{totalMarks}
-          </h3>
-        </div>
 
         <div className="pt-4 flex justify-center">
           <button

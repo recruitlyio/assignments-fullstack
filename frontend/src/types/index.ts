@@ -7,3 +7,8 @@ export type TError = {
 };
 
 export type TErrors = TError[];
+
+export enum InterviewStatusEnum {
+  Init = "init",
+  Finished = "finished",
+}

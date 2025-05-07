@@ -43,6 +43,11 @@ Model: OpenAI openai/gpt-4o
 7. Run `npm run dev` to start development server.
 8. Open the URL Shown by the frontend terminal.
 
+## Testing
+
+1. Backend APIs Tested using POSTMAN.
+2. Frontend Tested Manually.
+
 ## Demo & Source Code
 
 [Video](https://drive.google.com/file/d/1YxCgyZUZezHSPk_aJkK4Fuz611j5Qxx8/view?usp=sharing)
@@ -55,3 +60,4 @@ Model: OpenAI openai/gpt-4o
 2. Diffferent Prompt types.
 3. Functionality to switch LLMs
 4. Precise Skill based question and answer generation.
+5. Automated Unit & E2E testing.

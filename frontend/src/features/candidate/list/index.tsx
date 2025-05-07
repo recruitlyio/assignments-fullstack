@@ -4,8 +4,11 @@ import { useMutation } from "react-query";
 import { listCandidatesApi } from "./api/list";
 
 import { TCandidate } from "../common/types";
+import { useRouter } from "next/router";
+import { PageHeading } from "@/features/app/page-heading";
 
 export const ListCandidateFeature: React.FC = () => {
+  const router = useRouter();
   const [candidates, setCandidates] = useState<TCandidate[]>([]);
   const listCandidatesMutation = useMutation(listCandidatesApi, {
     onSuccess: (data) => {
@@ -19,11 +22,42 @@ export const ListCandidateFeature: React.FC = () => {
 
   return (
     <div className="p-6">
-      <h1 className="text-xl font-bold mb-4">Candidate List</h1>
+      <div className="pl-8">
+        <PageHeading
+          breadcrumbs={[
+            { link: "/", text: "Home" },
+            {
+              link: "/candidate/list",
+              text: "List Candidates",
+              linkDisabled: true,
+            },
+          ]}
+          headingText="Create Candidate"
+        />
+      </div>
       {listCandidatesMutation.isLoading ? (
         <>Loading...</>
       ) : (
-        <ListCandidateTable data={candidates} />
+        <>
+          {candidates.length ? (
+            <ListCandidateTable data={candidates} />
+          ) : (
+            <>
+              <div className="flex justify-center">
+                No Candidates Found. Please create one
+              </div>
+              <div className="pt-4 flex justify-center">
+                <button
+                  className="h-10 w-72 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                  type="button"
+                  onClick={() => router.push(`/candidate/create`)}
+                >
+                  <>Create Candidate</>
+                </button>
+              </div>
+            </>
+          )}
+        </>
       )}
     </div>
   );

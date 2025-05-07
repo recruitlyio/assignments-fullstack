@@ -38,7 +38,7 @@ export const QuestionsAndAnswersForm: FC<QuestionsAndAnswersFormProps> = ({
     control,
     name: "questionsAndAnswers",
   });
-
+  console.log({ errors });
   useEffect(() => {
     setValue("candidateId", candidateId);
     setValue("interviewId", interviewId);
@@ -75,7 +75,7 @@ export const QuestionsAndAnswersForm: FC<QuestionsAndAnswersFormProps> = ({
                 <FormLabel text="Obtained Marks" />
                 <input
                   {...register(`questionsAndAnswers.${index}.marksObtained`)}
-                  type="text"
+                  type="number"
                   placeholder="Id"
                   className="shadow appearance-none border border-black py-2 px-3 text-gray-700 leading-tight focus:border-primary focus:border-2 focus:outline-none rounded-md focus:ring-2"
                 />
@@ -95,14 +95,6 @@ export const QuestionsAndAnswersForm: FC<QuestionsAndAnswersFormProps> = ({
             type="submit"
           >
             Finish Interview
-            {/* {isLoading ? (
-              <div className="flex justify-center gap-4">
-                <div className="loader"></div>
-                Creating...
-              </div>
-            ) : (
-              <>Create Candidate</>
-            )} */}
           </button>
         </div>
       </form>

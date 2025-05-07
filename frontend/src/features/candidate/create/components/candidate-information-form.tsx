@@ -32,11 +32,14 @@ export const CandidateInformationForm: FC<ICandidateInformationFormProps> = ({
   });
 
   return (
-    <form onSubmit={handleSubmit(onSubmitForm)} className="flex justify-center">
+    <form
+      onSubmit={handleSubmit(onSubmitForm)}
+      className="flex justify-center p-8"
+    >
       <div>
         <div className="flex justify-items-start">
           <div className="pl-7 ">
-            <FormLabel text="Job Role" htmlFor="role" />
+            <FormLabel text="Job Role(*)" htmlFor="role" />
             <input
               {...register("role")}
               type="text"

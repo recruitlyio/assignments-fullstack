@@ -91,7 +91,7 @@ export const CandidateInformationForm: FC<ICandidateInformationFormProps> = ({
                   <Selext
                     options={exprerienceYearsOptions}
                     onChange={(val) => {
-                      setValue("exprerienceYears", val);
+                      setValue("exprerienceYears", val as number);
                     }}
                   />
                 </div>
@@ -114,7 +114,7 @@ export const CandidateInformationForm: FC<ICandidateInformationFormProps> = ({
                   <Selext
                     options={exprerienceMonthsOptions}
                     onChange={(val) => {
-                      setValue("experienceMonths", val);
+                      setValue("experienceMonths", val as number);
                     }}
                   />
                 </div>

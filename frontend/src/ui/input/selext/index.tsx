@@ -2,8 +2,8 @@ import React, { FC } from "react";
 import Select from "react-select";
 
 interface IselextProps {
-  options: { value: number; label: string }[];
-  onChange: (val: number) => void;
+  options: { value: number | string; label: string }[];
+  onChange: (val: number | string) => void;
 }
 
 export const Selext: FC<IselextProps> = ({ options, onChange }) => (

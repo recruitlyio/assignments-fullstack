@@ -6,6 +6,7 @@ import { getCorsOptions } from "./helpers/cors-options";
 import { connectToMongodb } from "./helpers/connect-to-mongodb";
 import { createCandidateRouter } from "./routes/candidate/create";
 import { listCandidateRouter } from "./routes/candidate/list";
+import { initInterviewRouter } from "./routes/interview/init";
 dotenv.config();
 
 const app = express();
@@ -18,6 +19,7 @@ app.use(errorHandler as any);
 
 app.use("/candidate", createCandidateRouter);
 app.use("/candidate", listCandidateRouter);
+app.use("/interview", initInterviewRouter);
 const server = app.listen(process.env.PORT || 5000, async () => {
   await connectToMongodb();
 });

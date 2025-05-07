@@ -19,6 +19,7 @@ const InterviewSchema = new Schema(
       required: false,
     },
     totalMarks: { type: Number, required: false, default: 0 },
+    totalObtainedMarks: { type: Number, required: false, default: 0 },
   },
   {
     strict: true,

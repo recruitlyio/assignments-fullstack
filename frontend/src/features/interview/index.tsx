@@ -12,6 +12,7 @@ import { notifySuccess } from "@/utility/toast";
 import { saveInterviewApi } from "./api/save";
 import { InterviewStatusEnum } from "@/types";
 import { InterviewStatus } from "./components/interview-status";
+import { useRouter } from "next/router";
 interface IInterviewFeatureProps {
   candidateId: string;
 }
@@ -19,6 +20,7 @@ interface IInterviewFeatureProps {
 export const InterviewFeature: FC<IInterviewFeatureProps> = ({
   candidateId,
 }) => {
+  const router = useRouter();
   const [candidateName, setCandidateName] = useState<string>("");
   const [experience, setExperience] = useState<string>("");
   const [questionsAndAnswers, setQuestionsAndAnswers] =
@@ -64,6 +66,7 @@ export const InterviewFeature: FC<IInterviewFeatureProps> = ({
   const saveInterviewMutation = useMutation(saveInterviewApi, {
     onSuccess: () => {
       notifySuccess("Success.");
+      router.reload();
     },
   });
 
@@ -73,7 +76,6 @@ export const InterviewFeature: FC<IInterviewFeatureProps> = ({
   }, []);
 
   const onSubmitForm = (data: TInterviewValidation) => {
-    console.log(data);
     saveInterviewMutation.mutate(data);
   };
 

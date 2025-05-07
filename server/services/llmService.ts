@@ -12,7 +12,7 @@ export const extractWithLLM = async (resumeText: string): Promise<any> => {
       },
     })
     const text = response.text
-    console.log(text)
+    // console.log(response.text)
     return text
   } catch (error) {
     console.error('Error in LLM extraction:', error)

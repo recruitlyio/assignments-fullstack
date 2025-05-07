@@ -11,7 +11,7 @@ const QuestionsAndAnswersSchema = new Schema(
     question: { type: String, required: true },
     answers: { type: String, required: true },
     maxMarks: { type: Number, required: true },
-    marksObtained: { type: Number, required: true },
+    marksObtained: { type: Number, required: true, default: 0 },
   },
   { _id: false }
 );

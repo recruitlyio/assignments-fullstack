@@ -1,5 +1,3 @@
-// src/controllers/parse.controller.ts
-
 import { Request, Response, NextFunction } from 'express';
 import { parseResumeWithLLM } from '../services/llm.service';
 import { validateAndStandardizeResume } from '../services/validation.service';
@@ -36,9 +34,8 @@ export const parseResumeController = async (req: Request, res: Response, next: N
     const rawParsedData = await parseResumeWithLLM(resumeText);
     console.log("LLM parsing completed.");
 
-    // 3. Call Validation Service - ADD AWAIT HERE!
-    const validatedData = await validateAndStandardizeResume(rawParsedData); // <--- Added await!
-    console.log("Validation and standardization completed."); // This log now runs AFTER validation finishes
+    const validatedData = await validateAndStandardizeResume(rawParsedData); 
+    console.log("Validation and standardization completed."); 
 
     // 4. Send Success Response (with the actual data, not a promise)
     res.status(200).json(validatedData);

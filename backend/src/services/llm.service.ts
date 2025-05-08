@@ -106,10 +106,9 @@ export const parseResumeWithLLM = async (resumeText: string): Promise<RawParsedR
     // Reference: https://ai.google.dev/gemini-api/docs/safety-settings#safety_feedback
     if (!result.response) {
        console.error("Gemini API Error: No response received. Safety settings might have blocked the request/response.");
-       // You can inspect result.promptFeedback here if needed
        throw new Error("Failed to get response from AI. Potential safety block or API issue.");
     }
-    // Updated access based on Gemini API structure (as of early 2024)
+  
      const response = result.response;
      const candidate = response.candidates?.[0];
 
@@ -122,7 +121,7 @@ export const parseResumeWithLLM = async (resumeText: string): Promise<RawParsedR
     // Use responseMimeType "application/json" means the text should already be JSON
      const text = response.text();
 
-    console.log("Received raw response from Gemini API."); // Avoid logging potentially large 'text' in production
+    // console.log("Received raw response from Gemini API."); // Avoid logging potentially large 'text' in production
 
     // Attempt to parse the response text as JSON
     try {

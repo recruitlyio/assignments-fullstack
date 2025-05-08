@@ -7,7 +7,7 @@ import {
   WorkExperience,
   Education,
   Skill,
-  EmbeddingVector // Make sure this type is exported from resume.types.ts
+  EmbeddingVector 
 } from '../types/resume.types';
 import dotenv from 'dotenv';
 
@@ -34,7 +34,7 @@ const CANONICAL_DEGREES: string[] = [
     // Add more standard degree names
 ];
 
-// Choose your embedding model (e.g., "text-embedding-004", "embedding-001")
+// Choose embedding model (e.g., "text-embedding-004", "embedding-001")
 const EMBEDDING_MODEL_NAME = "text-embedding-004";
 
 // Similarity threshold for matching (TUNE THIS AFTER TESTING!)
@@ -72,7 +72,7 @@ export async function initializeEmbeddings() {
                     parts: [{ text: skill }],
                     role: "user" // <--- ADD THIS LINE
                 }
-                // ... optional model/task_type comments ...
+               
             }));
             const skillResult = await model.batchEmbedContents({ requests: skillRequests });
 
@@ -95,9 +95,9 @@ export async function initializeEmbeddings() {
              const degreeRequests = CANONICAL_DEGREES.map(degree => ({
                 content: {
                     parts: [{ text: degree }],
-                    role: "user" // <--- ADD THIS LINE
+                    role: "user" 
                 }
-                // ... optional model/task_type comments ...
+               
             }));
              const degreeResult = await model.batchEmbedContents({ requests: degreeRequests });
 

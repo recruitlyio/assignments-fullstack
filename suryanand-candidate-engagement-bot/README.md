@@ -73,3 +73,8 @@ To customize the job description, modify the `lib/job-description.ts` file with 
 - Currently supports a single job description
 - Basic resume parsing capabilities
 - English language only
+
+
+# SUBMISSION BY 
+
+- Suryanand Sunil | work@suryanand.com

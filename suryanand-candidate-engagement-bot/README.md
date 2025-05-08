@@ -78,3 +78,4 @@ To customize the job description, modify the `lib/job-description.ts` file with 
 # SUBMISSION BY 
 
 - Suryanand Sunil | work@suryanand.com
+- CHECK PREVIEW : suryanand-candidate-chatbot.vercel.app

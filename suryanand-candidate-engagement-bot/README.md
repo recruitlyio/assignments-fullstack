@@ -23,7 +23,7 @@ A specialized chatbot that engages job applicants with contextually relevant inf
 
 1. Clone the repository:
    \`\`\`bash
-   git clone https://github.com/yourusername/job-applicant-chatbot.git
+   git clone
    cd job-applicant-chatbot
    \`\`\`
 

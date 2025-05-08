@@ -1,3 +1,10 @@
+export const summaryGenerationPromptInstructions = `
+Given the following education and work experience, generate a concise profile summary (2-3 sentences) highlighting 
+total software development experience, main technologies used at each company, and key contributions. 
+Maintain a professional tone and emphasize hands-on experience. Output only the summary.
+--- experience array to Process ---
+`
+
 export const resumeParsingPromptInstructions: string = `
 You are a highly accurate and robust resume parser. Your sole task is to extract structured information from the provided resume text and output *only* a JSON object adhering strictly to the schema below.
 
@@ -14,6 +21,7 @@ Target JSON Schema:
   "education": [
     {
       "degree": "",
+      "major": "", // Major or field of study
       "institution": "",
       "location": "", // City, State or City, Country where institution is
       "start_date": "", // YYYY-MM or "Present"

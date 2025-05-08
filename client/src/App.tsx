@@ -20,8 +20,8 @@ function App() {
   return (
     <div className="container">
       <h1>Intelligent Resume Data Parser</h1>
-      <InputForm onSubmit={handleParse} />
-      <ResultDisplay data={parsedData} />
+      {!parsedData && <InputForm onSubmit={handleParse} />}
+      {parsedData && <ResultDisplay data={parsedData} />}
     </div>
   )
 }
